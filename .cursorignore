@@ -1,0 +1,27 @@
+﻿# Cursor indexer (reduce contexto irrelevante para el modelo)
+
+node_modules/
+dist/
+tmp/
+out-tsc/
+.bazel-out/
+.angular/cache/
+coverage/
+
+npm-debug.log*
+yarn-error.log*
+*.log
+.sass-cache/
+
+.env
+.env.*
+!.env.example
+
+.DS_Store
+Thumbs.db
+.idea/
+
+testem.log
+typings/
+__screenshots__/
+libpeerconnection.log
