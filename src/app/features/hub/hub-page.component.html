@@ -1,0 +1,124 @@
+<main>
+  <section
+    class="relative bg-brand-bg py-24 pt-[180px] pb-24 text-center max-md:pt-44 max-md:pb-16"
+  >
+    <div class="mx-auto max-w-[1120px] px-6">
+      <span
+        class="mb-6 inline-block rounded-full border border-brand-orange/15 bg-brand-orange/8 px-3 py-1 font-mono-display text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-orange/80"
+        >biblioteca de skills</span
+      >
+      <h1
+        class="mx-auto mb-6 bg-linear-to-b from-white from-50% to-brand-orange bg-clip-text py-px font-sans text-[clamp(34px,8vw,64px)] font-medium tracking-[-1.8px] text-transparent"
+      >
+        Los mejores recursos.
+      </h1>
+      <p class="mx-auto mb-10 max-w-[480px] text-lg leading-relaxed text-brand-text/70">
+        Skills, prompts y guías para dominar Claude. Acceso libre.
+      </p>
+
+      <div
+        class="mb-[60px] flex flex-wrap justify-center gap-3"
+        role="toolbar"
+        aria-label="Filtrar por categoría"
+      >
+        @for (f of filters; track f.slug) {
+          <button
+            type="button"
+            [class]="filterClasses(f.slug)"
+            (click)="setFilter(f.slug)"
+            [attr.aria-pressed]="isActiveFilter(f.slug)"
+          >
+            {{ f.label }}
+          </button>
+        }
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        @for (r of visibleResources(); track r.id) {
+          @if (r.upcoming) {
+            <article
+              class="animate-in-ref pointer-events-none relative isolate flex min-h-[300px] cursor-default flex-col overflow-hidden rounded-3xl border border-brand-border bg-surface-card px-9 py-9 opacity-45 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.55)] backdrop-blur-[15px] max-md:min-h-[280px] max-md:px-7 max-md:py-8"
+              [attr.aria-label]="r.title + ' · Próximamente'"
+            >
+              <div
+                class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl"
+                [class]="glowAccentClass(r.category)"
+              ></div>
+              <div class="relative z-[1] flex items-start justify-between">
+                <span
+                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35"
+                  >{{ r.num }}</span
+                >
+                <span [class]="badgeTone(r.upcoming, r.category)">En camino</span>
+              </div>
+              <div
+                class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6"
+              >
+                <h3
+                  class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]"
+                >
+                  {{ r.title }}
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-brand-text/60 max-md:text-[13px]">
+                  {{ r.desc }}
+                </p>
+              </div>
+              <div
+                class="relative z-[1] mt-auto flex items-center justify-between border-t border-brand-border pt-5 max-md:text-[10px]"
+              >
+                <span
+                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/40"
+                  >{{ r.meta }}</span
+                >
+                <span class="text-[13px] font-semibold text-brand-orange">{{ r.cta }}</span>
+              </div>
+            </article>
+          } @else {
+            <a
+              class="animate-in-ref group relative isolate flex min-h-[300px] flex-col overflow-hidden rounded-3xl border border-brand-border bg-surface-card px-9 py-9 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.55)] backdrop-blur-[15px] no-underline outline-none transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-brand-border-warm hover:shadow-[0_0_0_1px_rgb(239_108_74/0.12),0_28px_56px_-16px_rgb(0_0_0/0.65)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 max-md:min-h-[280px] max-md:px-7 max-md:py-8"
+              [routerLink]="['/recursos', r.id]"
+              [attr.aria-label]="r.title"
+            >
+              <div
+                class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl"
+                [class]="glowAccentClass(r.category)"
+              ></div>
+              <div class="relative z-[1] flex items-start justify-between">
+                <span
+                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35"
+                  >{{ r.num }}</span
+                >
+                <span [class]="badgeTone(r.upcoming, r.category)">{{
+                  categoryLabel(r.category)
+                }}</span>
+              </div>
+              <div
+                class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6"
+              >
+                <h3
+                  class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]"
+                >
+                  {{ r.title }}
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-brand-text/60 max-md:text-[13px]">
+                  {{ r.desc }}
+                </p>
+              </div>
+              <div
+                class="relative z-[1] mt-auto flex items-center justify-between border-t border-brand-border pt-5 max-md:text-[10px]"
+              >
+                <span
+                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/40"
+                  >{{ r.meta }}</span
+                >
+                <span class="flex items-center gap-1 text-[13px] font-semibold text-brand-orange"
+                  >{{ r.cta }} →</span
+                >
+              </div>
+            </a>
+          }
+        }
+      </div>
+    </div>
+  </section>
+</main>

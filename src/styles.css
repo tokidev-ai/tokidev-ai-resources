@@ -1,3 +1,83 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+@layer theme {
+  @theme {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono-display:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+      monospace;
+
+    /* Tokidev Design System (tokidev-landing.vercel.app) */
+    --color-brand-bg: #0a111a;
+    --color-brand-text: #f0eef2;
+    --color-brand-orange: #ef6c4a;
+    --color-brand-yellow: #f5a623;
+    --color-brand-purple: #7b5ea7;
+    /* Purple ~15% — cards & faint UI borders */
+    --color-brand-border: #7b5ea726;
+    /* Dark purple ~60% — glass surfaces */
+    --color-brand-glass: #1a102999;
+
+    --color-brand-elevated: rgb(15 21 34);
+    --color-surface-nav: var(--color-brand-glass);
+    --color-surface-card: var(--color-brand-glass);
+
+    /* Coral hover halo (distinct from purple structural border) */
+    --color-brand-border-warm: rgb(239 108 74 / 0.35);
+
+    --color-cat-fundamentos: #ef6c4a;
+    --color-cat-prompts: #f5a623;
+    --color-cat-skills: #7b5ea7;
+    --color-cat-automatizacion: #3b82f6;
+    --color-cat-negocio: #10b981;
+    --color-cat-avanzado: #ef4444;
+  }
+}
+
+:root {
+  --category-fundamentos: var(--color-cat-fundamentos);
+  --category-prompts: var(--color-cat-prompts);
+  --category-skills: var(--color-cat-skills);
+  --category-automatización: var(--color-cat-automatizacion);
+  --category-automatizacion: var(--color-cat-automatizacion);
+  --category-negocio: var(--color-cat-negocio);
+  --category-avanzado: var(--color-cat-avanzado);
+  color-scheme: dark;
+}
+
+.animate-in-ref {
+  animation: animate-in-up 0.45s ease forwards;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply min-h-dvh overflow-x-hidden bg-brand-bg font-sans text-base leading-relaxed text-brand-text antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-sans tracking-tight;
+  }
+}
+
+@keyframes animate-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
