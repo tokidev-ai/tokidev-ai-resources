@@ -53,3 +53,45 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Data Loading Pattern
+Use the resource() API for any async data loading:
+- params signal → triggers the load
+- defaultValue → what to show before load
+- isLoading() / hasValue() / error() for UI states
+
+## Filter State Pattern  
+Use signals for filter state:
+- filterSignal = signal('all')
+- filteredResources = computed(() => resources.filter(...))
+- NEVER filter in the template
+
+## Streaming
+Only use resource.stream if the feature requires real-time AI responses.
+
+## Commands
+
+```bash
+npm start          # ng serve — dev server at http://localhost:4200
+npm run build      # ng build — production build to dist/
+npm run watch      # ng build --watch --configuration development
+npm test           # ng test — runs unit tests via Vitest
+```
+
+## Testing Rules
+
+- Test runner: **Vitest** (not Karma). Config lives in `angular.json` under `test.builder`.
+- Use `describe` / `it` / `expect` from Vitest — do NOT import from Jasmine.
+- Test files: `*.spec.ts` co-located with the source file.
+- Do NOT use `TestBed` when simple unit testing suffices — only use it for components that need Angular DI.
+- Test signals by calling them as functions: `expect(mySignal()).toBe(value)`.
+- Mock HTTP calls with `vi.fn()` or `vi.spyOn()`, never with `HttpClientTestingModule` unless testing Angular HTTP interceptors.
+- Keep tests focused: one `describe` per class, one `it` per behavior.
+
+## Angular CLI MCP
+
+The `.claude/mcp.json` exposes the Angular CLI MCP server with experimental tools enabled:
+- `build` — one-off `ng build`
+- `devserver.start` / `devserver.stop` / `devserver.wait_for_build` — manage `ng serve`
+- `test` — run unit tests
+- Default tools also available: `get_best_practices`, `search_documentation`, `list_projects`, `onpush_zoneless_migration`

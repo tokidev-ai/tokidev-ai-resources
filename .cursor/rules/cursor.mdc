@@ -1,7 +1,6 @@
 ---
-context: true
-priority: high
-scope: project
+description: Angular and TypeScript conventions for tokidev-ai-resources
+alwaysApply: true
 ---
 
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
@@ -58,3 +57,28 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Data Loading Pattern
+
+Use the `resource()` API for any async data loading:
+
+- params signal → triggers the load
+- defaultValue → what to show before load
+- isLoading() / hasValue() / error() for UI states
+
+## Filter State Pattern
+
+Use signals for filter state:
+
+- filterSignal = signal('all')
+- filteredResources = computed(() => resources.filter(...))
+- NEVER filter in the template
+
+## Streaming
+
+Only use resource.stream if the feature requires real-time AI responses.
+
+## Styling (Tailwind v4)
+
+- Design tokens live in `src/styles.css`: `@import 'tailwindcss'` and `@layer theme { @theme { … } }`.
+- Prefer Tailwind utility classes in templates; when IntelliSense warns, use recommended v4 naming (e.g. `bg-linear-to-r`, `z-1000`, `text-brand-text/35`).

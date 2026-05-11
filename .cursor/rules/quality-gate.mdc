@@ -1,0 +1,14 @@
+---
+description: Mandatory build and quality checks before closing any coding task
+alwaysApply: true
+---
+
+# Quality gate (every task)
+
+1. **`npm run build`**: must succeed with zero compile errors before you finish (uses the existing `build` script — no duplicate alias).
+2. **IDE diagnostics**: use lints/problems on files you edited (`.ts`, `.html`, `.css`) and resolve new issues tied to your change.
+3. **ESLint**: this repo does not ship ESLint in `package.json` yet — do **not** assume `ng lint` until it is wired (for example `@angular-eslint/schematics`). Once added, run the project’s lint script after a successful **`npm run build`**.
+4. **Tailwind v4**: global theme lives in `src/styles.css` under `@layer theme { @theme { … } }` plus `@import 'tailwindcss'`. Prefer Tailwind IntelliSense suggestions for class names (`bg-linear-to-*`, `font-mono-display`, etc.).
+5. **Secrets**: `.env` / `.env.*` are in `.cursorignore` and should not be committed. Document keys in `.env.example` only.
+
+Run **`npm run test`** when you change logic paths or routing that existing tests exercise; fix regressions introduced by your edit.
