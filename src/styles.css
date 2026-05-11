@@ -7,22 +7,22 @@
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
       monospace;
 
-    /* Tokidev Design System (tokidev-landing.vercel.app) */
+    /* Navy-first: surfaces match #0a111a; violet only for small accents (e.g. SKILLS). */
     --color-brand-bg: #0a111a;
     --color-brand-text: #f0eef2;
     --color-brand-orange: #ef6c4a;
     --color-brand-yellow: #f5a623;
     --color-brand-purple: #7b5ea7;
-    /* Purple ~15% — cards & faint UI borders */
-    --color-brand-border: #7b5ea726;
-    /* Dark purple ~60% — glass surfaces */
-    --color-brand-glass: #1a102999;
+    --color-brand-border: rgb(255 255 255 / 0.09);
+    --color-brand-glass: rgb(14 21 34 / 0.65);
+    /* Navbar: un toque lila sobre navy, más sutil que el morado anterior */
+    --color-brand-glass-nav: rgb(22 18 38 / 0.55);
+    --color-brand-border-nav: rgb(123 94 167 / 0.14);
 
-    --color-brand-elevated: rgb(15 21 34);
-    --color-surface-nav: var(--color-brand-glass);
+    --color-brand-elevated: rgb(12 19 31);
+    --color-surface-nav: var(--color-brand-glass-nav);
     --color-surface-card: var(--color-brand-glass);
 
-    /* Coral hover halo (distinct from purple structural border) */
     --color-brand-border-warm: rgb(239 108 74 / 0.35);
 
     --color-cat-fundamentos: #ef6c4a;

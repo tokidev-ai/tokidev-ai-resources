@@ -1,20 +1,20 @@
 <nav
-  class="fixed left-1/2 z-1000 flex h-14 w-[92%] max-w-[1120px] -translate-x-1/2 items-center gap-3 rounded-2xl border border-brand-border bg-surface-nav px-5 shadow-[0_8px_32px_rgb(0_0_0/0.45)] backdrop-blur-xl transition-[top] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] max-md:top-5 md:h-16 md:gap-0 md:px-8"
+  class="fixed left-1/2 z-1000 flex h-12 w-[92%] max-w-[1120px] -translate-x-1/2 items-center gap-2 rounded-2xl border border-brand-border-nav bg-surface-nav px-4 shadow-[0_8px_28px_rgb(0_0_0/0.4)] backdrop-blur-xl transition-[top] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] max-md:top-5 md:h-[52px] md:gap-0 md:px-6"
   [class.md:top-7]="!compactNav()"
   [class.md:top-5]="compactNav()"
   aria-label="Principal"
 >
-  <div class="flex min-w-0 flex-1 md:w-[168px] md:flex-none md:justify-start">
+  <div class="flex min-w-0 flex-1 md:w-[152px] md:flex-none md:justify-start">
     <a
       routerLink="/recursos"
       class="flex cursor-pointer items-center gap-3 no-underline text-inherit"
     >
       <span
-        class="flex size-8.5 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-base font-extrabold tracking-tight text-brand-text shadow-[0_8px_20px_rgb(239_108_74/0.35)]"
+        class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-orange text-sm font-extrabold tracking-tight text-brand-text shadow-[0_6px_16px_rgb(239_108_74/0.32)]"
         aria-hidden="true"
         >T</span
       >
-      <span class="truncate text-xl font-bold tracking-tight text-brand-text md:text-2xl"
+      <span class="truncate text-lg font-bold tracking-tight text-brand-text md:text-xl"
         >tokidev</span
       >
     </a>
@@ -27,17 +27,17 @@
   >
     <a
       routerLink="/recursos"
-      class="text-sm font-medium text-brand-text no-underline transition-opacity hover:opacity-80"
+      class="text-[13px] font-medium text-brand-text no-underline transition-opacity hover:opacity-80"
       >Recursos</a
     >
-    <span class="text-sm font-medium text-brand-text/60" title="Próximamente">Comunidad</span>
-    <span class="text-sm font-medium text-brand-text/60" title="Próximamente">Blog</span>
+    <span class="text-[13px] font-medium text-brand-text/60" title="Próximamente">Comunidad</span>
+    <span class="text-[13px] font-medium text-brand-text/60" title="Próximamente">Blog</span>
   </div>
 
-  <div class="flex shrink-0 items-center md:w-[168px] md:justify-end">
+  <div class="flex shrink-0 items-center md:w-[152px] md:justify-end">
     <button
       type="button"
-      class="cursor-pointer whitespace-nowrap rounded-full border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-5 py-2.5 text-[13px] font-semibold text-white shadow-[0_12px_30px_-8px_rgb(239_108_74/0.45)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400"
+      class="cursor-pointer whitespace-nowrap rounded-full border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-4 py-2 text-[12px] font-semibold text-white shadow-[0_10px_24px_-8px_rgb(239_108_74/0.4)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400"
     >
       Empezar gratis
     </button>
@@ -50,7 +50,7 @@
 ></div>
 <div
   aria-hidden="true"
-  class="pointer-events-none fixed right-[-60px] top-12 z-[-1] h-[350px] w-[350px] rounded-full bg-brand-purple/15 blur-[120px]"
+  class="pointer-events-none fixed right-[-60px] top-12 z-[-1] h-[350px] w-[350px] rounded-full bg-sky-500/[0.07] blur-[120px]"
 ></div>
 <div
   aria-hidden="true"

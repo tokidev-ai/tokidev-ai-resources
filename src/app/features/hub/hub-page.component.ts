@@ -60,7 +60,7 @@ export class HubPageComponent {
     const baseBadge =
       'inline-flex shrink-0 items-center rounded-full border px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.15em]';
     if (upcoming) {
-      return `${baseBadge} border-brand-border bg-brand-purple/10 text-brand-text/50`;
+      return `${baseBadge} border-brand-border bg-white/[0.04] text-brand-text/50`;
     }
     switch (category) {
       case 'fundamentos':
@@ -89,6 +89,6 @@ export class HubPageComponent {
     if (active) {
       return `${base} border-transparent bg-linear-to-r from-brand-orange to-brand-yellow text-white shadow-[0_8px_24px_-10px_rgb(239_108_74/0.45)]`;
     }
-    return `${base} border-brand-border bg-surface-card text-brand-text/50 backdrop-blur-md hover:bg-brand-purple/10 hover:text-brand-text/70`;
+    return `${base} border-brand-border bg-surface-card text-brand-text/50 backdrop-blur-md hover:bg-white/[0.06] hover:text-brand-text/70`;
   }
 }
