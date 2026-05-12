@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'material-icons/iconfont/material-icons.css';
+@plugin '@tailwindcss/typography';
 
 @layer theme {
   @theme {
@@ -25,23 +27,17 @@
 
     --color-brand-border-warm: rgb(239 108 74 / 0.35);
 
-    --color-cat-fundamentos: #ef6c4a;
     --color-cat-prompts: #f5a623;
     --color-cat-skills: #7b5ea7;
     --color-cat-automatizacion: #3b82f6;
-    --color-cat-negocio: #10b981;
-    --color-cat-avanzado: #ef4444;
   }
 }
 
 :root {
-  --category-fundamentos: var(--color-cat-fundamentos);
   --category-prompts: var(--color-cat-prompts);
   --category-skills: var(--color-cat-skills);
   --category-automatización: var(--color-cat-automatizacion);
   --category-automatizacion: var(--color-cat-automatizacion);
-  --category-negocio: var(--color-cat-negocio);
-  --category-avanzado: var(--color-cat-avanzado);
   color-scheme: dark;
 }
 
@@ -79,5 +75,216 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ── Resource detail markdown content ─────────────────────────────── */
+.resource-content {
+  --tw-prose-body: #c8c6cc;
+  --tw-prose-headings: #f0eef2;
+  --tw-prose-lead: #a09ea8;
+  --tw-prose-links: #ef6c4a;
+  --tw-prose-bold: #f0eef2;
+  --tw-prose-counters: #ef6c4a;
+  --tw-prose-bullets: #ef6c4a;
+  --tw-prose-hr: rgba(255 255 255 / 0.08);
+  --tw-prose-quotes: #c8c6cc;
+  --tw-prose-quote-borders: #ef6c4a;
+  --tw-prose-captions: #666;
+  --tw-prose-code: #ef6c4a;
+  --tw-prose-pre-code: #e2dff0;
+  --tw-prose-pre-bg: rgb(12 19 31);
+  --tw-prose-th-borders: rgba(255 255 255 / 0.1);
+  --tw-prose-td-borders: rgba(255 255 255 / 0.06);
+
+  @apply prose prose-invert max-w-none;
+
+  h2 {
+    @apply mt-14 mb-4 scroll-mt-[140px] text-[clamp(24px,4vw,32px)] font-bold tracking-tight;
+    background: linear-gradient(to right, #f0eef2 55%, #f5a623);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h3 {
+    @apply mt-8 mb-3 text-xl font-semibold text-brand-text;
+  }
+
+  p {
+    @apply leading-relaxed text-brand-text/75;
+  }
+
+  strong {
+    @apply font-semibold text-brand-text;
+  }
+
+  pre {
+    @apply rounded-2xl border border-brand-border bg-[rgb(12_19_31)] px-6 py-5;
+    code {
+      @apply text-[13px] leading-loose text-brand-text/90;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+
+  code:not(pre code) {
+    @apply rounded-md bg-brand-orange/10 px-1.5 py-0.5 text-[13px] text-brand-orange;
+    &::before, &::after { content: '' }
+  }
+
+  hr {
+    @apply border-brand-border;
+  }
+
+  a {
+    @apply text-brand-orange no-underline hover:underline;
+  }
+
+  ol > li::marker {
+    color: #ef6c4a;
+    font-weight: 600;
+  }
+
+  ul > li::marker {
+    color: #ef6c4a;
+  }
+
+  /* Step cards used in installation sections */
+  .doc-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 28px 0;
+  }
+
+  .doc-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    border-radius: 16px;
+    border: 1px solid rgba(255 255 255 / 0.08);
+    background: rgb(14 21 34 / 0.65);
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: rgba(239 108 74 / 0.25);
+    }
+  }
+
+  .doc-step-num {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(239 108 74 / 0.3);
+    font-variant-numeric: tabular-nums;
+    min-width: 36px;
+    flex-shrink: 0;
+    font-family: ui-monospace, monospace;
+  }
+
+  .doc-step-body strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f0eef2;
+    margin-bottom: 4px;
+  }
+
+  .doc-step-body p {
+    font-size: 14px;
+    color: rgba(240 238 242 / 0.6);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Feature grid used in design system / specs sections */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .doc-grid-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255 255 255 / 0.07);
+    background: rgb(12 19 31 / 0.8);
+  }
+
+  .doc-grid-item .material-icons {
+    font-size: 20px;
+    color: #ef6c4a;
+    flex-shrink: 0;
+  }
+
+  .doc-grid-item span:last-child {
+    font-size: 13px;
+    color: rgba(240 238 242 / 0.75);
+  }
+
+  /* Aspect table for LinkedIn auditor */
+  .doc-aspect-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 24px 0;
+  }
+
+  .doc-aspect {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255 255 255 / 0.07);
+    background: rgb(12 19 31 / 0.8);
+  }
+
+  .doc-aspect .material-icons {
+    font-size: 20px;
+    color: #ef6c4a;
+    flex-shrink: 0;
+  }
+
+  .doc-aspect-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0eef2;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .doc-aspect-why {
+    font-size: 13px;
+    color: rgba(240 238 242 / 0.55);
+  }
+
+  .doc-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(239 108 74 / 0.2);
+    background: rgba(239 108 74 / 0.05);
+    margin: 24px 0;
+    font-size: 14px;
+    color: rgba(240 238 242 / 0.7);
+
+    .material-icons {
+      font-size: 18px;
+      color: #ef6c4a;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
   }
 }

@@ -1,18 +1,16 @@
 /** Category slugs aligned with badge CSS classes in global styles */
 export type ResourceCategory =
-  | 'fundamentos'
   | 'prompts'
   | 'skills'
-  | 'automatización'
-  | 'negocio'
-  | 'avanzado';
+  | 'automatización';
 
 export interface ResourceStatLine {
+  icon: string;
   value: string;
   label: string;
 }
 
-/** Table-of-contents sections for the prototype detail layout (structured, no unsafe HTML). */
+/** Table-of-contents entry for the detail page sidebar. */
 export interface DetailSectionDef {
   id: string;
   label: string;
@@ -31,4 +29,7 @@ export interface ResourceCard {
   upcoming: boolean;
   detailBadgeLabel?: string;
   detailStats?: readonly ResourceStatLine[];
+  sections?: readonly DetailSectionDef[];
+  contentFile?: string;
+  downloadUrl?: string;
 }

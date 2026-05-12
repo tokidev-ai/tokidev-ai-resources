@@ -43,12 +43,9 @@ export class HubPageComponent {
   /** Utilidades Tailwind por categoría (glow tras blur). */
   protected glowAccentClass(cat: ResourceCategory): string {
     const map: Record<ResourceCategory, string> = {
-      fundamentos: 'bg-cat-fundamentos',
       prompts: 'bg-cat-prompts',
       skills: 'bg-cat-skills',
       automatización: 'bg-cat-automatizacion',
-      negocio: 'bg-cat-negocio',
-      avanzado: 'bg-cat-avanzado',
     };
     return map[cat];
   }
@@ -63,18 +60,12 @@ export class HubPageComponent {
       return `${baseBadge} border-brand-border bg-white/[0.04] text-brand-text/50`;
     }
     switch (category) {
-      case 'fundamentos':
-        return `${baseBadge} border-brand-orange/15 bg-brand-orange/8 text-brand-orange/80`;
       case 'prompts':
         return `${baseBadge} border-brand-yellow/15 bg-brand-yellow/8 text-brand-yellow/80`;
       case 'skills':
         return `${baseBadge} border-brand-purple/15 bg-brand-purple/10 text-brand-purple/90`;
-      case 'automatización':
-        return `${baseBadge} border-cat-automatizacion/15 bg-cat-automatizacion/10 text-cat-automatizacion/90`;
-      case 'negocio':
-        return `${baseBadge} border-cat-negocio/15 bg-cat-negocio/10 text-cat-negocio/90`;
       default:
-        return `${baseBadge} border-cat-avanzado/15 bg-cat-avanzado/10 text-cat-avanzado/90`;
+        return `${baseBadge} border-cat-automatizacion/15 bg-cat-automatizacion/10 text-cat-automatizacion/90`;
     }
   }
 

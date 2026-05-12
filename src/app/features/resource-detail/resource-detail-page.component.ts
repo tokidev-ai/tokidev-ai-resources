@@ -9,30 +9,20 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import type { DetailSectionDef, ResourceStatLine } from '../../shared/models/hub.models';
-import {
-  CAROUSEL_SAMPLE_SECTIONS,
-  resourceById,
-} from '../../shared/data/hub-resources.data';
+import { MarkdownComponent } from 'ngx-markdown';
+import type { ResourceStatLine } from '../../shared/models/hub.models';
+import { resourceById } from '../../shared/data/hub-resources.data';
 
 const DEFAULT_STATS: ResourceStatLine[] = [
-  { value: '📚 —', label: 'Detalle' },
-  { value: '⚡ —', label: 'En página' },
-  { value: '🌐 Libre', label: 'tokidev' },
+  { icon: 'menu_book', value: '—', label: 'Detalle' },
+  { icon: 'bolt', value: '—', label: 'En página' },
+  { icon: 'public', value: 'Libre', label: 'tokidev' },
 ];
-
-const SECTION_IDS = CAROUSEL_SAMPLE_SECTIONS.map((s) => s.id);
-
-const EXAMPLE_CAROUSEL_OUTPUT = [
-  'SLIDE 1: EL HOOK',
-  'TÍTULO: Deja de escribir prompts mediocres.',
-  'SUBTÍTULO: El framework de 3 pasos que usa el 1%...',
-].join('\n');
 
 @Component({
   selector: 'app-resource-detail-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, MarkdownComponent],
   templateUrl: './resource-detail-page.component.html',
   host: {
     '(window:scroll)': 'onWindowScrollSpy()',
@@ -41,12 +31,6 @@ const EXAMPLE_CAROUSEL_OUTPUT = [
 export class ResourceDetailPageComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-
-  /** Structured sections mirror the prototype; content is authored in Angular templates (no unsafe HTML). */
-  protected readonly sections: readonly DetailSectionDef[] =
-    CAROUSEL_SAMPLE_SECTIONS;
-
-  readonly exampleCarouselOutput = EXAMPLE_CAROUSEL_OUTPUT;
 
   private readonly paramSlug = toSignal(
     this.route.paramMap.pipe(map((p) => p.get('id'))),
@@ -66,12 +50,25 @@ export class ResourceDetailPageComponent {
     return r?.detailStats ?? DEFAULT_STATS;
   });
 
-  /** Active section highlighting in TOC (scroll-aligned with prototype thresholds). */
-  protected readonly activeSectionId = signal<string>(SECTION_IDS[0]);
+  protected readonly sections = computed(() =>
+    this.detailResource()?.sections ?? [],
+  );
+
+  protected readonly markdownSrc = computed(() => {
+    const r = this.detailResource();
+    return r?.contentFile ? `docs/${r.contentFile}` : null;
+  });
+
+  protected readonly activeSectionId = signal<string>('');
 
   protected readonly mobileTocOpen = signal(false);
 
   constructor() {
+    effect(() => {
+      const ids = this.sections();
+      if (ids.length > 0) this.activeSectionId.set(ids[0].id);
+    });
+
     effect(() => {
       const slug = this.paramSlug();
       if (slug === null) return;
@@ -101,9 +98,11 @@ export class ResourceDetailPageComponent {
     ) {
       return;
     }
+    const sectionIds = this.sections().map((s) => s.id);
+    if (!sectionIds.length) return;
     const scrollY = globalThis.window.scrollY + 200;
-    let current = SECTION_IDS[0];
-    for (const id of SECTION_IDS) {
+    let current = sectionIds[0];
+    for (const id of sectionIds) {
       const sec = globalThis.document.getElementById(id);
       if (sec && sec.offsetTop <= scrollY) {
         current = id;

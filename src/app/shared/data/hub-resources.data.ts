@@ -1,102 +1,24 @@
-import type { DetailSectionDef, ResourceCard } from '../models/hub.models';
+import type { ResourceCard } from '../models/hub.models';
 
 export type HubFilterSlug =
   | 'todos'
-  | 'fundamentos'
   | 'prompts'
   | 'skills'
-  | 'automatización'
-  | 'negocio'
-  | 'avanzado';
+  | 'automatización';
 
 export const RESOURCE_FILTERS = [
   { slug: 'todos' as const, label: 'Todos' },
-  { slug: 'fundamentos', label: 'Fundamentos' },
-  { slug: 'prompts', label: 'Prompts' },
-  { slug: 'skills', label: 'Skills' },
-  { slug: 'automatización', label: 'Automatización' },
-  { slug: 'negocio', label: 'Negocio' },
-  { slug: 'avanzado', label: 'Avanzado' },
+  { slug: 'prompts' as const, label: 'Prompts' },
+  { slug: 'skills' as const, label: 'Skills' },
+  { slug: 'automatización' as const, label: 'Automatización' },
 ] satisfies ReadonlyArray<{ slug: HubFilterSlug; label: string }>;
 
-/** Sample long-form sections (matches static prototype narrative). */
-export const CAROUSEL_SAMPLE_SECTIONS = [
-  {
-    id: 'que-es',
-    label: 'QUÉ ES',
-    num: '01',
-    title: 'Una skill que escribe carruseles como tú.',
-  },
-  {
-    id: 'instalacion',
-    label: 'INSTALACIÓN',
-    num: '02',
-    title: 'Cómo instalarla en Claude',
-  },
-  {
-    id: 'reglas',
-    label: 'LAS 5 REGLAS',
-    num: '03',
-    title: 'Las 5 reglas no negociables',
-  },
-  {
-    id: 'ejemplo',
-    label: 'EJEMPLO',
-    num: '06',
-    title: 'Un carrusel listicle · 9 slides',
-  },
-] satisfies readonly DetailSectionDef[];
+const GITHUB_RAW = 'https://raw.githubusercontent.com/tokidev-ai/tokidev-skills/main';
 
 export const RESOURCE_CARDS = [
   {
-    id: 1,
-    num: '01',
-    category: 'fundamentos',
-    title: 'El setup que hace que Claude trabaje por ti',
-    desc: 'Plan, modelo, Project, Skills y connectors. Configurado en una tarde. Te dura el año.',
-    meta: '· 6 min · skill incluida',
-    cta: 'Leer',
-    upcoming: false,
-    detailStats: [
-      { value: '📚 6 min', label: 'Lectura + skill' },
-      { value: '⚙️ 5 piezas', label: 'Setup completo' },
-      { value: '🌐 Libre', label: 'Para cualquier flujo' },
-    ],
-  },
-  {
-    id: 2,
-    num: '02',
-    category: 'negocio',
-    title: 'Tu primer agente que cobra solo',
-    desc: '7 días para montar un agente que entrega trabajo real a clientes. Plantillas listas.',
-    meta: '· 7 días · setup completo',
-    cta: 'Leer',
-    upcoming: false,
-    detailStats: [
-      { value: '⏱ 7 días', label: 'Plan guiado' },
-      { value: '💼 1 agente', label: 'Production-ready' },
-      { value: '📑 Plantillas', label: 'Included' },
-    ],
-  },
-  {
-    id: 3,
-    num: '03',
-    category: 'skills',
-    title: 'Carruseles que paran el scroll',
-    desc: 'Skill plug-and-play para Claude. Hook, estructura, contenido y CTA. 6 tipos listos.',
-    meta: '· skill · descarga directa',
-    cta: 'Leer',
-    upcoming: false,
-    detailBadgeLabel: 'INSTAGRAM · CARRUSEL',
-    detailStats: [
-      { value: '📦 17 KB', label: 'SKILL.md + referencias' },
-      { value: '🎯 6 tipos', label: 'de carrusel cubiertos' },
-      { value: '🌐 Libre', label: 'Cualquier nicho' },
-    ],
-  },
-  {
     id: 4,
-    num: '04',
+    num: '01',
     category: 'prompts',
     title: 'El PRD antes de buildear',
     desc: '1 prompt + 1 template + 3 reglas. El filtro que te ahorra construir lo que no sirve.',
@@ -104,29 +26,21 @@ export const RESOURCE_CARDS = [
     cta: 'Leer',
     upcoming: false,
     detailStats: [
-      { value: '📝 1 prompt', label: '+ template vivo' },
-      { value: '✅ 3 reglas', label: 'Filtro de scope' },
-      { value: '⏳ Rápido', label: 'Antes del build' },
+      { icon: 'edit_note', value: '1 prompt', label: '+ template vivo' },
+      { icon: 'rule', value: '3 reglas', label: 'Filtro de scope' },
+      { icon: 'bolt', value: 'Rápido', label: 'Antes del build' },
     ],
-  },
-  {
-    id: 5,
-    num: '05',
-    category: 'avanzado',
-    title: 'Tu propia IA local',
-    desc: 'Agente open source con memoria, navegador y terminal. Todo en tu Mac, 10 minutos.',
-    meta: '· 10 min de lectura',
-    cta: 'Leer',
-    upcoming: false,
-    detailStats: [
-      { value: '💻 Local', label: 'En tu máquina' },
-      { value: '🧠 Memoria', label: '+ navegador + CLI' },
-      { value: '⏱ 10 min', label: 'Kickoff rápido' },
+    sections: [
+      { id: 'que-es', label: 'QUÉ ES', num: '01', title: 'El filtro antes de escribir código' },
+      { id: 'el-prompt', label: 'EL PROMPT', num: '02', title: 'Cómo usarlo en Claude' },
+      { id: 'las-reglas', label: 'LAS 3 REGLAS', num: '03', title: 'Las 3 reglas del PRD mínimo' },
+      { id: 'template', label: 'TEMPLATE', num: '04', title: 'El template listo para copiar' },
     ],
+    contentFile: 'prd-antes-de-buildear.md',
   },
   {
     id: 6,
-    num: '06',
+    num: '02',
     category: 'automatización',
     title: 'Automatiza tu Instagram con Claude',
     desc: 'Próximamente',
@@ -134,55 +48,58 @@ export const RESOURCE_CARDS = [
     cta: 'Próximamente',
     upcoming: true,
     detailStats: [
-      { value: '⋯', label: 'En camino' },
-      { value: '📅', label: 'Pronto' },
-      { value: '✨', label: 'Skills' },
+      { icon: 'hourglass_empty', value: '—', label: 'En camino' },
+      { icon: 'calendar_month', value: 'Pronto', label: 'Disponible pronto' },
+      { icon: 'auto_awesome', value: 'Skills', label: 'Incluidas' },
     ],
   },
   {
-    id: 7,
-    num: '07',
-    category: 'prompts',
-    title: 'Prompts que siempre funcionan',
-    desc: 'Próximamente',
-    meta: '· 8 min',
-    cta: 'Próximamente',
-    upcoming: true,
-    detailStats: [
-      { value: '⋯', label: 'En camino' },
-      { value: '📚', label: 'Prompt book' },
-      { value: '✨', label: 'Ejemplos' },
-    ],
-  },
-  {
-    id: 8,
-    num: '08',
-    category: 'fundamentos',
-    title: 'Memoria persistente en Claude',
-    desc: 'Configura la memoria de Claude para que te recuerde entre sesiones.',
-    meta: '· 5 min · skill incluida',
+    id: 3,
+    num: '03',
+    category: 'skills',
+    title: 'Crea slides de Instagram listos para subir',
+    desc: 'De prompt a PNG en minutos. Diseño, colores y estructura de @tokidev.ia incluidos — solo escribís el tema.',
+    meta: '· HTML · exportación PNG',
     cta: 'Leer',
     upcoming: false,
+    detailBadgeLabel: 'INSTAGRAM · 1080×1350px',
     detailStats: [
-      { value: '🧠 5 min', label: 'Walkthrough' },
-      { value: '📎 Skill', label: 'Incluida' },
-      { value: '🔄 Persistente', label: 'entre sesiones' },
+      { icon: 'image', value: '1080×1350', label: 'Resolución exacta' },
+      { icon: 'palette', value: 'Sistema', label: 'de diseño completo' },
+      { icon: 'download', value: 'PNG', label: 'Exportación directa' },
     ],
+    sections: [
+      { id: 'que-es', label: 'QUÉ HACE', num: '01', title: 'Qué genera la skill' },
+      { id: 'instalacion', label: 'INSTALACIÓN', num: '02', title: 'Cómo instalarla en Claude' },
+      { id: 'como-usarla', label: 'CÓMO USARLA', num: '03', title: 'Flujo de trabajo' },
+      { id: 'diseno', label: 'DISEÑO', num: '04', title: 'Sistema de diseño incluido' },
+    ],
+    contentFile: 'carousel-tokidev.md',
+    downloadUrl: `${GITHUB_RAW}/carousel-tokidev/SKILL.md`,
   },
   {
     id: 9,
-    num: '09',
+    num: '04',
     category: 'skills',
-    title: 'Skill para revisar tu LinkedIn',
-    desc: 'Auditoría de perfil para developers. 10 aspectos clave con ejemplos.',
-    meta: '· skill · descarga directa',
+    title: 'Tu LinkedIn atrae trabajo — o lo espanta',
+    desc: 'Skill que audita tu perfil como developer: 10 aspectos, estado real y mejoras concretas con ejemplos.',
+    meta: '· auditoría · ejemplos reales',
     cta: 'Leer',
     upcoming: false,
+    detailBadgeLabel: 'LINKEDIN · DEVELOPERS',
     detailStats: [
-      { value: '👤 Perfil', label: 'Audit completo' },
-      { value: '🔟 Hits', label: '10 focos revisados' },
-      { value: '📎 Skill', label: 'Descarga directa' },
+      { icon: 'person_search', value: '10 aspectos', label: 'auditados con estado' },
+      { icon: 'tips_and_updates', value: 'Concreto', label: 'Mejoras con ejemplos' },
+      { icon: 'travel_explore', value: 'Chrome', label: 'o modo chat' },
     ],
+    sections: [
+      { id: 'que-es', label: 'QUÉ HACE', num: '01', title: 'Qué analiza la skill' },
+      { id: 'instalacion', label: 'INSTALACIÓN', num: '02', title: 'Cómo instalarla en Claude' },
+      { id: 'como-usarla', label: 'CÓMO USARLA', num: '03', title: 'Con Chrome y sin navegador' },
+      { id: 'los-10', label: 'LOS 10 ASPECTOS', num: '04', title: 'Todo lo que revisa' },
+    ],
+    contentFile: 'linkedin-skill.md',
+    downloadUrl: `${GITHUB_RAW}/linkedin-dev-auditor/SKILL.md`,
   },
 ] satisfies readonly ResourceCard[];
 
