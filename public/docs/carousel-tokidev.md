@@ -2,7 +2,7 @@
 
 Le decís el tema, Claude genera el carrusel completo en HTML — listo para abrir en el navegador y exportar cada slide como PNG en resolución exacta **1080×1350px**.
 
-No necesitás explicarle colores, tipografía ni estructura. El sistema de diseño de @tokidev.ia está incluido en la skill.
+No necesitás explicarle colores, tipografía ni estructura. El sistema de diseño está incluido en la skill — listo para usar.
 
 <div class="doc-grid">
   <div class="doc-grid-item">
@@ -105,7 +105,7 @@ Claude pregunta cuántos slides querés antes de generar (mínimo 3, por defecto
   <div class="doc-aspect">
     <span class="material-icons">alternate_email</span>
     <span class="doc-aspect-label">Handle</span>
-    <span class="doc-aspect-why">@tokidev.ia</span>
+    <span class="doc-aspect-why">Personalizable en la skill</span>
   </div>
   <div class="doc-aspect">
     <span class="material-icons">view_module</span>

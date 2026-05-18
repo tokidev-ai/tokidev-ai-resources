@@ -1,6 +1,6 @@
 @if (detailResource(); as res) {
   <main id="detail-main">
-    <section class="relative bg-brand-bg pb-24 pt-[140px] max-md:pt-36">
+    <section class="relative bg-brand-bg pb-24 pt-20 max-md:pt-16">
       <div class="mx-auto max-w-[1120px] px-6">
         <a
           routerLink="/recursos"
@@ -24,54 +24,63 @@
         >
           {{ res.title }}
         </h1>
-        <p
-          class="mt-6 max-w-[600px] text-lg text-brand-text/60 md:my-8 md:mb-14"
-        >
+        <p class="mt-6 max-w-[600px] text-lg text-brand-text/60 md:my-8 md:mb-14">
           {{ res.desc }}
         </p>
 
         @if (!res.upcoming) {
           <div class="mb-14 mt-8 flex flex-wrap gap-4 max-md:flex-col md:my-14">
             @if (res.downloadUrl) {
-              <a
-                [href]="res.downloadUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-7 py-3.5 text-base font-semibold text-white no-underline hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+              <button
+                type="button"
+                class="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-7 py-3.5 text-base font-semibold font-[inherit] text-white hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+                (click)="downloadSkill()"
               >
                 <span class="material-icons text-[18px]" aria-hidden="true">download</span>
                 Descargar SKILL.md
-              </a>
+              </button>
             }
-            <button
-              type="button"
-              class="cursor-pointer rounded-xl border border-brand-border bg-surface-card px-7 py-3.5 text-base font-semibold font-[inherit] text-brand-text transition-colors hover:bg-surface-card/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
-              (click)="scrollTo('instalacion')"
-            >
-              Cómo se instala →
-            </button>
+            @if (res.category !== 'prompts') {
+              <button
+                type="button"
+                class="cursor-pointer rounded-xl border border-brand-border bg-surface-card px-7 py-3.5 text-base font-semibold font-[inherit] text-brand-text transition-colors hover:bg-surface-card/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+                (click)="scrollTo('instalacion')"
+              >
+                Cómo se instala →
+              </button>
+            }
+            @if (res.category === 'prompts') {
+              <button
+                type="button"
+                class="cursor-pointer rounded-xl border border-brand-border bg-surface-card px-7 py-3.5 text-base font-semibold font-[inherit] text-brand-text transition-colors hover:bg-surface-card/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+                (click)="scrollTo('el-prompt')"
+              >
+                Ver el prompt →
+              </button>
+            }
           </div>
         }
 
-        <div
-          class="mb-20 grid grid-cols-1 gap-4 md:grid-cols-3"
-          role="list"
-        >
+        <div class="mb-20 grid grid-cols-1 gap-4 md:grid-cols-3" role="list">
           @for (s of statRows(); track s.label) {
             <div
               role="listitem"
               class="rounded-2xl border border-brand-border bg-surface-card px-6 py-5"
             >
-              <span class="material-icons mb-2 block text-[28px] text-brand-orange" aria-hidden="true">{{ s.icon }}</span>
-              <span class="block text-[22px] font-bold leading-tight text-brand-orange">{{ s.value }}</span>
+              <span
+                class="material-icons mb-2 block text-[28px] text-brand-orange"
+                aria-hidden="true"
+                >{{ s.icon }}</span
+              >
+              <span class="block text-[22px] font-bold leading-tight text-brand-orange">{{
+                s.value
+              }}</span>
               <span class="mt-1 block text-xs text-brand-text/50">{{ s.label }}</span>
             </div>
           }
         </div>
 
-        <div
-          class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_220px] lg:gap-[60px]"
-        >
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_220px] lg:gap-[60px]">
           <div>
             @if (sections().length) {
               <div
@@ -89,7 +98,9 @@
                     class="font-mono-display text-[11px] uppercase tracking-[0.18em] text-brand-orange"
                     >El recorrido</span
                   >
-                  <span class="material-icons text-[20px] text-brand-text" aria-hidden="true">expand_more</span>
+                  <span class="material-icons text-[20px] text-brand-text" aria-hidden="true"
+                    >expand_more</span
+                  >
                 </button>
                 <ul
                   class="m-0 list-none p-0 ps-4 pb-4"
@@ -98,11 +109,7 @@
                 >
                   @for (s of sections(); track s.id) {
                     <li>
-                      <button
-                        type="button"
-                        [class]="tocBtnClass(s.id)"
-                        (click)="scrollTo(s.id)"
-                      >
+                      <button type="button" [class]="tocBtnClass(s.id)" (click)="scrollTo(s.id)">
                         {{ s.num }} · {{ s.label }}
                       </button>
                     </li>
@@ -113,13 +120,16 @@
 
             @if (markdownSrc(); as src) {
               <div class="resource-content">
-                <markdown [src]="src" />
+                <markdown [src]="src" [disableSanitizer]="true" />
               </div>
             }
           </div>
 
           @if (sections().length) {
-            <aside class="sticky top-[120px] hidden h-fit rounded-2xl border border-brand-border bg-surface-card p-6 lg:block" aria-label="Secciones">
+            <aside
+              class="sticky top-[120px] hidden h-fit rounded-2xl border border-brand-border bg-surface-card p-6 lg:block"
+              aria-label="Secciones"
+            >
               <span
                 class="mb-5 block font-mono-display text-[11px] uppercase tracking-[0.18em] text-brand-orange"
                 >El recorrido</span
@@ -127,11 +137,7 @@
               <ul class="m-0 list-none p-0">
                 @for (s of sections(); track s.id) {
                   <li>
-                    <button
-                      type="button"
-                      [class]="tocBtnClass(s.id)"
-                      (click)="scrollTo(s.id)"
-                    >
+                    <button type="button" [class]="tocBtnClass(s.id)" (click)="scrollTo(s.id)">
                       {{ s.num }} · {{ s.label }}
                     </button>
                   </li>
@@ -144,17 +150,12 @@
     </section>
 
     <footer class="mt-20 border-t border-brand-border bg-surface-card py-10">
-      <div
-        class="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-4 px-6"
-      >
+      <div class="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-4 px-6">
         <a
           routerLink="/recursos"
           class="bg-transparent text-sm text-brand-text/45 no-underline hover:text-brand-text"
           >← Volver al índice</a
         >
-        <span class="font-semibold text-brand-text">
-          Siguiente: Tu primer agente →
-        </span>
       </div>
     </footer>
   </main>

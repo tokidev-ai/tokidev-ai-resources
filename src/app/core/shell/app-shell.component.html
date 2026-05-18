@@ -1,48 +1,29 @@
-<nav
-  class="fixed left-1/2 z-1000 flex h-12 w-[92%] max-w-[1120px] -translate-x-1/2 items-center gap-2 rounded-2xl border border-brand-border-nav bg-surface-nav px-4 shadow-[0_8px_28px_rgb(0_0_0/0.4)] backdrop-blur-xl transition-[top] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] max-md:top-5 md:h-[52px] md:gap-0 md:px-6"
-  [class.md:top-7]="!compactNav()"
-  [class.md:top-5]="compactNav()"
-  aria-label="Principal"
+<header
+  class="fixed z-50 w-full px-8 transition-all duration-300 lg:px-16"
+  [class.top-6]="!scrolled()"
+  [class.top-4]="scrolled()"
+  aria-label="tokidev"
 >
-  <div class="flex min-w-0 flex-1 md:w-[152px] md:flex-none md:justify-start">
-    <a
-      routerLink="/recursos"
-      class="flex cursor-pointer items-center gap-3 no-underline text-inherit"
-    >
+  <div
+    class="mx-auto max-w-[1200px] border border-transparent transition-all duration-300"
+    [class.rounded-2xl]="scrolled()"
+    [class.border-brand-border-nav]="scrolled()"
+    [class.bg-surface-nav]="scrolled()"
+    [class.backdrop-blur-xl]="scrolled()"
+    [class.px-5]="scrolled()"
+    [class.py-3]="scrolled()"
+    [class.shadow-[0_8px_28px_rgb(0_0_0/0.45)]]="scrolled()"
+  >
+    <div class="flex items-center gap-3">
       <span
-        class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-orange text-sm font-extrabold tracking-tight text-brand-text shadow-[0_6px_16px_rgb(239_108_74/0.32)]"
+        class="flex size-11 items-center justify-center rounded-xl bg-linear-to-br from-brand-orange to-brand-yellow text-base font-black text-white shadow-[0_6px_20px_rgb(239_108_74/0.5)]"
         aria-hidden="true"
         >T</span
       >
-      <span class="truncate text-lg font-bold tracking-tight text-brand-text md:text-xl"
-        >tokidev</span
-      >
-    </a>
+      <span class="text-[18px] font-bold tracking-tight text-brand-text">tokidev</span>
+    </div>
   </div>
-
-  <div
-    class="hidden min-w-0 flex-1 items-center justify-center gap-10 md:flex"
-    role="navigation"
-    aria-label="Enlaces"
-  >
-    <a
-      routerLink="/recursos"
-      class="text-[13px] font-medium text-brand-text no-underline transition-opacity hover:opacity-80"
-      >Recursos</a
-    >
-    <span class="text-[13px] font-medium text-brand-text/60" title="Próximamente">Comunidad</span>
-    <span class="text-[13px] font-medium text-brand-text/60" title="Próximamente">Blog</span>
-  </div>
-
-  <div class="flex shrink-0 items-center md:w-[152px] md:justify-end">
-    <button
-      type="button"
-      class="cursor-pointer whitespace-nowrap rounded-full border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-4 py-2 text-[12px] font-semibold text-white shadow-[0_10px_24px_-8px_rgb(239_108_74/0.4)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400"
-    >
-      Empezar gratis
-    </button>
-  </div>
-</nav>
+</header>
 
 <div
   aria-hidden="true"

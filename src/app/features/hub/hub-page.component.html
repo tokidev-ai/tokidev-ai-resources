@@ -1,35 +1,112 @@
 <main>
+  <!-- ── HERO ── -->
   <section
-    class="relative bg-brand-bg py-24 pt-[180px] pb-24 text-center max-md:pt-44 max-md:pb-16"
+    class="hero-section hero-spotlight relative min-h-screen overflow-hidden bg-brand-bg"
   >
-    <div class="mx-auto max-w-[1120px] px-6">
-      <span
-        class="mb-6 inline-block rounded-full border border-brand-orange/15 bg-brand-orange/8 px-3 py-1 font-mono-display text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-orange/80"
-        >biblioteca de skills</span
-      >
-      <h1
-        class="mx-auto mb-6 bg-linear-to-b from-white from-50% to-brand-orange bg-clip-text py-px font-sans text-[clamp(34px,8vw,64px)] font-medium tracking-[-1.8px] text-transparent"
-      >
-        Los mejores recursos.
-      </h1>
-      <p class="mx-auto mb-10 max-w-[480px] text-lg leading-relaxed text-brand-text/70">
-        Skills, prompts y guías para dominar Claude. Acceso libre.
-      </p>
+    <!-- dot grid -->
+    <div
+      class="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgb(255_255_255/0.04)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
+      aria-hidden="true"
+    ></div>
 
-      <div
-        class="mb-[60px] flex flex-wrap justify-center gap-3"
-        role="toolbar"
-        aria-label="Filtrar por categoría"
-      >
+    <!-- ambient glow -->
+    <div class="glow-pulse pointer-events-none absolute right-[10%] top-[30%] h-[500px] w-[500px] rounded-full bg-brand-orange/10 blur-[100px]" aria-hidden="true"></div>
+    <div class="glow-pulse-slow pointer-events-none absolute right-[15%] top-[35%] h-[280px] w-[280px] rounded-full bg-brand-yellow/8 blur-[70px]" aria-hidden="true"></div>
+
+    <!-- two-column layout -->
+    <div class="relative z-10 mx-auto flex min-h-screen max-w-[1200px] flex-col items-center justify-center gap-16 px-8 lg:flex-row lg:gap-12 lg:px-16">
+
+      <!-- LEFT: text -->
+      <div class="flex flex-1 flex-col items-start text-left max-lg:items-center max-lg:text-center">
+
+        <div class="hero-badge mb-8">
+          <span class="inline-flex items-center gap-2 rounded-full border border-brand-orange/25 bg-brand-orange/8 px-5 py-2 font-mono-display text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-orange/80 backdrop-blur-sm">
+            <span class="size-1.5 animate-pulse rounded-full bg-brand-orange" aria-hidden="true"></span>
+            biblioteca de skills
+          </span>
+        </div>
+
+        <h1 class="mb-6 font-sans font-bold leading-[0.9] tracking-[-4px]">
+          <span class="hero-line1 block bg-linear-to-r from-white to-white/80 bg-clip-text text-[clamp(52px,8vw,96px)] text-transparent">Los mejores</span>
+          <span class="hero-line2 block bg-linear-to-r from-brand-orange to-brand-yellow bg-clip-text text-[clamp(52px,8vw,96px)] text-transparent">recursos.</span>
+        </h1>
+
+        <p class="hero-sub mb-12 max-w-[380px] text-[17px] leading-relaxed text-brand-text/50 max-lg:mx-auto">
+          Skills, prompts y guías para dominar Claude. Todo en un solo lugar. Acceso libre.
+        </p>
+
+        <div class="hero-cue flex flex-col items-start gap-2 text-brand-text/30 max-lg:items-center">
+          <span class="text-[10px] uppercase tracking-[0.25em]">Explorar</span>
+          <span class="scroll-bounce material-icons text-[20px]" aria-hidden="true">keyboard_arrow_down</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: floating card visual -->
+      <div class="hero-cards relative flex flex-1 items-center justify-center max-lg:w-full">
+        <div class="relative h-[420px] w-[340px]">
+
+          <!-- back card (rotated) -->
+          <div class="card-float-slow absolute left-4 top-8 h-[280px] w-[300px] -rotate-6 rounded-3xl border border-brand-border bg-surface-card p-7 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.6)] backdrop-blur-[15px]">
+            <div class="pointer-events-none absolute -right-10 -top-16 h-[160px] w-[160px] rounded-full bg-cat-prompts opacity-30 blur-3xl" aria-hidden="true"></div>
+            <div class="flex items-start justify-between">
+              <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/30">02</span>
+              <span class="inline-flex items-center rounded-full border border-brand-yellow/15 bg-brand-yellow/8 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-brand-yellow/80">Prompts</span>
+            </div>
+            <div class="flex flex-1 flex-col justify-center py-6">
+              <h3 class="text-balance text-[18px] font-bold leading-snug tracking-tight text-brand-text">El PRD antes de buildear</h3>
+              <p class="mt-3 text-[13px] leading-relaxed text-brand-text/50">1 prompt + 1 template + 3 reglas. El filtro que te ahorra construir lo que no sirve.</p>
+            </div>
+          </div>
+
+          <!-- main card (front) -->
+          <div class="card-float absolute bottom-0 right-0 h-[300px] w-[310px] rotate-2 rounded-3xl border border-brand-border bg-surface-card p-7 shadow-[0_0_0_1px_rgb(239_108_74/0.1),0_32px_64px_-16px_rgb(0_0_0/0.7)] backdrop-blur-[15px]">
+            <div class="pointer-events-none absolute -right-10 -top-16 h-[180px] w-[180px] rounded-full bg-cat-skills opacity-35 blur-3xl" aria-hidden="true"></div>
+            <div class="flex items-start justify-between">
+              <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/30">01</span>
+              <span class="inline-flex items-center rounded-full border border-brand-purple/15 bg-brand-purple/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-brand-purple/90">Skills</span>
+            </div>
+            <div class="flex flex-1 flex-col justify-center py-6">
+              <h3 class="text-balance text-[19px] font-bold leading-snug tracking-tight text-brand-text">Carrusel de Instagram con IA</h3>
+              <p class="mt-3 text-[13px] leading-relaxed text-brand-text/50">Genera slides listos para publicar en segundos desde Claude.</p>
+            </div>
+            <div class="flex items-center justify-between border-t border-brand-border pt-4">
+              <span class="font-mono-display text-[10px] uppercase tracking-[0.2em] text-brand-text/35">· skill · html</span>
+              <span class="flex items-center gap-1 text-[12px] font-semibold text-brand-orange">
+                Usar skill
+                <span class="material-icons text-[14px]" aria-hidden="true">arrow_forward</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- floating chip: free access -->
+          <div class="chip-float absolute -left-2 bottom-16 flex items-center gap-2 rounded-full border border-brand-border bg-surface-card/80 px-4 py-2 backdrop-blur-md shadow-[0_8px_24px_rgb(0_0_0/0.4)]">
+            <span class="material-icons text-[14px] text-brand-orange" aria-hidden="true">lock_open</span>
+            <span class="text-[12px] font-semibold text-brand-text/70">Acceso libre</span>
+          </div>
+
+          <!-- floating chip: count -->
+          <div class="chip-float-slow absolute -right-4 top-6 flex items-center gap-2 rounded-full border border-brand-border bg-surface-card/80 px-4 py-2 backdrop-blur-md shadow-[0_8px_24px_rgb(0_0_0/0.4)]">
+            <span class="size-2 rounded-full bg-brand-orange animate-pulse" aria-hidden="true"></span>
+            <span class="text-[12px] font-semibold text-brand-text/70">12 recursos</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESOURCES ── -->
+  <section class="relative bg-brand-bg pb-32 pt-24">
+    <div class="mx-auto max-w-[1120px] px-6">
+
+      <div class="mb-12 flex flex-wrap justify-center gap-3" role="toolbar" aria-label="Filtrar por categoría">
         @for (f of filters; track f.slug) {
           <button
             type="button"
             [class]="filterClasses(f.slug)"
             (click)="setFilter(f.slug)"
             [attr.aria-pressed]="isActiveFilter(f.slug)"
-          >
-            {{ f.label }}
-          </button>
+          >{{ f.label }}</button>
         }
       </div>
 
@@ -40,36 +117,17 @@
               class="animate-in-ref pointer-events-none relative isolate flex min-h-[300px] cursor-default flex-col overflow-hidden rounded-3xl border border-brand-border bg-surface-card px-9 py-9 opacity-45 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.55)] backdrop-blur-[15px] max-md:min-h-[280px] max-md:px-7 max-md:py-8"
               [attr.aria-label]="r.title + ' · Próximamente'"
             >
-              <div
-                class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl"
-                [class]="glowAccentClass(r.category)"
-              ></div>
+              <div class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl" [class]="glowAccentClass(r.category)" aria-hidden="true"></div>
               <div class="relative z-[1] flex items-start justify-between">
-                <span
-                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35"
-                  >{{ r.num }}</span
-                >
+                <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35">{{ r.num }}</span>
                 <span [class]="badgeTone(r.upcoming, r.category)">En camino</span>
               </div>
-              <div
-                class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6"
-              >
-                <h3
-                  class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]"
-                >
-                  {{ r.title }}
-                </h3>
-                <p class="mt-4 text-sm leading-relaxed text-brand-text/60 max-md:text-[13px]">
-                  {{ r.desc }}
-                </p>
+              <div class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6">
+                <h3 class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]">{{ r.title }}</h3>
+                <p class="mt-4 text-sm leading-relaxed text-brand-text/60 max-md:text-[13px]">{{ r.desc }}</p>
               </div>
-              <div
-                class="relative z-[1] mt-auto flex items-center justify-between border-t border-brand-border pt-5 max-md:text-[10px]"
-              >
-                <span
-                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/40"
-                  >{{ r.meta }}</span
-                >
+              <div class="relative z-[1] mt-auto flex items-center justify-between border-t border-brand-border pt-5">
+                <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/40">{{ r.meta }}</span>
                 <span class="text-[13px] font-semibold text-brand-orange">{{ r.cta }}</span>
               </div>
             </article>
@@ -79,38 +137,17 @@
               [routerLink]="['/recursos', r.id]"
               [attr.aria-label]="r.title"
             >
-              <div
-                class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl"
-                [class]="glowAccentClass(r.category)"
-              ></div>
+              <div class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl" [class]="glowAccentClass(r.category)" aria-hidden="true"></div>
               <div class="relative z-[1] flex items-start justify-between">
-                <span
-                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35"
-                  >{{ r.num }}</span
-                >
-                <span [class]="badgeTone(r.upcoming, r.category)">{{
-                  categoryLabel(r.category)
-                }}</span>
+                <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35">{{ r.num }}</span>
+                <span [class]="badgeTone(r.upcoming, r.category)">{{ categoryLabel(r.category) }}</span>
               </div>
-              <div
-                class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6"
-              >
-                <h3
-                  class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]"
-                >
-                  {{ r.title }}
-                </h3>
-                <p class="mt-4 text-sm leading-relaxed text-brand-text/60 max-md:text-[13px]">
-                  {{ r.desc }}
-                </p>
+              <div class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6">
+                <h3 class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]">{{ r.title }}</h3>
+                <p class="mt-4 text-sm leading-relaxed text-brand-text/60 max-md:text-[13px]">{{ r.desc }}</p>
               </div>
-              <div
-                class="relative z-[1] mt-auto flex items-center justify-between border-t border-brand-border pt-5 max-md:text-[10px]"
-              >
-                <span
-                  class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/40"
-                  >{{ r.meta }}</span
-                >
+              <div class="relative z-[1] mt-auto flex items-center justify-between border-t border-brand-border pt-5">
+                <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/40">{{ r.meta }}</span>
                 <span class="flex items-center gap-1 text-[13px] font-semibold text-brand-orange">
                   {{ r.cta }}
                   <span class="material-icons text-[16px]" aria-hidden="true">arrow_forward</span>
@@ -118,6 +155,12 @@
               </div>
             </a>
           }
+        } @empty {
+          <div class="col-span-full flex flex-col items-center gap-4 py-24 text-center">
+            <span class="material-icons text-[48px] text-brand-text/15" aria-hidden="true">hourglass_empty</span>
+            <p class="text-[15px] font-medium text-brand-text/40">No tenemos este recurso aún.</p>
+            <p class="text-[13px] text-brand-text/25">Pronto habrá contenido en esta categoría.</p>
+          </div>
         }
       </div>
     </div>

@@ -1,14 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  signal,
-} from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-shell',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet],
   templateUrl: './app-shell.component.html',
   styles: `:host {
     display: block;
@@ -17,16 +13,14 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   }
   `,
   host: {
-    '(window:scroll)': 'onWindowScroll()',
+    '(window:scroll)': 'onScroll()',
   },
 })
 export class AppShellComponent {
-  protected readonly compactNav = signal(false);
+  protected readonly scrolled = signal(false);
 
-  protected onWindowScroll(): void {
-    if (typeof globalThis.window === 'undefined') {
-      return;
-    }
-    this.compactNav.set(globalThis.window.scrollY > 50);
+  protected onScroll(): void {
+    if (typeof globalThis.window === 'undefined') return;
+    this.scrolled.set(globalThis.window.scrollY > 20);
   }
 }

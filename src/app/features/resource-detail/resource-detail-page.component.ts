@@ -16,7 +16,7 @@ import { resourceById } from '../../shared/data/hub-resources.data';
 const DEFAULT_STATS: ResourceStatLine[] = [
   { icon: 'menu_book', value: '—', label: 'Detalle' },
   { icon: 'bolt', value: '—', label: 'En página' },
-  { icon: 'public', value: 'Libre', label: 'tokidev' },
+  { icon: 'public', value: 'Libre', label: 'Acceso libre' },
 ];
 
 @Component({
@@ -115,6 +115,24 @@ export class ResourceDetailPageComponent {
 
   protected toggleMobileToc(): void {
     this.mobileTocOpen.update((open) => !open);
+  }
+
+  protected async downloadSkill(): Promise<void> {
+    const url = this.detailResource()?.downloadUrl;
+    if (!url) return;
+    const res = await fetch(url);
+    const raw = await res.text();
+    const clean = raw
+      .replace(/name:\s*carousel-tokidev/g, 'name: carousel-instagram')
+      .replace(/Carrusel Instagram @tokidev\.(ia|ai)/gi, 'Carrusel Instagram')
+      .replace(/carruseles de Instagram para @tokidev\.(ia|ai)/gi, 'carruseles de Instagram personalizados')
+      .replace(/@tokidev\.(ia|ai)/gi, '@tu-cuenta');
+    const blob = new Blob([clean], { type: 'text/markdown' });
+    const a = globalThis.document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'SKILL.md';
+    a.click();
+    URL.revokeObjectURL(a.href);
   }
 
   protected tocBtnClass(sectionId: string): string {
