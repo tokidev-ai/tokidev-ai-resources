@@ -104,7 +104,8 @@ export class HubPageComponent {
     return this.activeFilter() === slug;
   }
 
-  protected glowAccentClass(cat: ResourceCategory): string {
+  protected glowAccentClass(cat: ResourceCategory, id?: number): string {
+    if (id === 10) return 'bg-brand-orange';
     const map: Record<ResourceCategory, string> = {
       prompts: 'bg-cat-prompts',
       skills: 'bg-cat-skills',
@@ -113,10 +114,13 @@ export class HubPageComponent {
     return map[cat];
   }
 
-  protected badgeTone(upcoming: boolean, category: ResourceCategory): string {
+  protected badgeTone(upcoming: boolean, category: ResourceCategory, id?: number): string {
     const base =
       'inline-flex shrink-0 items-center rounded-full border px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.15em]';
     if (upcoming) return `${base} border-brand-border bg-white/[0.04] text-brand-text/50`;
+    if (id === 10) {
+      return `${base} border-brand-orange/15 bg-brand-orange/8 text-brand-orange/80`;
+    }
     switch (category) {
       case 'prompts':
         return `${base} border-brand-yellow/15 bg-brand-yellow/8 text-brand-yellow/80`;

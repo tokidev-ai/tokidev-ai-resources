@@ -117,10 +117,10 @@
               class="animate-in-ref pointer-events-none relative isolate flex min-h-[300px] cursor-default flex-col overflow-hidden rounded-3xl border border-brand-border bg-surface-card px-9 py-9 opacity-45 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.55)] backdrop-blur-[15px] max-md:min-h-[280px] max-md:px-7 max-md:py-8"
               [attr.aria-label]="r.title + ' · Próximamente'"
             >
-              <div class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl" [class]="glowAccentClass(r.category)" aria-hidden="true"></div>
+              <div class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl" [class]="glowAccentClass(r.category, r.id)" aria-hidden="true"></div>
               <div class="relative z-[1] flex items-start justify-between">
                 <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35">{{ r.num }}</span>
-                <span [class]="badgeTone(r.upcoming, r.category)">En camino</span>
+                <span [class]="badgeTone(r.upcoming, r.category, r.id)">En camino</span>
               </div>
               <div class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6">
                 <h3 class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]">{{ r.title }}</h3>
@@ -137,10 +137,10 @@
               [routerLink]="['/recursos', r.id]"
               [attr.aria-label]="r.title"
             >
-              <div class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl" [class]="glowAccentClass(r.category)" aria-hidden="true"></div>
+              <div class="pointer-events-none absolute -right-14 -top-24 z-0 h-[200px] w-[200px] rounded-full opacity-[0.38] blur-3xl" [class]="glowAccentClass(r.category, r.id)" aria-hidden="true"></div>
               <div class="relative z-[1] flex items-start justify-between">
                 <span class="font-mono-display text-[11px] uppercase tracking-[0.2em] text-brand-text/35">{{ r.num }}</span>
-                <span [class]="badgeTone(r.upcoming, r.category)">{{ categoryLabel(r.category) }}</span>
+                <span [class]="badgeTone(r.upcoming, r.category, r.id)">{{ categoryLabel(r.category) }}</span>
               </div>
               <div class="relative z-[1] flex flex-1 flex-col justify-center py-8 text-center max-md:py-6">
                 <h3 class="text-balance font-sans text-[clamp(18px,2.8vw,22px)] font-bold leading-snug tracking-tight text-brand-text md:text-[22px]">{{ r.title }}</h3>

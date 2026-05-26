@@ -86,6 +86,28 @@ export const RESOURCE_CARDS = [
     contentFile: 'linkedin-skill.md',
     downloadUrl: `${GITHUB_RAW}/linkedin-dev-auditor/SKILL.md`,
   },
+  {
+    id: 10,
+    num: '04',
+    category: 'skills',
+    title: 'Diseña tu landing premium sin parecer template',
+    desc: 'Crea tu propia skill de diseño con tus colores y tipografías. Elige tu paleta, previsualízala y exporta el prompt listo para usar.',
+    meta: '· interactivo',
+    cta: 'Crear',
+    upcoming: false,
+    detailBadgeLabel: 'DISEÑO · PERSONALIZADO',
+    detailStats: [
+      { icon: 'palette', value: 'Personalizado', label: 'Colores y marcas' },
+      { icon: 'text_fields', value: '4 tipografías', label: 'Pares tipográficos' },
+      { icon: 'download', value: 'SKILL.md', label: 'Exportación directa' },
+    ],
+    sections: [
+      { id: 'colores', label: 'COLORES', num: '01', title: 'Configura la paleta de colores' },
+      { id: 'tipografia', label: 'TIPOGRAFÍA', num: '02', title: 'Selecciona la tipografía' },
+      { id: 'comparacion', label: 'COMPARACIÓN', num: '03', title: 'Antes vs Después' },
+      { id: 'exportar', label: 'EXPORTAR', num: '04', title: 'Descarga tu skill de diseño' },
+    ],
+  },
 ] satisfies readonly ResourceCard[];
 
 export function resourceById(id: number): ResourceCard | undefined {

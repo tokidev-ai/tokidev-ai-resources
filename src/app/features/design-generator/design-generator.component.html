@@ -1,0 +1,378 @@
+<div class="design-generator-container relative grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+  
+  <!-- ── LEFT COLUMN: WIZARD ── -->
+  <div class="editor-workspace min-w-0 rounded-3xl border border-brand-border bg-surface-card p-6 md:p-8 backdrop-blur-md shadow-2xl">
+    
+    <!-- Wizard Steps Header -->
+    <div class="mb-8 flex flex-wrap gap-4 border-b border-brand-border pb-5 justify-between">
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 1"
+        [class.border-b-2]="activeStep() === 1"
+        [class.border-brand-orange]="activeStep() === 1"
+        [class.text-brand-text/40]="activeStep() !== 1"
+        (click)="setStep(1)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 1" [class.border-brand-text/30]="activeStep() !== 1">01</span>
+        Colores
+      </button>
+
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 2"
+        [class.border-b-2]="activeStep() === 2"
+        [class.border-brand-orange]="activeStep() === 2"
+        [class.text-brand-text/40]="activeStep() !== 2"
+        (click)="setStep(2)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 2" [class.border-brand-text/30]="activeStep() !== 2">02</span>
+        Tipografía
+      </button>
+
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 3"
+        [class.border-b-2]="activeStep() === 3"
+        [class.border-brand-orange]="activeStep() === 3"
+        [class.text-brand-text/40]="activeStep() !== 3"
+        (click)="setStep(3)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 3" [class.border-brand-text/30]="activeStep() !== 3">03</span>
+        Identidad
+      </button>
+
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 4"
+        [class.border-b-2]="activeStep() === 4"
+        [class.border-brand-orange]="activeStep() === 4"
+        [class.text-brand-text/40]="activeStep() !== 4"
+        (click)="setStep(4)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 4" [class.border-brand-text/30]="activeStep() !== 4">04</span>
+        Exportar
+      </button>
+    </div>
+
+    <!-- ── STEP 1: COLORS ── -->
+    @if (activeStep() === 1) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 1: Elige tu paleta cromática</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Selecciona una de nuestras combinaciones armónicas predefinidas o crea la tuya personalizada.</p>
+
+        <!-- Presets Grid -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-3 font-semibold">Paletas Prediseñadas</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          @for (preset of presets; track preset.id) {
+            <button
+              type="button"
+              class="flex flex-col text-left p-4 rounded-xl border cursor-pointer transition-all bg-white/[0.02]"
+              [class.border-brand-orange]="selectedPresetId() === preset.id"
+              [class.border-brand-border]="selectedPresetId() !== preset.id"
+              [class.bg-white/[0.05]]="selectedPresetId() === preset.id"
+              (click)="applyPreset(preset)"
+            >
+              <span class="text-sm font-semibold text-brand-text mb-2">{{ preset.name }}</span>
+              <div class="flex gap-1.5 w-full">
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.bg" title="Fondo"></span>
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.text" title="Texto"></span>
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.primary" title="Acento 1"></span>
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.secondary" title="Acento 2"></span>
+              </div>
+            </button>
+          }
+        </div>
+
+        <!-- Custom Color Editors -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-4 font-semibold">Editor de Colores Personalizado</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 p-5 rounded-2xl border border-brand-border bg-black/20">
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Color de Fondo</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorBg()" (input)="colorBg.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorBg()" (input)="colorBg.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Color de Texto</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorText()" (input)="colorText.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorText()" (input)="colorText.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Acento Primario (Coral/Brillante)</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorPrimary()" (input)="colorPrimary.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorPrimary()" (input)="colorPrimary.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Acento Secundario (Oro/Cálido)</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorSecondary()" (input)="colorSecondary.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorSecondary()" (input)="colorSecondary.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Líneas y Bordes (RGBA)</label>
+            <input type="text" [value]="colorBorder()" (input)="colorBorder.set($any($event.target).value); selectedPresetId.set('custom')" class="w-full bg-white/[0.04] border border-brand-border rounded px-2.5 py-2.5 text-xs text-brand-text/80">
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Fondo de Vidrio (RGBA)</label>
+            <input type="text" [value]="colorGlass()" (input)="colorGlass.set($any($event.target).value); selectedPresetId.set('custom')" class="w-full bg-white/[0.04] border border-brand-border rounded px-2.5 py-2.5 text-xs text-brand-text/80">
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ── STEP 2: TYPOGRAPHY ── -->
+    @if (activeStep() === 2) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 2: Elige tu par tipográfico</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Selecciona una combinación que refleje el tono y estilo de tu landing.</p>
+
+        <div class="flex flex-col gap-4 mb-6">
+          @for (pair of typographyPairs; track pair.id) {
+            <button
+              type="button"
+              class="flex flex-col text-left p-5 rounded-2xl border cursor-pointer transition-all bg-white/[0.02]"
+              [class.border-brand-orange]="selectedFontPairId() === pair.id"
+              [class.border-brand-border]="selectedFontPairId() !== pair.id"
+              [class.bg-white/[0.05]]="selectedFontPairId() === pair.id"
+              (click)="applyFontPair(pair)"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-semibold text-brand-text">{{ pair.name }}</span>
+                <span class="text-[11px] font-mono text-brand-text/40">{{ pair.heading }} + {{ pair.body }}</span>
+              </div>
+              <div class="mt-1 border-t border-brand-border/40 pt-3">
+                <p [style.font-family]="pair.heading" class="text-xl font-medium tracking-tight text-white leading-tight">
+                  Diseño de Productos Web Únicos
+                </p>
+                <p [style.font-family]="pair.body" class="text-xs text-brand-text/50 mt-1">
+                  Construimos marcas digitales que destacan del resto utilizando principios geométricos.
+                </p>
+              </div>
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- ── STEP 3: IDENTITY ── -->
+    @if (activeStep() === 3) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 3: Identidad y Nombre</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Nombra tu proyecto para personalizar las clases y nombres de la skill.</p>
+
+        <div class="mb-6">
+          <label class="block text-xs uppercase tracking-wider text-brand-orange mb-2 font-semibold">Nombre de la Marca / Proyecto</label>
+          <input
+            type="text"
+            [(ngModel)]="brandName"
+            class="w-full rounded-xl border border-brand-border bg-black/35 px-4 py-3.5 text-sm text-brand-text focus:border-brand-orange focus:outline-none"
+            placeholder="Ej. TokiCorp"
+          >
+          <p class="text-[11px] text-brand-text/40 mt-2">
+            Identificador generado: <code class="bg-white/5 px-1.5 py-0.5 rounded text-brand-orange">{{ brandName() | lowercase }}-design-system</code>
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl border border-brand-border bg-brand-orange/5 text-sm text-brand-text/80 leading-relaxed">
+          <div class="flex gap-2.5 items-start">
+            <span class="material-icons text-brand-orange text-[20px] mt-0.5">info</span>
+            <div>
+              <strong>¿Cómo funciona?</strong>
+              <p class="text-xs text-brand-text/60 mt-1">Este generador creará un archivo <code class="text-brand-orange">SKILL.md</code>. Al cargarlo en tu asistente de IA (como Claude o Cursor), le darás instrucciones específicas de diseño con tu paleta y tus fuentes seleccionadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ── STEP 4: EXPORT ── -->
+    @if (activeStep() === 4) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 4: Exporta tu Skill</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Todo listo. Descarga el archivo de skill o copia el contenido directamente para usarlo en tu AI.</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-6">
+          <button
+            type="button"
+            class="flex-1 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-5 py-3.5 text-sm font-semibold text-white hover:opacity-95"
+            (click)="downloadSkill()"
+          >
+            <span class="material-icons text-[18px]">download</span>
+            Descargar SKILL.md
+          </button>
+          
+          <button
+            type="button"
+            class="flex-1 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-brand-border bg-surface-card px-5 py-3.5 text-sm font-semibold text-brand-text transition-colors hover:bg-surface-card/80"
+            (click)="copyToClipboard()"
+          >
+            <span class="material-icons text-[18px]">@if(copied()){check}@else{content_copy}</span>
+            {{ copied() ? 'Copiado' : 'Copiar al portapapeles' }}
+          </button>
+        </div>
+
+        <!-- Markdown Code Preview -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-text/40 mb-2 font-semibold">Vista previa del archivo generado</h4>
+        <div class="relative overflow-hidden rounded-xl border border-brand-border bg-black/40 h-[280px]">
+          <pre class="m-0 p-4 text-[11px] leading-relaxed text-brand-text/75 h-full overflow-auto font-mono text-left select-all whitespace-pre-wrap break-all">{{ skillMarkdown() }}</pre>
+        </div>
+      </div>
+    }
+
+    <!-- Navigation Buttons -->
+    <div class="mt-8 flex justify-between border-t border-brand-border pt-5">
+      <button
+        type="button"
+        class="px-5 py-2.5 rounded-lg border border-brand-border text-xs font-semibold text-brand-text/60 hover:text-brand-text transition-colors cursor-pointer"
+        [class.opacity-40]="activeStep() === 1"
+        [disabled]="activeStep() === 1"
+        (click)="prevStep()"
+      >
+        Atrás
+      </button>
+
+      @if (activeStep() < 4) {
+        <button
+          type="button"
+          class="px-5 py-2.5 rounded-lg border-0 bg-linear-to-r from-brand-orange to-brand-yellow text-xs font-semibold text-white transition-opacity cursor-pointer hover:opacity-95"
+          (click)="nextStep()"
+        >
+          Siguiente
+        </button>
+      }
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT COLUMN: DEVICE PREVIEW ── -->
+  <div class="preview-panel sticky top-[100px] flex flex-col items-center">
+    
+    <!-- Preview Title Tab -->
+    <div class="flex p-1 rounded-full bg-black/45 border border-brand-border/60 mb-6 shadow-inner w-fit">
+      <span class="px-5 py-2 text-xs font-bold text-brand-orange uppercase tracking-wider">
+        Previsualización
+      </span>
+    </div>
+
+    <!-- Live Preview Canvas -->
+    <div class="relative overflow-hidden w-full max-w-[400px] aspect-[4/5] rounded-[32px] border-4 border-zinc-800 shadow-[0_32px_64px_-24px_rgba(0,0,0,0.8)]">
+      
+      <!-- ── PREVIEW STAGE ── -->
+      <div 
+        class="preview-after-stage relative h-full w-full transition-colors duration-500 p-6 flex flex-col select-none overflow-hidden"
+        [style.background-color]="colorBg()"
+        [style.color]="colorText()"
+        [style.font-family]="fontBody()"
+      >
+        
+        <!-- Custom ambient glow blurs -->
+        <div class="absolute -right-24 -top-24 size-56 rounded-full opacity-35 blur-[100px]" [style.background-color]="colorPrimary()"></div>
+        <div class="absolute -left-20 -bottom-20 size-56 rounded-full opacity-25 blur-[90px]" [style.background-color]="colorSecondary()"></div>
+
+        <!-- Styled Premium Navbar -->
+        <div 
+          class="flex items-center justify-between border rounded-2xl px-4 py-2.5 mb-6 backdrop-blur-xl transition-all duration-300"
+          [style.background-color]="colorGlass()"
+          [style.border-color]="colorBorder()"
+        >
+          <span [style.font-family]="fontHeading()" class="font-bold text-xs tracking-tight uppercase" [style.color]="colorText()">
+            {{ brandName() }}
+          </span>
+          <button 
+            class="border rounded-full text-[9px] font-semibold py-1.5 px-3.5 transition-opacity duration-200 hover:opacity-90 cursor-pointer"
+            [style.background]="'linear-gradient(to right, ' + colorPrimary() + ', ' + colorSecondary() + ')'"
+            [style.color]="'#fff'"
+            [style.border]="'none'"
+          >
+            Comenzar
+          </button>
+        </div>
+
+        <!-- Styled Premium Heading -->
+        <div class="text-center mt-3 mb-6">
+          <span 
+            class="inline-block text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border mb-3"
+            [style.background-color]="colorPrimary() + '10'"
+            [style.border-color]="colorPrimary() + '30'"
+            [style.color]="colorPrimary()"
+          >
+            Biblioteca de recursos
+          </span>
+          
+          <h1 
+            [style.font-family]="fontHeading()" 
+            class="text-2xl font-bold tracking-tight mt-1 leading-[1.1] pb-px bg-clip-text text-transparent"
+            [style.background-image]="'linear-gradient(to bottom, #ffffff 60%, ' + colorPrimary() + ' 100%)'"
+            [style.background-clip]="'text'"
+            [style.color]="'transparent'"
+          >
+            Diseños web con propósito
+          </h1>
+          
+          <p class="text-[11px] mt-3 max-w-[270px] mx-auto leading-relaxed opacity-70">
+            Creamos espacios digitales pensados para destacar. Menos ruido visual, más efectividad.
+          </p>
+        </div>
+
+        <!-- Styled Premium Card -->
+        <div 
+          class="border rounded-3xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-300"
+          [style.background-color]="colorGlass()"
+          [style.border-color]="colorBorder()"
+        >
+          <div class="flex items-center justify-between mb-3.5">
+            <span class="text-[9px] font-mono tracking-widest opacity-40">RECURSO 01</span>
+            <span 
+              class="text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full border"
+              [style.background-color]="colorPrimary() + '15'"
+              [style.border-color]="colorPrimary() + '25'"
+              [style.color]="colorPrimary() + 'e0'"
+            >
+              Diseño
+            </span>
+          </div>
+          
+          <h3 [style.font-family]="fontHeading()" class="text-sm font-bold tracking-tight text-white mb-2">
+            El secreto del espacio
+          </h3>
+          
+          <p class="text-[10px] leading-relaxed opacity-60 mb-4">
+            Aprende a balancear el aire visual entre tus componentes para retener al usuario.
+          </p>
+
+          <div class="flex items-center justify-between border-t border-white/[0.06] pt-3.5">
+            <span class="text-[9px] font-mono opacity-30">· 5 mins read</span>
+            <span class="flex items-center gap-1 text-[10px] font-semibold cursor-pointer" [style.color]="colorPrimary()">
+              Leer artículo
+              <span class="material-icons text-[11px]">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Design indicators -->
+        <div class="absolute inset-0 bg-black/0 pointer-events-none flex flex-col justify-between p-4">
+          <span class="bg-emerald-500/90 text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded w-fit shadow-md">Tipografía seleccionada</span>
+          <span class="bg-emerald-500/90 text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded w-fit self-end shadow-md">Paleta de color seleccionada</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

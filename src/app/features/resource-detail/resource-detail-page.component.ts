@@ -12,6 +12,7 @@ import { map } from 'rxjs';
 import { MarkdownComponent } from 'ngx-markdown';
 import type { ResourceStatLine } from '../../shared/models/hub.models';
 import { resourceById } from '../../shared/data/hub-resources.data';
+import { DesignGeneratorComponent } from '../design-generator/design-generator.component';
 
 const DEFAULT_STATS: ResourceStatLine[] = [
   { icon: 'menu_book', value: '—', label: 'Detalle' },
@@ -22,7 +23,7 @@ const DEFAULT_STATS: ResourceStatLine[] = [
 @Component({
   selector: 'app-resource-detail-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, MarkdownComponent],
+  imports: [RouterLink, MarkdownComponent, DesignGeneratorComponent],
   templateUrl: './resource-detail-page.component.html',
   host: {
     '(window:scroll)': 'onWindowScrollSpy()',
