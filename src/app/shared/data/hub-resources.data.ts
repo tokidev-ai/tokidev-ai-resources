@@ -60,7 +60,8 @@ export const RESOURCE_CARDS = [
       { id: 'diseno', label: 'DISEÑO', num: '04', title: 'Sistema de diseño incluido' },
     ],
     contentFile: 'carousel-tokidev.md',
-    downloadUrl: `${GITHUB_RAW}/carousel-tokidev/SKILL.md`,
+    downloadUrl: `${GITHUB_RAW}/carousel-instagram/SKILL.md`,
+    skillSlug: 'carousel-instagram',
   },
   {
     id: 9,
@@ -85,6 +86,7 @@ export const RESOURCE_CARDS = [
     ],
     contentFile: 'linkedin-skill.md',
     downloadUrl: `${GITHUB_RAW}/linkedin-dev-auditor/SKILL.md`,
+    skillSlug: 'linkedin-dev-auditor',
   },
   {
     id: 10,
@@ -107,6 +109,8 @@ export const RESOURCE_CARDS = [
       { id: 'comparacion', label: 'COMPARACIÓN', num: '03', title: 'Antes vs Después' },
       { id: 'exportar', label: 'EXPORTAR', num: '04', title: 'Descarga tu skill de diseño' },
     ],
+    downloadUrl: `${GITHUB_RAW}/tokidev-design-system/SKILL.md`,
+    skillSlug: 'tokidev-design-system',
   },
 ] satisfies readonly ResourceCard[];
 

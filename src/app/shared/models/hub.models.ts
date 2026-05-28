@@ -32,4 +32,5 @@ export interface ResourceCard {
   sections?: readonly DetailSectionDef[];
   contentFile?: string;
   downloadUrl?: string;
+  skillSlug?: string;
 }
