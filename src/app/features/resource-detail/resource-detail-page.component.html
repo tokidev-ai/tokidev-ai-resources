@@ -28,6 +28,44 @@
           {{ res.desc }}
         </p>
 
+        @if (res.skillSlug) {
+          <div class="mb-8 mt-6 md:mt-8 max-w-[600px] rounded-xl border border-brand-border bg-[rgb(12_19_31)] p-4 font-mono text-sm">
+            <div class="mb-2 flex items-center justify-between text-xs text-brand-text/40">
+              <span class="font-semibold tracking-wider animate-in-ref">
+                INSTALAR VÍA TERMINAL
+                @if (res.id === 10) {
+                  <span class="text-brand-yellow font-sans font-medium lowercase italic ml-1">(estilo por defecto)</span>
+                }
+              </span>
+              <button 
+                type="button"
+                class="flex cursor-pointer items-center gap-1.5 rounded-md border border-brand-border bg-white/[0.03] px-2.5 py-1 text-xs text-brand-text/75 transition-colors hover:bg-white/[0.08] hover:text-white"
+                (click)="copyCommand(cliCommand())"
+              >
+                <span class="material-icons text-sm" style="font-size:14px">{{ copied() ? 'check' : 'content_copy' }}</span>
+                <span>{{ copied() ? 'Copiado' : 'Copiar' }}</span>
+              </button>
+            </div>
+            <div class="flex items-center gap-2 overflow-x-auto py-1 text-brand-orange font-medium selection:bg-brand-orange/20">
+              <span class="text-brand-text/30 shrink-0 select-none">$</span>
+              <code class="whitespace-nowrap">{{ cliCommand() }}</code>
+            </div>
+            <div class="mt-3.5 flex flex-wrap items-center gap-1.5 text-[10px] font-sans text-brand-text/40">
+              <span class="font-medium tracking-wide">COMPATIBLE CON:</span>
+              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Claude Code</span>
+              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Cursor</span>
+              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Windsurf</span>
+              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Antigravity</span>
+              <span class="rounded-md bg-white/[0.03] border border-dashed border-brand-border/60 px-2 py-0.5 text-brand-text/50">+ tu agente preferido</span>
+            </div>
+            @if (res.id === 10) {
+              <div class="mt-3 border-t border-brand-border/40 pt-2.5 text-[11px] font-sans leading-relaxed text-brand-text/40">
+                ⚠️ Este comando instala la skill con la paleta de colores por defecto de Tokidev. Si creas tu propia combinación personalizada con el editor de abajo, descárgala de forma manual desde la sección <strong>04 · Exportar</strong>.
+              </div>
+            }
+          </div>
+        }
+
         @if (!res.upcoming && res.id !== 10) {
           <div class="mb-14 mt-8 flex flex-wrap gap-4 max-md:flex-col md:my-14">
             @if (res.downloadUrl) {

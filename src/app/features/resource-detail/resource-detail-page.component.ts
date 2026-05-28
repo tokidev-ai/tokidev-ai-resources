@@ -64,6 +64,22 @@ export class ResourceDetailPageComponent {
 
   protected readonly mobileTocOpen = signal(false);
 
+  protected readonly copied = signal(false);
+
+  protected readonly cliCommand = computed(() => {
+    const r = this.detailResource();
+    if (!r?.skillSlug) return '';
+    return `npx skills add tokidev-ai/tokidev-skills --skill ${r.skillSlug}`;
+  });
+
+  protected copyCommand(text: string): void {
+    if (typeof globalThis.navigator === 'undefined' || !text) return;
+    void globalThis.navigator.clipboard.writeText(text).then(() => {
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2000);
+    });
+  }
+
   constructor() {
     effect(() => {
       const ids = this.sections();
@@ -124,10 +140,8 @@ export class ResourceDetailPageComponent {
     const res = await fetch(url);
     const raw = await res.text();
     const clean = raw
-      .replace(/name:\s*carousel-tokidev/g, 'name: carousel-instagram')
-      .replace(/Carrusel Instagram @tokidev\.(ia|ai)/gi, 'Carrusel Instagram')
-      .replace(/carruseles de Instagram para @tokidev\.(ia|ai)/gi, 'carruseles de Instagram personalizados')
-      .replace(/@tokidev\.(ia|ai)/gi, '@tu-cuenta');
+      .replace(/\[HANDLE_USUARIO\]/g, '@tu-cuenta')
+      .replace(/\[MARCA_USUARIO\]/g, 'tu-marca.ai');
     const blob = new Blob([clean], { type: 'text/markdown' });
     const a = globalThis.document.createElement('a');
     a.href = URL.createObjectURL(blob);

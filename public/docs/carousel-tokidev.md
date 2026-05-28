@@ -25,6 +25,11 @@ No necesitás explicarle colores, tipografía ni estructura. El sistema de dise�
 
 <h2 id="instalacion">Instalación</h2>
 
+<div class="doc-note">
+  <span class="material-icons">terminal</span>
+  <span><strong>Instalación recomendada (CLI):</strong> Si usas Claude Code, Cursor u otro agente compatible con skills, ejecuta en tu terminal:<br><code style="display:inline-block; margin-top: 6px; padding: 6px 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #ef6c4a; user-select: all;">npx skills add tokidev-ai/tokidev-skills --skill carousel-instagram</code></span>
+</div>
+
 <div class="doc-steps">
   <div class="doc-step">
     <span class="doc-step-num">01</span>
