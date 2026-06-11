@@ -69,7 +69,7 @@ export const RESOURCE_CARDS = [
     category: 'skills',
     title: 'Tu LinkedIn atrae trabajo o lo espanta',
     desc: 'Skill que audita tu perfil como developer: 10 aspectos, estado real y mejoras concretas con ejemplos.',
-    meta: '· auditoría · ejemplos reales',
+    meta: '· auditoría',
     cta: 'Leer',
     upcoming: false,
     detailBadgeLabel: 'LINKEDIN · DEVELOPERS',

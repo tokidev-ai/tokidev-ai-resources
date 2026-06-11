@@ -270,7 +270,7 @@
     </div>
 
     <!-- Live Preview Canvas -->
-    <div class="relative overflow-hidden w-full max-w-[400px] aspect-[4/5] rounded-[32px] border-4 border-zinc-800 shadow-[0_32px_64px_-24px_rgba(0,0,0,0.8)]">
+    <div class="relative overflow-hidden w-full max-w-[420px] sm:max-w-[440px] aspect-[4/5] rounded-[36px] border-4 border-zinc-800 shadow-[0_32px_64px_-24px_rgba(0,0,0,0.85)]">
       
       <!-- ── PREVIEW STAGE ── -->
       <div 
@@ -365,9 +365,15 @@
         </div>
 
         <!-- Design indicators -->
-        <div class="absolute inset-0 bg-black/0 pointer-events-none flex flex-col justify-between p-4">
-          <span class="bg-emerald-500/90 text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded w-fit shadow-md">Tipografía seleccionada</span>
-          <span class="bg-emerald-500/90 text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded w-fit self-end shadow-md">Paleta de color seleccionada</span>
+        <div class="absolute inset-0 bg-black/0 pointer-events-none flex flex-col justify-between p-4.5">
+          <span class="flex items-center gap-1 bg-emerald-500/95 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-lg shadow-lg border border-white/10 backdrop-blur-xs w-fit">
+            <span class="material-icons text-[12px]" style="font-size:12px">font_download</span>
+            Tipografía seleccionada
+          </span>
+          <span class="flex items-center gap-1 bg-emerald-500/95 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-lg shadow-lg border border-white/10 backdrop-blur-xs self-end">
+            <span class="material-icons text-[12px]" style="font-size:12px">palette</span>
+            Paleta de color seleccionada
+          </span>
         </div>
 
       </div>

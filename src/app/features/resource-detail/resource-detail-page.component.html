@@ -4,9 +4,11 @@
       <div class="mx-auto max-w-[1120px] px-6">
         <a
           routerLink="/recursos"
-          class="mb-8 inline-flex cursor-pointer items-center gap-2 bg-transparent text-sm text-brand-text/60 no-underline hover:text-brand-text"
-          >← Volver a recursos</a
+          class="group mb-8 inline-flex cursor-pointer items-center gap-2 bg-transparent text-sm text-brand-text/60 no-underline transition-colors hover:text-brand-text"
         >
+          <span class="transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true">←</span>
+          <span>Volver a recursos</span>
+        </a>
 
         <div class="mb-6 flex gap-2">
           <span
@@ -28,65 +30,159 @@
           {{ res.desc }}
         </p>
 
-        @if (res.skillSlug) {
-          <div class="mb-8 mt-6 md:mt-8 max-w-[600px] rounded-xl border border-brand-border bg-[rgb(12_19_31)] p-4 font-mono text-sm">
-            <div class="mb-2 flex items-center justify-between text-xs text-brand-text/40">
-              <span class="font-semibold tracking-wider animate-in-ref">
-                INSTALAR VÍA TERMINAL
-                @if (res.id === 10) {
-                  <span class="text-brand-yellow font-sans font-medium lowercase italic ml-1">(estilo por defecto)</span>
-                }
-              </span>
-              <button 
+        <!-- Unified Installation Box for Skills (except custom design tool ID 10) -->
+        @if (res.skillSlug && res.id !== 10) {
+          <div class="mb-12 mt-8 max-w-[720px] rounded-2xl border border-brand-border bg-surface-card/30 backdrop-blur-md p-6 sm:p-8">
+            <h2 class="text-lg font-bold text-brand-text mb-2">Instalación y Uso</h2>
+            <p class="text-sm text-brand-text/50 mb-6">Selecciona el método que deseas utilizar:</p>
+            
+            <!-- Segmented Control (Tabs) -->
+            <div class="inline-flex p-1 bg-[rgb(12_19_31)] border border-brand-border/40 rounded-xl mb-6">
+              <button
                 type="button"
-                class="flex cursor-pointer items-center gap-1.5 rounded-md border border-brand-border bg-white/[0.03] px-2.5 py-1 text-xs text-brand-text/75 transition-colors hover:bg-white/[0.08] hover:text-white"
-                (click)="copyCommand(cliCommand())"
+                class="cursor-pointer px-4 py-2 text-xs font-semibold rounded-lg transition-all focus-visible:outline-2 focus-visible:outline-brand-orange"
+                [class.bg-brand-orange]="activeTab() === 'cli'"
+                [class.text-white]="activeTab() === 'cli'"
+                [class.text-brand-text/60]="activeTab() !== 'cli'"
+                [class.hover:text-brand-text]="activeTab() !== 'cli'"
+                (click)="activeTab.set('cli')"
               >
-                <span class="material-icons text-sm" style="font-size:14px">{{ copied() ? 'check' : 'content_copy' }}</span>
-                <span>{{ copied() ? 'Copiado' : 'Copiar' }}</span>
+                Opción 1: Terminal (CLI)
+              </button>
+              <button
+                type="button"
+                class="cursor-pointer px-4 py-2 text-xs font-semibold rounded-lg transition-all focus-visible:outline-2 focus-visible:outline-brand-orange"
+                [class.bg-brand-orange]="activeTab() === 'manual'"
+                [class.text-white]="activeTab() === 'manual'"
+                [class.text-brand-text/60]="activeTab() !== 'manual'"
+                [class.hover:text-brand-text]="activeTab() !== 'manual'"
+                (click)="activeTab.set('manual')"
+              >
+                Opción 2: Descarga manual
               </button>
             </div>
-            <div class="flex items-center gap-2 overflow-x-auto py-1 text-brand-orange font-medium selection:bg-brand-orange/20">
-              <span class="text-brand-text/30 shrink-0 select-none">$</span>
-              <code class="whitespace-nowrap">{{ cliCommand() }}</code>
+
+            <!-- Tab Content -->
+            <div>
+              <!-- CLI Tab -->
+              @if (activeTab() === 'cli') {
+                <div class="space-y-4">
+                  <p class="text-xs text-brand-text/60 leading-relaxed">
+                    Ejecuta este comando en la terminal de tu editor para instalarla automáticamente:
+                  </p>
+                  
+                  <!-- Code terminal box -->
+                  <div class="rounded-xl border border-brand-border bg-[rgb(12_19_31)] p-4 font-mono text-xs">
+                    <div class="mb-2 flex items-center justify-between text-[10px] text-brand-text/40">
+                      <span class="font-semibold tracking-wider">TERMINAL</span>
+                      <button 
+                        type="button"
+                        class="flex cursor-pointer items-center gap-1.5 rounded-md border border-brand-border bg-white/[0.03] px-2.5 py-1 text-[10px] text-brand-text/75 transition-colors hover:bg-white/[0.08] hover:text-white"
+                        (click)="copyCommand(cliCommand())"
+                      >
+                        <span class="material-icons text-xs" style="font-size:12px">{{ copied() ? 'check' : 'content_copy' }}</span>
+                        <span>{{ copied() ? 'Copiado' : 'Copiar' }}</span>
+                      </button>
+                    </div>
+                    <div class="flex items-center gap-2 overflow-x-auto py-1 text-brand-orange font-medium selection:bg-brand-orange/20">
+                      <span class="text-brand-text/30 shrink-0 select-none">$</span>
+                      <code class="whitespace-nowrap">{{ cliCommand() }}</code>
+                    </div>
+                  </div>
+                  
+                  <!-- Compatibility list -->
+                  <div class="flex flex-wrap items-center gap-1.5 text-[10px] text-brand-text/40">
+                    <span class="font-semibold tracking-wide">COMPATIBLE CON:</span>
+                    <span class="rounded bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Claude Code</span>
+                    <span class="rounded bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Cursor</span>
+                    <span class="rounded bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Windsurf</span>
+                    <span class="rounded bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Antigravity</span>
+                    <span class="rounded bg-white/[0.03] border border-dashed border-brand-border/60 px-2 py-0.5 text-brand-text/50">+ tu agente preferido</span>
+                  </div>
+                </div>
+              }
+
+              <!-- Manual Tab -->
+              @if (activeTab() === 'manual') {
+                <div class="space-y-4">
+                  <p class="text-xs text-brand-text/60 leading-relaxed">
+                    Descarga el archivo <code class="text-brand-orange font-mono">SKILL.md</code> e impórtalo en tu Claude Project, ChatGPT o chat web:
+                  </p>
+                  
+                  <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    @if (res.downloadUrl) {
+                      <button
+                        type="button"
+                        class="inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-6 py-3.5 text-sm font-semibold font-[inherit] text-white hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+                        (click)="downloadSkill()"
+                      >
+                        <span class="material-icons text-[18px]" aria-hidden="true">download</span>
+                        Descargar SKILL.md
+                      </button>
+                    }
+                    @if (res.category !== 'prompts') {
+                      <button
+                        type="button"
+                        class="cursor-pointer rounded-xl border border-brand-border bg-surface-card px-6 py-3.5 text-sm font-semibold font-[inherit] text-brand-text transition-colors hover:bg-surface-card/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+                        (click)="scrollTo('instalacion')"
+                      >
+                        Cómo se instala manualmente →
+                      </button>
+                    }
+                  </div>
+                </div>
+              }
             </div>
-            <div class="mt-3.5 flex flex-wrap items-center gap-1.5 text-[10px] font-sans text-brand-text/40">
-              <span class="font-medium tracking-wide">COMPATIBLE CON:</span>
-              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Claude Code</span>
-              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Cursor</span>
-              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Windsurf</span>
-              <span class="rounded-md bg-white/[0.03] border border-brand-border/30 px-2 py-0.5 text-brand-text/60">Antigravity</span>
-              <span class="rounded-md bg-white/[0.03] border border-dashed border-brand-border/60 px-2 py-0.5 text-brand-text/50">+ tu agente preferido</span>
-            </div>
-            @if (res.id === 10) {
-              <div class="mt-3 border-t border-brand-border/40 pt-2.5 text-[11px] font-sans leading-relaxed text-brand-text/40">
-                ⚠️ Este comando instala la skill con la paleta de colores por defecto de Tokidev. Si creas tu propia combinación personalizada con el editor de abajo, descárgala de forma manual desde la sección <strong>04 · Exportar</strong>.
-              </div>
-            }
           </div>
         }
 
-        @if (!res.upcoming && res.id !== 10) {
+        <!-- Dedicated Installation Box for Design Tool ID 10 -->
+        @if (res.skillSlug && res.id === 10) {
+          <div class="mb-12 mt-8 overflow-hidden rounded-2xl border border-brand-border bg-surface-card/30 backdrop-blur-md p-6 sm:p-8 max-w-[600px]">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="inline-flex items-center justify-center rounded-full bg-brand-orange/15 px-2.5 py-0.5 text-[11px] font-bold text-brand-orange">CLI</span>
+              <h3 class="text-base font-bold text-brand-text">Instalar vía terminal <span class="text-brand-yellow font-sans font-medium lowercase italic text-xs ml-1">(estilo por defecto)</span></h3>
+            </div>
+            <p class="text-xs text-brand-text/60 leading-relaxed mb-4">
+              Si quieres usar la skill directamente con los colores predeterminados, copia y ejecuta este comando:
+            </p>
+            
+            <div class="rounded-xl border border-brand-border bg-[rgb(12_19_31)] p-3.5 font-mono text-xs mb-4">
+              <div class="mb-2 flex items-center justify-between text-[10px] text-brand-text/40">
+                <span class="font-semibold tracking-wider">TERMINAL</span>
+                <button 
+                  type="button"
+                  class="flex cursor-pointer items-center gap-1.5 rounded-md border border-brand-border bg-white/[0.03] px-2.5 py-1 text-[10px] text-brand-text/75 transition-colors hover:bg-white/[0.08] hover:text-white"
+                  (click)="copyCommand(cliCommand())"
+                >
+                  <span class="material-icons text-xs" style="font-size:12px">{{ copied() ? 'check' : 'content_copy' }}</span>
+                  <span>{{ copied() ? 'Copiado' : 'Copiar' }}</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-2 overflow-x-auto py-0.5 text-brand-orange font-medium selection:bg-brand-orange/20">
+                <span class="text-brand-text/30 shrink-0 select-none">$</span>
+                <code class="whitespace-nowrap">{{ cliCommand() }}</code>
+              </div>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-1 text-[10px] text-brand-text/40 mb-3">
+              <span class="font-semibold tracking-wide">COMPATIBLE CON:</span>
+              <span class="rounded bg-white/[0.03] border border-brand-border/30 px-1.5 py-0.5 text-brand-text/60">Claude Code</span>
+              <span class="rounded bg-white/[0.03] border border-brand-border/30 px-1.5 py-0.5 text-brand-text/60">Cursor</span>
+              <span class="rounded bg-white/[0.03] border border-brand-border/30 px-1.5 py-0.5 text-brand-text/60">Windsurf</span>
+              <span class="rounded bg-white/[0.03] border border-brand-border/30 px-1.5 py-0.5 text-brand-text/60">Antigravity</span>
+              <span class="rounded bg-white/[0.03] border border-dashed border-brand-border/60 px-1.5 py-0.5 text-brand-text/50">+ tu agente preferido</span>
+            </div>
+            
+            <div class="border-t border-brand-border/40 pt-3 text-[11px] font-sans leading-relaxed text-brand-text/45">
+              ⚠️ Este comando instala la skill con la paleta de colores por defecto de Tokidev. Si creas tu propia combinación personalizada con el editor de abajo, descárgala de forma manual desde la sección <strong>04 · Exportar</strong>.
+            </div>
+          </div>
+        }
+
+        <!-- For standard prompts without skillSlug -->
+        @if (!res.skillSlug && !res.upcoming) {
           <div class="mb-14 mt-8 flex flex-wrap gap-4 max-md:flex-col md:my-14">
-            @if (res.downloadUrl) {
-              <button
-                type="button"
-                class="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-7 py-3.5 text-base font-semibold font-[inherit] text-white hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
-                (click)="downloadSkill()"
-              >
-                <span class="material-icons text-[18px]" aria-hidden="true">download</span>
-                Descargar SKILL.md
-              </button>
-            }
-            @if (res.category !== 'prompts') {
-              <button
-                type="button"
-                class="cursor-pointer rounded-xl border border-brand-border bg-surface-card px-7 py-3.5 text-base font-semibold font-[inherit] text-brand-text transition-colors hover:bg-surface-card/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
-                (click)="scrollTo('instalacion')"
-              >
-                Cómo se instala →
-              </button>
-            }
             @if (res.category === 'prompts') {
               <button
                 type="button"
@@ -103,7 +199,7 @@
           @for (s of statRows(); track s.label) {
             <div
               role="listitem"
-              class="rounded-2xl border border-brand-border bg-surface-card px-6 py-5"
+              class="rounded-2xl border border-brand-border bg-surface-card px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-border-warm hover:shadow-[0_12px_24px_-10px_rgb(239_108_74/0.15)]"
             >
               <span
                 class="material-icons mb-2 block text-[28px] text-brand-orange"
@@ -193,7 +289,7 @@
       </div>
     </section>
 
-    <footer class="mt-20 border-t border-brand-border bg-surface-card py-10">
+    <footer class="mt-20 border-t border-brand-border bg-transparent py-10">
       <div class="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-4 px-6">
         <a
           routerLink="/recursos"

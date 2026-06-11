@@ -66,6 +66,8 @@ export class ResourceDetailPageComponent {
 
   protected readonly copied = signal(false);
 
+  protected readonly activeTab = signal<'cli' | 'manual'>('cli');
+
   protected readonly cliCommand = computed(() => {
     const r = this.detailResource();
     if (!r?.skillSlug) return '';

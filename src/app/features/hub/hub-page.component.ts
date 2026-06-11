@@ -77,13 +77,21 @@ export class HubPageComponent {
   constructor() {
     afterNextRender(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-      tl.from('.hero-badge',  { opacity: 0, y: 24, duration: 0.7 })
-        .from('.hero-line1',  { opacity: 0, y: 60, duration: 0.8 }, '-=0.4')
+      tl.from('.hero-line1',  { opacity: 0, y: 60, duration: 0.8 })
         .from('.hero-line2',  { opacity: 0, y: 60, duration: 0.8 }, '-=0.55')
         .from('.hero-sub',    { opacity: 0, y: 24, duration: 0.7 }, '-=0.4')
+        .from('.hero-cta',    { opacity: 0, y: 16, duration: 0.6 }, '-=0.35')
         .from('.hero-cue',    { opacity: 0, duration: 0.5 },        '-=0.2')
         .from('.hero-cards',  { opacity: 0, x: 40, duration: 1.0, ease: 'power3.out' }, 0.3);
     });
+  }
+
+  protected scrollToResources(): void {
+    const el =
+      typeof globalThis.document === 'undefined'
+        ? undefined
+        : globalThis.document.getElementById('biblioteca');
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   protected onMouseMove(e: MouseEvent): void {
