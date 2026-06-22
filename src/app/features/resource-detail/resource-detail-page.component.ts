@@ -13,6 +13,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import type { ResourceStatLine } from '../../shared/models/hub.models';
 import { resourceById } from '../../shared/data/hub-resources.data';
 import { DesignGeneratorComponent } from '../design-generator/design-generator.component';
+import { CarouselGeneratorComponent } from '../carousel-generator/carousel-generator.component';
 
 const DEFAULT_STATS: ResourceStatLine[] = [
   { icon: 'menu_book', value: '—', label: 'Detalle' },
@@ -23,7 +24,7 @@ const DEFAULT_STATS: ResourceStatLine[] = [
 @Component({
   selector: 'app-resource-detail-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, MarkdownComponent, DesignGeneratorComponent],
+  imports: [RouterLink, MarkdownComponent, DesignGeneratorComponent, CarouselGeneratorComponent],
   templateUrl: './resource-detail-page.component.html',
   host: {
     '(window:scroll)': 'onWindowScrollSpy()',
@@ -160,5 +161,48 @@ export class ResourceDetailPageComponent {
         ? 'border-brand-orange text-brand-orange'
         : 'border-transparent text-brand-text/50')
     );
+  }
+
+  protected onMarkdownLoad(): void {
+    if (typeof globalThis.document === 'undefined' || typeof globalThis.navigator === 'undefined') return;
+    
+    // Find all <pre> elements inside the markdown container
+    const container = globalThis.document.querySelector('.resource-content');
+    if (!container) return;
+    
+    const preElements = container.querySelectorAll('pre');
+    preElements.forEach((pre) => {
+      // Avoid adding duplicate buttons
+      if (pre.querySelector('.copy-code-btn')) return;
+      
+      const button = globalThis.document.createElement('button');
+      button.type = 'button';
+      button.className = 'copy-code-btn';
+      button.innerHTML = `
+        <span class="material-icons" style="font-size:12px">content_copy</span>
+        <span>Copiar</span>
+      `;
+      
+      // Get the code content to copy (clean innertext, ignoring the copy button text itself)
+      const codeEl = pre.querySelector('code');
+      const textToCopy = codeEl ? codeEl.innerText : pre.innerText;
+      
+      button.addEventListener('click', () => {
+        void globalThis.navigator.clipboard.writeText(textToCopy).then(() => {
+          button.innerHTML = `
+            <span class="material-icons text-brand-orange" style="font-size:12px">check</span>
+            <span class="text-brand-orange">Copiado</span>
+          `;
+          setTimeout(() => {
+            button.innerHTML = `
+              <span class="material-icons" style="font-size:12px">content_copy</span>
+              <span>Copiar</span>
+            `;
+          }, 2000);
+        });
+      });
+      
+      pre.appendChild(button);
+    });
   }
 }

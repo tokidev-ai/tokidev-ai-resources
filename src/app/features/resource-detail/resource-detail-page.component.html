@@ -218,6 +218,10 @@
           <div class="mt-10">
             <app-design-generator />
           </div>
+        } @else if (res.id === 3) {
+          <div class="mt-10">
+            <app-carousel-generator />
+          </div>
         } @else {
           <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_220px] lg:gap-[60px]">
             <div>
@@ -259,7 +263,7 @@
 
               @if (markdownSrc(); as src) {
                 <div class="resource-content">
-                  <markdown [src]="src" [disableSanitizer]="true" />
+                  <markdown [src]="src" [disableSanitizer]="true" (load)="onMarkdownLoad()" />
                 </div>
               }
             </div>

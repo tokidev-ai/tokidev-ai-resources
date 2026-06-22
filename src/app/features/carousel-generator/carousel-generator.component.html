@@ -1,0 +1,500 @@
+<div class="carousel-generator-container relative grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+  
+  <!-- ── LEFT COLUMN: WIZARD ── -->
+  <div class="editor-workspace min-w-0 rounded-3xl border border-brand-border bg-surface-card p-6 md:p-8 backdrop-blur-md shadow-2xl">
+    
+    <!-- Wizard Steps Header -->
+    <div class="mb-8 flex flex-wrap gap-4 border-b border-brand-border pb-5 justify-between">
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 1"
+        [class.border-b-2]="activeStep() === 1"
+        [class.border-brand-orange]="activeStep() === 1"
+        [class.text-brand-text/40]="activeStep() !== 1"
+        (click)="setStep(1)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 1" [class.border-brand-text/30]="activeStep() !== 1">01</span>
+        Estructura
+      </button>
+
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 2"
+        [class.border-b-2]="activeStep() === 2"
+        [class.border-brand-orange]="activeStep() === 2"
+        [class.text-brand-text/40]="activeStep() !== 2"
+        (click)="setStep(2)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 2" [class.border-brand-text/30]="activeStep() !== 2">02</span>
+        Voz y Tono
+      </button>
+
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 3"
+        [class.border-b-2]="activeStep() === 3"
+        [class.border-brand-orange]="activeStep() === 3"
+        [class.text-brand-text/40]="activeStep() !== 3"
+        (click)="setStep(3)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 3" [class.border-brand-text/30]="activeStep() !== 3">03</span>
+        Estilo Visual
+      </button>
+
+      <button 
+        type="button"
+        class="step-tab flex items-center gap-2 cursor-pointer border-0 bg-transparent pb-3 font-mono-display text-[11px] font-bold uppercase tracking-wider transition-colors"
+        [class.text-brand-orange]="activeStep() === 4"
+        [class.border-b-2]="activeStep() === 4"
+        [class.border-brand-orange]="activeStep() === 4"
+        [class.text-brand-text/40]="activeStep() !== 4"
+        (click)="setStep(4)"
+      >
+        <span class="size-5 rounded-full border flex items-center justify-center text-[10px]" [class.border-brand-orange]="activeStep() === 4" [class.border-brand-text/30]="activeStep() !== 4">04</span>
+        Exportar Skill
+      </button>
+    </div>
+
+    <!-- ── STEP 1: STRUCTURE ── -->
+    @if (activeStep() === 1) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 1: Define el tema y estructura del carrusel</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Determina cuántos slides quieres y bajo qué tipo de narrativa vas a estructurar tu contenido.</p>
+
+        <!-- Topic Input -->
+        <div class="mb-6">
+          <label class="block text-xs uppercase tracking-wider text-brand-orange mb-2 font-semibold">Título tentativo del Carrusel</label>
+          <input
+            type="text"
+            [(ngModel)]="carouselTitle"
+            class="w-full rounded-xl border border-brand-border bg-black/35 px-4 py-3 text-sm text-brand-text focus:border-brand-orange focus:outline-none"
+            placeholder="Ej. 5 Trucos Ocultos de CSS que no conocías"
+          >
+        </div>
+
+        <!-- Slides count selector -->
+        <div class="mb-8">
+          <label class="block text-xs uppercase tracking-wider text-brand-orange mb-3 font-semibold">Cantidad de slides por defecto: {{ slideCount() }}</label>
+          <div class="flex items-center gap-4 bg-black/20 p-3.5 rounded-xl border border-brand-border/60">
+            <input 
+              type="range" 
+              min="3" 
+              max="10" 
+              [value]="slideCount()"
+              (input)="slideCount.set(+$any($event.target).value)"
+              class="flex-1 accent-brand-orange cursor-pointer"
+            >
+            <span class="font-mono text-sm font-bold bg-brand-orange/10 text-brand-orange border border-brand-orange/20 px-3 py-1 rounded-md">{{ slideCount() }} slides</span>
+          </div>
+          <span class="text-[10px] text-brand-text/40 block mt-1.5">Mínimo 3 slides (Portada, Contenido, CTA final)</span>
+        </div>
+
+        <!-- Structure selection -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-3 font-semibold">Tipo de Estructura Narrativa</h4>
+        <div class="flex flex-col gap-4">
+          @for (s of structures; track s.id) {
+            <button
+              type="button"
+              class="flex flex-col text-left p-4.5 rounded-xl border cursor-pointer transition-all bg-white/[0.02]"
+              [class.border-brand-orange]="selectedStructureId() === s.id"
+              [class.border-brand-border]="selectedStructureId() !== s.id"
+              [class.bg-white/[0.05]]="selectedStructureId() === s.id"
+              (click)="selectedStructureId.set(s.id)"
+            >
+              <span class="text-sm font-bold text-brand-text mb-1">{{ s.name }}</span>
+              <p class="text-xs text-brand-text/50 leading-relaxed mb-3">{{ s.desc }}</p>
+              
+              <!-- Micro outline preview -->
+              <div class="w-full flex flex-col gap-1 bg-black/25 p-3 rounded-lg border border-brand-border/40">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-brand-text/30">Esquema de Slides</span>
+                <ul class="m-0 p-0 list-none text-[11px] text-brand-text/75 space-y-1">
+                  @for (ex of s.slidesExample; track ex) {
+                    <li class="flex items-center gap-1.5">
+                      <span class="size-1 rounded-full bg-brand-orange shrink-0"></span>
+                      <span class="truncate">{{ ex }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- ── STEP 2: TONE AND BRANDING ── -->
+    @if (activeStep() === 2) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 2: Tono de voz y Datos de tu Cuenta</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Configura tu firma (marca de agua) y las reglas de redacción para la IA.</p>
+
+        <!-- Profile details -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-3 font-semibold">Identificador de Marca</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Handle de Instagram (Firma)</label>
+            <input
+              type="text"
+              [(ngModel)]="instagramHandle"
+              class="w-full rounded-xl border border-brand-border bg-black/35 px-4 py-2.5 text-xs text-brand-text focus:border-brand-orange focus:outline-none"
+              placeholder="Ej. @tu_perfil"
+            >
+          </div>
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Web / Enlace de Referencia</label>
+            <input
+              type="text"
+              [(ngModel)]="brandWebsite"
+              class="w-full rounded-xl border border-brand-border bg-black/35 px-4 py-2.5 text-xs text-brand-text focus:border-brand-orange focus:outline-none"
+              placeholder="Ej. linktr.ee/tu_perfil"
+            >
+          </div>
+        </div>
+
+        <!-- Tone selector -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-3 font-semibold">Tono de Redacción</h4>
+        <div class="flex flex-col gap-4">
+          @for (t of tones; track t.id) {
+            <button
+              type="button"
+              class="flex flex-col text-left p-4.5 rounded-xl border cursor-pointer transition-all bg-white/[0.02]"
+              [class.border-brand-orange]="selectedToneId() === t.id"
+              [class.border-brand-border]="selectedToneId() !== t.id"
+              [class.bg-white/[0.05]]="selectedToneId() === t.id"
+              (click)="selectedToneId.set(t.id)"
+            >
+              <div class="flex items-center justify-between w-full mb-1">
+                <span class="text-sm font-bold text-brand-text">{{ t.name }}</span>
+                <span class="text-[10px] font-mono bg-brand-orange/10 text-brand-orange border border-brand-orange/20 px-2 py-0.5 rounded uppercase">Tono</span>
+              </div>
+              <p class="text-xs text-brand-text/50 leading-relaxed">{{ t.desc }}</p>
+              
+              <!-- Directives preview -->
+              <div class="mt-2.5 text-[11px] leading-relaxed text-brand-text/65 italic border-s-2 border-brand-orange/30 pl-3">
+                "{{ t.rules }}"
+              </div>
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- ── STEP 3: VISUAL STYLE ── -->
+    @if (activeStep() === 3) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 3: Colores visuales del Carrusel</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Elige una paleta cromática para pintar el lienzo y los elementos de acento en tus slides.</p>
+
+        <!-- Presets -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-3 font-semibold">Paletas Prediseñadas</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          @for (preset of colorPresets; track preset.id) {
+            <button
+              type="button"
+              class="flex flex-col text-left p-4 rounded-xl border cursor-pointer transition-all bg-white/[0.02]"
+              [class.border-brand-orange]="selectedPresetId() === preset.id"
+              [class.border-brand-border]="selectedPresetId() !== preset.id"
+              [class.bg-white/[0.05]]="selectedPresetId() === preset.id"
+              (click)="applyPreset(preset)"
+            >
+              <span class="text-sm font-semibold text-brand-text mb-2">{{ preset.name }}</span>
+              <div class="flex gap-1.5 w-full">
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.bg" title="Fondo"></span>
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.text" title="Texto"></span>
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.accent1" title="Acento 1"></span>
+                <span class="size-5 rounded-full border border-white/10" [style.background-color]="preset.accent2" title="Acento 2"></span>
+              </div>
+            </button>
+          }
+        </div>
+
+        <!-- Custom Color Inputs -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-orange mb-4 font-semibold">Editor de Colores Personalizado</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 p-5 rounded-2xl border border-brand-border bg-black/20">
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Color de Fondo del Slide</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorBg()" (input)="colorBg.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorBg()" (input)="colorBg.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Color del Texto</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorText()" (input)="colorText.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorText()" (input)="colorText.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Acento Primario (Gradiente)</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorAccent1()" (input)="colorAccent1.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorAccent1()" (input)="colorAccent1.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-text/60 mb-1.5 font-medium">Acento Secundario (Gradiente)</label>
+            <div class="flex items-center gap-2">
+              <input type="color" [value]="colorAccent2()" (input)="colorAccent2.set($any($event.target).value); selectedPresetId.set('custom')" class="size-9 rounded border-0 cursor-pointer bg-transparent">
+              <input type="text" [value]="colorAccent2()" (input)="colorAccent2.set($any($event.target).value); selectedPresetId.set('custom')" class="flex-1 bg-white/[0.04] border border-brand-border rounded px-2.5 py-1 text-xs text-brand-text/80">
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ── STEP 4: EXPORT ── -->
+    @if (activeStep() === 4) {
+      <div class="animate-in-ref">
+        <h3 class="text-xl font-bold mb-2 text-brand-text">Paso 4: Descarga la Skill configurada</h3>
+        <p class="text-sm text-brand-text/60 mb-6">Tu skill de carruseles está lista para ser usada. Descárgala o cópiala a tu Claude Project.</p>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-6">
+          <button
+            type="button"
+            class="flex-1 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-5 py-3.5 text-sm font-semibold text-white hover:opacity-95"
+            (click)="downloadSkill()"
+          >
+            <span class="material-icons text-[18px]">download</span>
+            Descargar SKILL.md
+          </button>
+          
+          <button
+            type="button"
+            class="flex-1 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-brand-border bg-surface-card px-5 py-3.5 text-sm font-semibold text-brand-text transition-colors hover:bg-surface-card/80"
+            (click)="copyToClipboard()"
+          >
+            <span class="material-icons text-[18px]">@if(copied()){check}@else{content_copy}</span>
+            {{ copied() ? 'Copiado' : 'Copiar al portapapeles' }}
+          </button>
+        </div>
+
+        <!-- Markdown Code Preview -->
+        <h4 class="text-xs uppercase tracking-wider text-brand-text/40 mb-2 font-semibold">Archivo de Skill Generado</h4>
+        <div class="relative overflow-hidden rounded-xl border border-brand-border bg-black/40 h-[280px]">
+          <pre class="m-0 p-4 text-[11px] leading-relaxed text-brand-text/75 h-full overflow-auto font-mono text-left select-all whitespace-pre-wrap break-all">{{ skillMarkdown() }}</pre>
+        </div>
+      </div>
+    }
+
+    <!-- Navigation Buttons -->
+    <div class="mt-8 flex border-t border-brand-border pt-5" [class.justify-between]="activeStep() > 1" [class.justify-end]="activeStep() === 1">
+      @if (activeStep() > 1) {
+        <button
+          type="button"
+          class="px-5 py-2.5 rounded-lg border border-brand-border text-xs font-semibold text-brand-text/60 hover:text-brand-text transition-colors cursor-pointer"
+          (click)="prevStep()"
+        >
+          Atrás
+        </button>
+      }
+
+      @if (activeStep() < 4) {
+        <button
+          type="button"
+          class="px-5 py-2.5 rounded-lg border-0 bg-linear-to-r from-brand-orange to-brand-yellow text-xs font-semibold text-white transition-opacity cursor-pointer hover:opacity-95"
+          (click)="nextStep()"
+        >
+          Siguiente
+        </button>
+      }
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT COLUMN: DEVICE PREVIEW ── -->
+  <div class="preview-panel sticky top-[100px] self-start flex flex-col items-center w-full">
+    
+    <!-- Preview Title Tab -->
+    <div class="flex p-1 rounded-full bg-black/45 border border-brand-border/60 mb-6 shadow-inner w-fit">
+      <span class="px-5 py-2 text-xs font-bold text-brand-orange uppercase tracking-wider">
+        Previsualización de Slide
+      </span>
+    </div>
+
+    <!-- Live Preview Canvas -->
+    <div class="relative overflow-hidden w-full max-w-[450px] aspect-[4/5] rounded-[36px] border-4 border-zinc-800 shadow-[0_32px_64px_-24px_rgba(0,0,0,0.85)] flex flex-col">
+      
+      <!-- Simulated Phone Top Notification/App Bar -->
+      <div class="flex items-center justify-between px-5 py-3.5 bg-black/30 border-b border-white/[0.04] text-[11px] text-zinc-400 select-none">
+        <div class="flex items-center gap-2">
+          <!-- simulated profile pic -->
+          <span class="size-5 rounded-full flex items-center justify-center text-[10px] text-white font-bold bg-gradient-to-tr from-brand-orange to-brand-yellow shrink-0">T</span>
+          <span class="font-bold text-white tracking-tight">{{ instagramHandle() }}</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="material-icons text-[14px]">more_horiz</span>
+        </div>
+      </div>
+
+      <!-- Slide content frame -->
+      <div 
+        class="relative flex-1 transition-colors duration-500 p-8 flex flex-col justify-between select-none overflow-hidden"
+        [style.background-color]="colorBg()"
+        [style.color]="colorText()"
+      >
+        <!-- Custom gradient ambient glow overlay -->
+        <div class="absolute -right-20 -top-20 size-52 rounded-full opacity-20 blur-[90px]" [style.background-color]="colorAccent1()"></div>
+        <div class="absolute -left-20 -bottom-20 size-52 rounded-full opacity-15 blur-[90px]" [style.background-color]="colorAccent2()"></div>
+
+        <!-- Watermark Header -->
+        <div class="flex items-center justify-between text-[11px] opacity-40 uppercase tracking-widest font-mono">
+          <span>{{ brandWebsite() }}</span>
+          <span class="font-semibold">{{ instagramHandle() }}</span>
+        </div>
+
+        <!-- ── SLIDE CONTENT PREVIEWS ── -->
+        <div class="my-auto py-4">
+          
+          <!-- SLIDE 0: COVER -->
+          @if (activePreviewSlide() === 0) {
+            <div class="animate-in-ref space-y-4">
+              <span 
+                class="inline-block text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-md text-white font-mono"
+                [style.background]="'linear-gradient(90deg, ' + colorAccent1() + ', ' + colorAccent2() + ')'"
+              >
+                SKILL GENERADA
+              </span>
+              <h1 class="text-3xl font-extrabold leading-[1.08] tracking-tight" [style.color]="colorText()">
+                {{ carouselTitle() }}
+              </h1>
+              <div class="w-16 h-1 rounded" [style.background]="'linear-gradient(90deg, ' + colorAccent1() + ', ' + colorAccent2() + ')'"></div>
+              <p class="text-[12px] opacity-60 leading-relaxed">
+                Desliza para ver la estructura de contenido configurada paso a paso.
+              </p>
+            </div>
+          }
+
+          <!-- SLIDE 1: INTRO / TRANSITION -->
+          @if (activePreviewSlide() === 1) {
+            <div class="animate-in-ref space-y-3.5">
+              <span class="text-[10px] font-bold text-zinc-400 font-mono">Paso 01 / Estructura</span>
+              <h2 class="text-xl font-bold tracking-tight text-white leading-snug">
+                @if (selectedStructureId() === 'listicle') {
+                  El puente hacia tus tips
+                } @else if (selectedStructureId() === 'story') {
+                  El problema a resolver
+                } @else {
+                  Requisitos de la guía
+                }
+              </h2>
+              
+              <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-[11px] leading-relaxed">
+                @if (selectedStructureId() === 'listicle') {
+                  "La mayoría de desarrolladores comete el mismo error. Hoy te enseño a evitarlo con estos tips clave..."
+                } @else if (selectedStructureId() === 'story') {
+                  "Estaba estancado en mi stack. Todo cambió cuando me di cuenta de una gran verdad incómoda..."
+                } @else {
+                  "Antes de comenzar con el tutorial, asegúrate de tener instalada la última versión estable..."
+                }
+              </div>
+              
+              <div class="flex items-center gap-1.5 text-[10px] text-zinc-400 font-mono">
+                <span class="material-icons text-xs" [style.color]="colorAccent1()">chat_bubble_outline</span>
+                <span>Tono: {{ selectedTone().name }}</span>
+              </div>
+            </div>
+          }
+
+          <!-- SLIDE 2: CARD COMPONENT EXAMPLE -->
+          @if (activePreviewSlide() === 2) {
+            <div class="animate-in-ref space-y-4">
+              <span class="text-[10px] font-bold text-zinc-400 font-mono">Paso 02 / Contenido</span>
+              <h2 class="text-xl font-bold tracking-tight text-white leading-snug">Visualización de Tarjeta</h2>
+              
+              <!-- Simulated Slide Card -->
+              <div 
+                class="border rounded-2xl p-4.5 shadow-xl backdrop-blur-md transition-all duration-300 bg-white/[0.03] border-white/[0.07]"
+              >
+                <div class="flex items-center gap-2 mb-2.5">
+                  <span class="size-4.5 rounded-full flex items-center justify-center text-[10px] text-white font-bold bg-white/10 shrink-0">1</span>
+                  <h3 class="text-xs font-bold text-white tracking-tight">Estilo Visual Consistente</h3>
+                </div>
+                
+                <p class="text-[10px] leading-relaxed opacity-60">
+                  Las tarjetas utilizan un fondo de opacidad baja para resaltar sobre la paleta de colores.
+                </p>
+                
+                <div class="mt-3.5 flex justify-between items-center text-[9px] border-t border-white/[0.05] pt-2.5 text-zinc-400 font-mono">
+                  <span>{{ slideCount() }} slides</span>
+                  <span class="flex items-center gap-1" [style.color]="colorAccent1()">
+                    Acción
+                    <span class="material-icons text-[9px]">arrow_forward</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- SLIDE 3: CTA / FINAL SLIDE -->
+          @if (activePreviewSlide() === 3) {
+            <div class="animate-in-ref text-center space-y-4 py-2">
+              <span class="material-icons text-3xl" [style.color]="colorAccent1()">bookmark_border</span>
+              
+              <h2 class="text-xl font-bold tracking-tight text-white leading-tight">
+                ¿Te sirvió este contenido?
+              </h2>
+              
+              <p class="text-[11px] opacity-60 max-w-[220px] mx-auto leading-relaxed">
+                Guarda este post para revisarlo más tarde y sígueme para más.
+              </p>
+              
+              <div class="inline-flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] py-2 px-4 rounded-xl text-xs font-semibold text-white">
+                <span class="size-2 rounded-full animate-pulse" [style.background-color]="colorAccent1()"></span>
+                <span>{{ instagramHandle() }}</span>
+              </div>
+            </div>
+          }
+
+        </div>
+
+        <!-- Watermark Footer / Slide Counter -->
+        <div class="flex items-center justify-between text-[10px] font-mono select-none">
+          <div class="flex gap-1.5 items-center">
+            <!-- dots indicators -->
+            @for (dot of [0,1,2,3]; track dot) {
+              <span 
+                class="size-1 rounded-full transition-all"
+                [class.bg-white]="activePreviewSlide() === dot"
+                [class.opacity-30]="activePreviewSlide() !== dot"
+                [class.bg-zinc-500]="activePreviewSlide() !== dot"
+                [style.background-color]="activePreviewSlide() === dot ? colorAccent1() : ''"
+              ></span>
+            }
+          </div>
+          <span class="opacity-50">0{{ activePreviewSlide() + 1 }} / 04</span>
+        </div>
+
+      </div>
+
+      <!-- Simulated Slide Controller -->
+      <div class="flex justify-between items-center px-4 py-3 bg-black/45 border-t border-white/[0.04] select-none text-[11px]">
+        <button 
+          type="button"
+          class="cursor-pointer bg-white/[0.05] hover:bg-white/[0.1] text-white border-0 py-1.5 px-3 rounded-lg flex items-center gap-1 transition-colors"
+          (click)="prevPreviewSlide()"
+        >
+          <span class="material-icons text-xs" style="font-size:12px">arrow_back</span>
+          Prev
+        </button>
+        <span class="text-zinc-500 font-mono text-[9px]">DISEÑO DE INSTAGRAM SLIDES</span>
+        <button 
+          type="button"
+          class="cursor-pointer bg-white/[0.05] hover:bg-white/[0.1] text-white border-0 py-1.5 px-3 rounded-lg flex items-center gap-1 transition-colors"
+          (click)="nextPreviewSlide()"
+        >
+          Siguiente
+          <span class="material-icons text-xs" style="font-size:12px">arrow_forward</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

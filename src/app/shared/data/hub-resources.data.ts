@@ -45,7 +45,7 @@ export const RESOURCE_CARDS = [
     title: 'Crea slides de Instagram listos para subir',
     desc: 'De prompt a PNG en minutos. Diseño, colores y estructura incluidos — solo escribís el tema.',
     meta: '· HTML · exportación PNG',
-    cta: 'Leer',
+    cta: 'Crear',
     upcoming: false,
     detailBadgeLabel: 'INSTAGRAM · 1080×1350px',
     detailStats: [

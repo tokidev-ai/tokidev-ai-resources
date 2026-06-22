@@ -120,7 +120,7 @@
   }
 
   pre {
-    @apply rounded-2xl border border-brand-border bg-[rgb(12_19_31)] px-6 py-5;
+    @apply rounded-2xl border border-brand-border bg-[rgb(12_19_31)] px-6 pt-12 pb-5 relative;
     code {
       @apply text-[13px] leading-loose text-brand-text/90;
       background: none;
@@ -129,6 +129,10 @@
       color: inherit;
       font-size: inherit;
     }
+  }
+
+  .copy-code-btn {
+    @apply absolute right-3.5 top-3.5 flex cursor-pointer items-center gap-1 rounded-md border border-brand-border bg-white/[0.03] px-2.5 py-1 text-[10px] text-brand-text/75 transition-colors hover:bg-white/[0.08] hover:text-white focus-visible:outline-2 focus-visible:outline-brand-orange;
   }
 
   code:not(pre code) {
