@@ -90,25 +90,45 @@
     </div>
   </section>
 
-  <!-- ── GSAP PINNED SCROLL TEXT SECTION ── -->
-  <div class="scroll-text-trigger-container relative w-full h-[180vh] bg-black/35 border-y border-brand-border/40">
-    <section class="scroll-text-section sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-      <!-- ambient background glow -->
-      <div class="pointer-events-none absolute inset-0 bg-radial-gradient(circle at center, rgb(239 108 74 / 0.07), transparent 60%)" aria-hidden="true"></div>
-      
-      <div class="mx-auto max-w-[1120px] px-6 text-center z-10 flex flex-col items-center justify-center">
-        <!-- Giant scaling display text -->
-        <h2 class="scroll-scaling-text font-sans font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-brand-orange/70 text-[clamp(46px,8vw,110px)] leading-[0.92] select-none">
-          Tus Prompts.<br>Tus Skills.<br>Tu Estilo.
-        </h2>
-        
-        <!-- Text reveal paragraphs that show up when the scaling is complete -->
-        <p class="scroll-desc-text mt-8 text-base sm:text-lg text-brand-text/50 max-w-[580px] mx-auto leading-relaxed">
-          Personaliza cada recurso interactivo para que se adapte exactamente a tu flujo de trabajo o a la identidad de tu marca.
-        </p>
+  <!-- ── KEY VALUE PROPOSITIONS (STATIC) ── -->
+  <section class="value-props-section relative bg-black/15 py-20 border-y border-brand-border/30">
+    <div class="mx-auto max-w-[1120px] px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Prop 1 -->
+        <div class="flex flex-col items-start p-6 rounded-2xl border border-brand-border bg-surface-card/10 backdrop-blur-md">
+          <div class="size-10 rounded-lg bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange mb-4">
+            <span class="material-icons text-[20px]">palette</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-2 uppercase tracking-wider">100% Personalizable</h3>
+          <p class="text-xs leading-relaxed text-brand-text/50">
+            Ajusta colores, fuentes, tono de redacción y firmas. Genera archivos adaptados por completo a tu flujo o marca personal.
+          </p>
+        </div>
+
+        <!-- Prop 2 -->
+        <div class="flex flex-col items-start p-6 rounded-2xl border border-brand-border bg-surface-card/10 backdrop-blur-md">
+          <div class="size-10 rounded-lg bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center text-brand-yellow mb-4">
+            <span class="material-icons text-[20px]">code</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-2 uppercase tracking-wider">Estructura Optimizada</h3>
+          <p class="text-xs leading-relaxed text-brand-text/50">
+            Diseñados bajo estándares limpios (XML/Markdown) para que cualquier modelo de IA entienda las instrucciones sin consumir token extra.
+          </p>
+        </div>
+
+        <!-- Prop 3 -->
+        <div class="flex flex-col items-start p-6 rounded-2xl border border-brand-border bg-surface-card/10 backdrop-blur-md">
+          <div class="size-10 rounded-lg bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center text-brand-purple mb-4">
+            <span class="material-icons text-[20px]">bolt</span>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-2 uppercase tracking-wider">Acceso Inmediato</h3>
+          <p class="text-xs leading-relaxed text-brand-text/50">
+            Sin suscripciones, sin crear cuentas ni ingresar tarjetas. Todo el catálogo de recursos es de libre descarga y copia.
+          </p>
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- ── FEATURES SHOWCASE ── -->
   <section class="features-showcase-section relative bg-brand-bg py-24 border-b border-brand-border/40">

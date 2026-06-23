@@ -102,25 +102,7 @@ export class LandingPageComponent {
         .from('.hero-cue',    { opacity: 0, duration: 0.5 },        '-=0.2')
         .from('.hero-cards',  { opacity: 0, x: 40, duration: 1.0, ease: 'power3.out' }, 0.3);
 
-      // GSAP ScrollTrigger Pinned Scale & Reveal Timeline
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.scroll-text-trigger-container',
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 0.8,
-        }
-      });
 
-      scrollTl.fromTo('.scroll-scaling-text', 
-        { scale: 2.6, opacity: 0.08 },
-        { scale: 1, opacity: 1, ease: 'none' }
-      )
-      .fromTo('.scroll-desc-text',
-        { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, ease: 'power2.out' },
-        '-=0.15'
-      );
 
       // Puzzle-like staggered reveal for Features cards: left, center/bottom, right
       const cards = this.el.nativeElement.querySelectorAll('.features-grid-item');
