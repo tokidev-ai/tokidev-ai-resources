@@ -93,7 +93,7 @@ export class ResourceDetailPageComponent {
       const slug = this.paramSlug();
       if (slug === null) return;
       const r = this.detailResource();
-      if (!r || r.upcoming) void this.router.navigate(['/recursos']);
+      if (!r || r.upcoming) void this.router.navigate(['/resources']);
     });
   }
 

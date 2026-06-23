@@ -6,15 +6,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./core/shell/app-shell.component').then((m) => m.AppShellComponent),
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'recursos' },
       {
-        path: 'recursos',
+        path: '',
         loadComponent: () =>
-          import('./features/hub/hub-page.component').then((m) => m.HubPageComponent),
-        title: 'Recursos · tokidev',
+          import('./features/landing/landing-page.component').then((m) => m.LandingPageComponent),
+        title: 'TokiDev · Recursos y Prompts de IA',
       },
       {
-        path: 'recursos/:id',
+        path: 'resources',
+        loadComponent: () =>
+          import('./features/hub/hub-page.component').then((m) => m.HubPageComponent),
+        title: 'Biblioteca · tokidev',
+      },
+      {
+        path: 'resources/:id',
         loadComponent: () =>
           import('./features/resource-detail/resource-detail-page.component').then(
             (m) => m.ResourceDetailPageComponent,
