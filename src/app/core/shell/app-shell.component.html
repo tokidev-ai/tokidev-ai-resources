@@ -1,13 +1,35 @@
 <header class="fixed z-50 w-full px-4 sm:px-8 transition-all duration-300 lg:px-16" [class.top-6]="!scrolled()"
   [class.top-4]="scrolled()" aria-label="tokidev">
-  <div class="mx-auto max-w-[1200px] border border-transparent transition-all duration-300"
+  <div class="mx-auto max-w-[1200px] border border-transparent transition-all duration-300 flex items-center justify-between"
     [class.scrolled-nav]="scrolled()">
+    
+    <!-- Logo -->
     <a routerLink="/" class="flex items-center gap-3 no-underline outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded-xl">
       <span
-        class="flex size-11 items-center justify-center rounded-xl bg-linear-to-br from-brand-orange to-brand-yellow text-base font-black text-white shadow-[0_6px_20px_rgb(250_116_63/0.5)]"
+        class="flex size-10 items-center justify-center rounded-xl bg-linear-to-br from-brand-orange to-brand-yellow text-sm font-black text-white shadow-[0_4px_12px_rgb(250_116_63/0.4)]"
         aria-hidden="true">T</span>
-      <span class="text-[18px] font-bold tracking-tight text-brand-text">tokidev</span>
+      <span class="text-[16px] font-bold tracking-tight text-brand-text">tokidev</span>
     </a>
+
+    <!-- Navigation links -->
+    <nav class="flex items-center gap-6 pr-2">
+      <a 
+        routerLink="/" 
+        class="text-[11px] font-bold text-brand-text/50 hover:text-white transition-colors no-underline uppercase tracking-widest outline-none focus-visible:text-brand-orange"
+        routerLinkActive="text-white!"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Inicio
+      </a>
+      <a 
+        routerLink="/resources" 
+        class="text-[11px] font-bold text-brand-text/50 hover:text-white transition-colors no-underline uppercase tracking-widest outline-none focus-visible:text-brand-orange"
+        routerLinkActive="text-white!"
+      >
+        Biblioteca
+      </a>
+    </nav>
+
   </div>
 </header>
 
@@ -22,3 +44,36 @@
 </div>
 
 <router-outlet />
+
+<!-- ── FOOTER ── -->
+<footer class="relative border-t border-brand-border/40 bg-black/30 py-12 backdrop-blur-md">
+  <div class="mx-auto max-w-[1120px] px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <span class="flex size-9 items-center justify-center rounded-lg bg-linear-to-br from-brand-orange to-brand-yellow text-xs font-black text-white shadow-[0_4px_12px_rgb(250_116_63/0.3)]">T</span>
+      <span class="text-sm font-bold tracking-tight text-brand-text">tokidev</span>
+    </div>
+    
+    <p class="text-[11px] text-brand-text/30 text-center sm:text-left font-medium">
+      © {{ currentYear }} tokidev. Todos los derechos reservados. Recursos libres de código e IA.
+    </p>
+    
+    <div class="flex gap-4">
+      <a 
+        href="https://github.com" 
+        target="_blank" 
+        class="text-brand-text/40 hover:text-white transition-colors outline-none focus-visible:text-brand-orange"
+        aria-label="GitHub de TokiDev"
+      >
+        <span class="material-icons text-[18px]">code</span>
+      </a>
+      <a 
+        href="https://linkedin.com" 
+        target="_blank" 
+        class="text-brand-text/40 hover:text-white transition-colors outline-none focus-visible:text-brand-orange"
+        aria-label="LinkedIn de TokiDev"
+      >
+        <span class="material-icons text-[18px]">connect_without_contact</span>
+      </a>
+    </div>
+  </div>
+</footer>
