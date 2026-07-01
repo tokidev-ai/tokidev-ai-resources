@@ -18,6 +18,12 @@
 
       <!-- LEFT: text -->
       <div class="flex lg:flex-1 flex-col items-start text-left max-lg:items-center max-lg:text-center max-lg:pt-12">
+        <!-- Floating premium badge -->
+        <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-orange/25 bg-brand-orange/5 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-orange shadow-[0_2px_12px_rgba(250,116,63,0.12)]">
+          <span class="size-1.5 rounded-full bg-brand-orange animate-ping"></span>
+          Recursos 100% Libres y Gratuitos
+        </div>
+
         <h1 class="mb-6 font-sans font-extrabold leading-[1.08] tracking-[-3px] sm:tracking-[-4px]">
           <span class="hero-line1 block bg-linear-to-r from-white via-white to-white/70 bg-clip-text text-[clamp(44px,7.5vw,88px)] text-transparent pb-2 lg:pb-3">Los mejores</span>
           <span class="hero-line2 block bg-linear-to-r from-brand-orange via-brand-yellow to-brand-orange bg-clip-text text-[clamp(44px,7.5vw,88px)] text-transparent animate-gradient-shift">recursos.</span>
@@ -37,6 +43,13 @@
             Explorar biblioteca
             <span class="material-icons text-[16px] transition-transform group-hover:translate-x-0.5">arrow_forward</span>
           </a>
+          <button
+            type="button"
+            class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand-border bg-white/[0.03] px-8 py-4 text-sm font-bold text-brand-text hover:bg-white/[0.08] hover:text-white transition-all hover:scale-[1.03] active:scale-[0.97] outline-none focus-visible:border-brand-orange"
+            (click)="scrollToValueProps()"
+          >
+            ¿Cómo funciona?
+          </button>
         </div>
 
         <div class="hero-cue hidden lg:flex flex-col items-start gap-2 text-brand-text/30">
@@ -47,36 +60,46 @@
 
       <!-- RIGHT: floating card visual -->
       <div class="hero-cards relative flex lg:flex-1 items-center justify-center max-lg:w-full">
-        <div class="relative h-[290px] w-[260px] sm:h-[420px] sm:w-[340px]">
+        <div class="relative h-[310px] w-[260px] sm:h-[450px] sm:w-[340px]">
 
           <!-- back card (rotated) -->
-          <div class="card-float-slow absolute left-2 top-4 h-[220px] w-[240px] sm:left-4 sm:top-8 sm:h-[280px] sm:w-[300px] -rotate-6 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.6)] backdrop-blur-[15px]">
-            <div class="pointer-events-none absolute -right-10 -top-16 h-[160px] w-[160px] rounded-full bg-cat-prompts opacity-30 blur-3xl" aria-hidden="true"></div>
-            <div class="flex items-start justify-between">
-              <span class="font-mono-display text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-brand-text/30">02</span>
-              <span class="inline-flex items-center rounded-full border border-brand-orange/15 bg-brand-orange/8 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-orange/80">Prompts</span>
-            </div>
-            <div class="flex flex-1 flex-col justify-center py-4 sm:py-6">
-              <h3 class="text-balance text-[15px] sm:text-[18px] font-bold leading-snug tracking-tight text-brand-text">El PRD antes de buildear</h3>
-              <p class="mt-2 sm:mt-3 text-[11px] sm:text-[13px] leading-relaxed text-brand-text/50">1 prompt + 1 template + 3 reglas. El filtro que te ahorra construir lo que no sirve.</p>
+          <div class="card-float-slow absolute left-2 top-4 h-[250px] w-[240px] sm:left-4 sm:top-8 sm:h-[310px] sm:w-[300px] -rotate-6 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.6)] backdrop-blur-[15px] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-1.5 border-b border-brand-border/40 pb-3 mb-4">
+                <span class="size-2 rounded-full bg-white/20"></span>
+                <span class="size-2 rounded-full bg-white/20"></span>
+                <span class="size-2 rounded-full bg-white/20"></span>
+                <span class="ml-2 font-mono text-[9px] uppercase tracking-wider text-brand-text/30">prd_template.md</span>
+              </div>
+              <div class="flex items-start justify-between mb-3">
+                <span class="font-mono-display text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-brand-text/30">02</span>
+                <span class="inline-flex items-center rounded-full border border-brand-orange/15 bg-brand-orange/8 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-orange/80">Prompts</span>
+              </div>
+              <h3 class="text-balance text-[15px] sm:text-[17px] font-bold leading-snug tracking-tight text-brand-text">El PRD antes de buildear</h3>
+              <p class="mt-2 text-[11px] sm:text-[13px] leading-relaxed text-brand-text/50">1 prompt + 1 template + 3 reglas. El filtro que te ahorra construir lo que no sirve.</p>
             </div>
           </div>
 
           <!-- main card (front) -->
           <a
             [routerLink]="['/resources', 3]"
-            class="card-float absolute bottom-0 right-0 h-[240px] w-[250px] sm:h-[300px] sm:w-[310px] rotate-2 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_0_0_1px_rgb(250_116_63/0.1),0_32px_64px_-16px_rgb(0_0_0/0.7)] backdrop-blur-[15px] no-underline group hover:border-brand-border-warm transition-[border-color] duration-300"
+            class="card-float absolute bottom-0 right-0 h-[270px] w-[250px] sm:h-[330px] sm:w-[310px] rotate-2 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_0_0_1px_rgb(250_116_63/0.1),0_32px_64px_-16px_rgb(0_0_0/0.7)] backdrop-blur-[15px] no-underline group hover:border-brand-border-warm transition-[border-color] duration-300 flex flex-col justify-between"
           >
-            <div class="pointer-events-none absolute -right-10 -top-16 h-[180px] w-[180px] rounded-full bg-cat-skills opacity-35 blur-3xl" aria-hidden="true"></div>
-            <div class="flex items-start justify-between">
-              <span class="font-mono-display text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-brand-text/30">01</span>
-              <span class="inline-flex items-center rounded-full border border-brand-purple/15 bg-brand-purple/10 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-purple/90">Skills</span>
-            </div>
-            <div class="flex flex-1 flex-col justify-center py-4 sm:py-6">
+            <div>
+              <div class="flex items-center gap-1.5 border-b border-brand-border/40 pb-3 mb-4">
+                <span class="size-2 rounded-full bg-red-500/60"></span>
+                <span class="size-2 rounded-full bg-yellow-500/60"></span>
+                <span class="size-2 rounded-full bg-green-500/60"></span>
+                <span class="ml-2 font-mono text-[9px] uppercase tracking-wider text-brand-text/30">instagram_carousel.html</span>
+              </div>
+              <div class="flex items-start justify-between mb-3">
+                <span class="font-mono-display text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-brand-text/30">01</span>
+                <span class="inline-flex items-center rounded-full border border-brand-purple/15 bg-brand-purple/10 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-purple/90">Skills</span>
+              </div>
               <h3 class="text-balance text-[16px] sm:text-[19px] font-bold leading-snug tracking-tight text-brand-text">Carrusel de Instagram con IA</h3>
-              <p class="mt-2 sm:mt-3 text-[11px] sm:text-[13px] leading-relaxed text-brand-text/50">Genera slides listos para publicar en segundos usando inteligencia artificial.</p>
+              <p class="mt-2 text-[11px] sm:text-[13px] leading-relaxed text-brand-text/50">Genera slides listos para publicar en segundos usando inteligencia artificial.</p>
             </div>
-            <div class="flex items-center justify-between border-t border-brand-border pt-3 sm:pt-4">
+            <div class="flex items-center justify-between border-t border-brand-border/40 pt-3 sm:pt-4">
               <span class="font-mono-display text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-brand-text/35">· skill · html</span>
               <span class="flex items-center gap-1 text-[11px] sm:text-[12px] font-semibold text-brand-orange">
                 Usar skill
@@ -91,7 +114,7 @@
   </section>
 
   <!-- ── KEY VALUE PROPOSITIONS (STATIC) ── -->
-  <section class="value-props-section relative bg-black/15 py-20 border-y border-brand-border/30">
+  <section id="value-props" class="value-props-section relative bg-black/15 py-20 border-y border-brand-border/30">
     <div class="mx-auto max-w-[1120px] px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Prop 1 -->

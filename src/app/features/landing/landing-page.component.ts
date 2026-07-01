@@ -180,4 +180,10 @@ export class LandingPageComponent {
     hero.style.setProperty('--mx', `${x}%`);
     hero.style.setProperty('--my', `${y}%`);
   }
+
+  protected scrollToValueProps(): void {
+    if (typeof globalThis.document === 'undefined') return;
+    const el = globalThis.document.getElementById('value-props');
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
