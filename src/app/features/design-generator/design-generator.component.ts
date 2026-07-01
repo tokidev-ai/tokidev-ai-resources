@@ -35,12 +35,12 @@ export class DesignGeneratorComponent {
     {
       id: 'tokidev',
       name: 'Tokidev Premium',
-      bg: '#0a111a',
+      bg: '#080311',
       text: '#f0eef2',
-      primary: '#ef6c4a',
-      secondary: '#f5a623',
-      border: 'rgba(123, 94, 167, 0.15)',
-      glass: 'rgba(26, 16, 41, 0.65)',
+      primary: '#FA743F',
+      secondary: '#DA2984',
+      border: 'rgba(164, 6, 233, 0.15)',
+      glass: 'rgba(18, 10, 32, 0.65)',
     },
     {
       id: 'emerald',
@@ -125,12 +125,12 @@ export class DesignGeneratorComponent {
   // Component Signals
   protected readonly brandName = signal<string>('MiProyecto');
   protected readonly selectedPresetId = signal<string>('tokidev');
-  protected readonly colorBg = signal<string>('#0a111a');
+  protected readonly colorBg = signal<string>('#080311');
   protected readonly colorText = signal<string>('#f0eef2');
-  protected readonly colorPrimary = signal<string>('#ef6c4a');
-  protected readonly colorSecondary = signal<string>('#f5a623');
-  protected readonly colorBorder = signal<string>('rgba(123, 94, 167, 0.15)');
-  protected readonly colorGlass = signal<string>('rgba(26, 16, 41, 0.65)');
+  protected readonly colorPrimary = signal<string>('#FA743F');
+  protected readonly colorSecondary = signal<string>('#DA2984');
+  protected readonly colorBorder = signal<string>('rgba(164, 6, 233, 0.15)');
+  protected readonly colorGlass = signal<string>('rgba(18, 10, 32, 0.65)');
 
   protected readonly selectedFontPairId = signal<string>('clean-sans');
   protected readonly fontHeading = signal<string>('Inter');

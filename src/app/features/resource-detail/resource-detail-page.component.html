@@ -22,7 +22,7 @@
         </div>
 
         <h1
-          class="max-w-[900px] bg-linear-to-b from-white from-50% to-brand-orange bg-clip-text py-px font-sans text-[clamp(40px,6vw,56px)] font-medium tracking-[-1.5px] text-transparent"
+          class="max-w-[900px] py-px font-sans text-[clamp(40px,6vw,56px)] font-extrabold tracking-[-2px] text-white"
         >
           {{ res.title }}
         </h1>
@@ -37,11 +37,13 @@
             <p class="text-sm text-brand-text/50 mb-6">Selecciona el método que deseas utilizar:</p>
             
             <!-- Segmented Control (Tabs) -->
-            <div class="inline-flex p-1 bg-[rgb(12_19_31)] border border-brand-border/40 rounded-xl mb-6">
+            <div class="inline-flex p-1 bg-brand-elevated border border-brand-border/40 rounded-xl mb-6">
               <button
                 type="button"
                 class="cursor-pointer px-4 py-2 text-xs font-semibold rounded-lg transition-all focus-visible:outline-2 focus-visible:outline-brand-orange"
-                [class.bg-brand-orange]="activeTab() === 'cli'"
+                [class.bg-linear-to-r]="activeTab() === 'cli'"
+                [class.from-brand-orange]="activeTab() === 'cli'"
+                [class.to-brand-yellow]="activeTab() === 'cli'"
                 [class.text-white]="activeTab() === 'cli'"
                 [class.text-brand-text/60]="activeTab() !== 'cli'"
                 [class.hover:text-brand-text]="activeTab() !== 'cli'"
@@ -52,7 +54,9 @@
               <button
                 type="button"
                 class="cursor-pointer px-4 py-2 text-xs font-semibold rounded-lg transition-all focus-visible:outline-2 focus-visible:outline-brand-orange"
-                [class.bg-brand-orange]="activeTab() === 'manual'"
+                [class.bg-linear-to-r]="activeTab() === 'manual'"
+                [class.from-brand-orange]="activeTab() === 'manual'"
+                [class.to-brand-yellow]="activeTab() === 'manual'"
                 [class.text-white]="activeTab() === 'manual'"
                 [class.text-brand-text/60]="activeTab() !== 'manual'"
                 [class.hover:text-brand-text]="activeTab() !== 'manual'"
@@ -72,7 +76,7 @@
                   </p>
                   
                   <!-- Code terminal box -->
-                  <div class="rounded-xl border border-brand-border bg-[rgb(12_19_31)] p-4 font-mono text-xs">
+                  <div class="rounded-xl border border-brand-border bg-brand-elevated p-4 font-mono text-xs">
                     <div class="mb-2 flex items-center justify-between text-[10px] text-brand-text/40">
                       <span class="font-semibold tracking-wider">TERMINAL</span>
                       <button 
@@ -141,13 +145,13 @@
           <div class="mb-12 mt-8 overflow-hidden rounded-2xl border border-brand-border bg-surface-card/30 backdrop-blur-md p-6 sm:p-8 max-w-[600px]">
             <div class="flex items-center gap-2 mb-3">
               <span class="inline-flex items-center justify-center rounded-full bg-brand-orange/15 px-2.5 py-0.5 text-[11px] font-bold text-brand-orange">CLI</span>
-              <h3 class="text-base font-bold text-brand-text">Instalar vía terminal <span class="text-brand-yellow font-sans font-medium lowercase italic text-xs ml-1">(estilo por defecto)</span></h3>
+              <h3 class="text-base font-bold text-brand-text">Instalar vía terminal</h3>
             </div>
             <p class="text-xs text-brand-text/60 leading-relaxed mb-4">
               Si quieres usar la skill directamente con los colores predeterminados, copia y ejecuta este comando:
             </p>
             
-            <div class="rounded-xl border border-brand-border bg-[rgb(12_19_31)] p-3.5 font-mono text-xs mb-4">
+            <div class="rounded-xl border border-brand-border bg-brand-elevated p-3.5 font-mono text-xs mb-4">
               <div class="mb-2 flex items-center justify-between text-[10px] text-brand-text/40">
                 <span class="font-semibold tracking-wider">TERMINAL</span>
                 <button 
@@ -199,7 +203,7 @@
           @for (s of statRows(); track s.label) {
             <div
               role="listitem"
-              class="rounded-2xl border border-brand-border bg-surface-card px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-border-warm hover:shadow-[0_12px_24px_-10px_rgb(239_108_74/0.15)]"
+              class="rounded-2xl border border-brand-border bg-surface-card px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-border-warm hover:shadow-[0_12px_24px_-10px_rgb(250_116_63/0.15)]"
             >
               <span
                 class="material-icons mb-2 block text-[28px] text-brand-orange"

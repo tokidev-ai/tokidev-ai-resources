@@ -91,12 +91,12 @@ Claude pregunta cuántos slides querés antes de generar (mínimo 3, por defecto
   <div class="doc-aspect">
     <span class="material-icons">format_color_fill</span>
     <span class="doc-aspect-label">Fondo</span>
-    <span class="doc-aspect-why">#131139 — navy oscuro</span>
+    <span class="doc-aspect-why">#080311 — violeta oscuro</span>
   </div>
   <div class="doc-aspect">
     <span class="material-icons">gradient</span>
     <span class="doc-aspect-label">Acento</span>
-    <span class="doc-aspect-why">Degradado #FA743F → #A406E9</span>
+    <span class="doc-aspect-why">Degradado #FA743F → #DA2984</span>
   </div>
   <div class="doc-aspect">
     <span class="material-icons">text_fields</span>

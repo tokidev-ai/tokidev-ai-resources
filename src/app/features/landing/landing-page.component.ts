@@ -46,12 +46,12 @@ gsap.registerPlugin(ScrollTrigger);
       background: 
         radial-gradient(
           600px circle at var(--mx, 60%) var(--my, 50%),
-          rgba(239, 108, 74, 0.12),
+          rgba(250, 116, 63, 0.12),
           transparent 50%
         ),
         radial-gradient(
           500px circle at calc(100% - var(--mx, 60%)) calc(100% - var(--my, 50%)),
-          rgba(147, 51, 234, 0.08),
+          rgba(164, 6, 233, 0.08),
           transparent 50%
         );
     }
@@ -81,8 +81,8 @@ gsap.registerPlugin(ScrollTrigger);
     .hero-cards a.card-float:hover {
       animation-play-state: paused;
       transform: rotate(0deg) translateY(-8px) scale(1.025) !important;
-      border-color: rgba(239, 108, 74, 0.4);
-      box-shadow: 0 32px 64px -16px rgba(239, 108, 74, 0.25), 0 0 1px 1px rgba(239, 108, 74, 0.15);
+      border-color: rgba(250, 116, 63, 0.4);
+      box-shadow: 0 32px 64px -16px rgba(250, 116, 63, 0.25), 0 0 1px 1px rgba(250, 116, 63, 0.15);
     }
   `,
   host: {

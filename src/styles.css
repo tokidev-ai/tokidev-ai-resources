@@ -9,27 +9,27 @@
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
       monospace;
 
-    /* Navy-first: surfaces match #0a111a; violet only for small accents (e.g. SKILLS). */
-    --color-brand-bg: #0a111a;
+    /* Premium Dark Purple Theme: background matches #080311; gradients blend Orange/Pink/Purple */
+    --color-brand-bg: #080311;
     --color-brand-text: #f0eef2;
-    --color-brand-orange: #ef6c4a;
-    --color-brand-yellow: #f5a623;
-    --color-brand-purple: #7b5ea7;
+    --color-brand-orange: #FA743F;
+    --color-brand-yellow: #DA2984;
+    --color-brand-purple: #A406E9;
     --color-brand-border: rgb(255 255 255 / 0.09);
-    --color-brand-glass: rgb(14 21 34 / 0.65);
-    /* Navbar: un toque lila sobre navy, más sutil que el morado anterior */
-    --color-brand-glass-nav: rgb(22 18 38 / 0.55);
-    --color-brand-border-nav: rgb(123 94 167 / 0.14);
+    --color-brand-glass: rgb(18 10 32 / 0.65);
+    /* Navbar: deep violet glass */
+    --color-brand-glass-nav: rgb(18 10 32 / 0.55);
+    --color-brand-border-nav: rgb(164 6 233 / 0.15);
 
-    --color-brand-elevated: rgb(12 19 31);
+    --color-brand-elevated: rgb(14 6 24);
     --color-surface-nav: var(--color-brand-glass-nav);
     --color-surface-card: var(--color-brand-glass);
 
-    --color-brand-border-warm: rgb(239 108 74 / 0.35);
+    --color-brand-border-warm: rgb(250 116 63 / 0.35);
 
-    --color-cat-prompts: #f5a623;
-    --color-cat-skills: #7b5ea7;
-    --color-cat-automatizacion: #3b82f6;
+    --color-cat-prompts: #FA743F;
+    --color-cat-skills: #A406E9;
+    --color-cat-automatizacion: #DA2984;
   }
 }
 
@@ -83,17 +83,17 @@
   --tw-prose-body: #c8c6cc;
   --tw-prose-headings: #f0eef2;
   --tw-prose-lead: #a09ea8;
-  --tw-prose-links: #ef6c4a;
+  --tw-prose-links: #FA743F;
   --tw-prose-bold: #f0eef2;
-  --tw-prose-counters: #ef6c4a;
-  --tw-prose-bullets: #ef6c4a;
+  --tw-prose-counters: #FA743F;
+  --tw-prose-bullets: #FA743F;
   --tw-prose-hr: rgba(255 255 255 / 0.08);
   --tw-prose-quotes: #c8c6cc;
-  --tw-prose-quote-borders: #ef6c4a;
+  --tw-prose-quote-borders: #FA743F;
   --tw-prose-captions: #666;
-  --tw-prose-code: #ef6c4a;
+  --tw-prose-code: #FA743F;
   --tw-prose-pre-code: #e2dff0;
-  --tw-prose-pre-bg: rgb(12 19 31);
+  --tw-prose-pre-bg: var(--color-brand-elevated);
   --tw-prose-th-borders: rgba(255 255 255 / 0.1);
   --tw-prose-td-borders: rgba(255 255 255 / 0.06);
 
@@ -101,7 +101,7 @@
 
   h2 {
     @apply mt-14 mb-4 scroll-mt-[140px] text-[clamp(24px,4vw,32px)] font-bold tracking-tight;
-    background: linear-gradient(to right, #f0eef2 55%, #f5a623);
+    background: linear-gradient(to right, #f0eef2 55%, #DA2984);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -120,7 +120,7 @@
   }
 
   pre {
-    @apply rounded-2xl border border-brand-border bg-[rgb(12_19_31)] px-6 pt-12 pb-5 relative;
+    @apply rounded-2xl border border-brand-border bg-brand-elevated px-6 pt-12 pb-5 relative;
     code {
       @apply text-[13px] leading-loose text-brand-text/90;
       background: none;
@@ -149,12 +149,12 @@
   }
 
   ol > li::marker {
-    color: #ef6c4a;
+    color: #FA743F;
     font-weight: 600;
   }
 
   ul > li::marker {
-    color: #ef6c4a;
+    color: #FA743F;
   }
 
   /* Step cards used in installation sections */
@@ -172,11 +172,11 @@
     padding: 20px 24px;
     border-radius: 16px;
     border: 1px solid rgba(255 255 255 / 0.08);
-    background: rgb(14 21 34 / 0.65);
+    background: var(--color-brand-glass);
     transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 
     &:hover {
-      border-color: rgba(239 108 74 / 0.25);
+      border-color: rgba(250 116 63 / 0.25);
       transform: translateY(-2px);
       box-shadow: 0 10px 25px -10px rgb(0 0 0 / 0.45);
     }
@@ -186,7 +186,7 @@
     font-size: 28px;
     font-weight: 700;
     line-height: 1;
-    color: rgba(239 108 74 / 0.3);
+    color: rgba(250 116 63 / 0.3);
     font-variant-numeric: tabular-nums;
     min-width: 36px;
     flex-shrink: 0;
@@ -223,11 +223,11 @@
     padding: 14px 18px;
     border-radius: 12px;
     border: 1px solid rgba(255 255 255 / 0.07);
-    background: rgb(12 19 31 / 0.8);
+    background: var(--color-brand-elevated);
     transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 
     &:hover {
-      border-color: rgba(239 108 74 / 0.2);
+      border-color: rgba(250 116 63 / 0.2);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px -8px rgb(0 0 0 / 0.4);
     }
@@ -235,7 +235,7 @@
 
   .doc-grid-item .material-icons {
     font-size: 20px;
-    color: #ef6c4a;
+    color: #FA743F;
     flex-shrink: 0;
   }
 
@@ -259,11 +259,11 @@
     padding: 14px 18px;
     border-radius: 12px;
     border: 1px solid rgba(255 255 255 / 0.07);
-    background: rgb(12 19 31 / 0.8);
+    background: var(--color-brand-elevated);
     transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 
     &:hover {
-      border-color: rgba(239 108 74 / 0.2);
+      border-color: rgba(250 116 63 / 0.2);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px -8px rgb(0 0 0 / 0.4);
     }
@@ -271,7 +271,7 @@
 
   .doc-aspect .material-icons {
     font-size: 20px;
-    color: #ef6c4a;
+    color: #FA743F;
     flex-shrink: 0;
   }
 
@@ -294,15 +294,15 @@
     gap: 12px;
     padding: 16px 20px;
     border-radius: 12px;
-    border: 1px solid rgba(239 108 74 / 0.2);
-    background: rgba(239 108 74 / 0.05);
+    border: 1px solid rgba(250 116 63 / 0.2);
+    background: rgba(250 116 63 / 0.05);
     margin: 24px 0;
     font-size: 14px;
     color: rgba(240 238 242 / 0.7);
 
     .material-icons {
       font-size: 18px;
-      color: #ef6c4a;
+      color: #FA743F;
       flex-shrink: 0;
       margin-top: 1px;
     }
