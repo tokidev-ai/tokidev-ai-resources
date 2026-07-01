@@ -38,11 +38,11 @@ export class CarouselGeneratorComponent {
   protected readonly colorPresets: ColorPreset[] = [
     {
       id: 'tokidev-dark',
-      name: 'Tokidev Navy (Default)',
-      bg: '#131139',
+      name: 'Tokidev Premium (Default)',
+      bg: '#080311',
       text: '#ffffff',
       accent1: '#FA743F',
-      accent2: '#A406E9',
+      accent2: '#DA2984',
     },
     {
       id: 'cyberpunk',
@@ -153,10 +153,10 @@ export class CarouselGeneratorComponent {
 
   // Color Signals
   protected readonly selectedPresetId = signal<string>('tokidev-dark');
-  protected readonly colorBg = signal<string>('#131139');
+  protected readonly colorBg = signal<string>('#080311');
   protected readonly colorText = signal<string>('#ffffff');
   protected readonly colorAccent1 = signal<string>('#FA743F');
-  protected readonly colorAccent2 = signal<string>('#A406E9');
+  protected readonly colorAccent2 = signal<string>('#DA2984');
 
   // Preview Slide Navigation
   protected readonly activePreviewSlide = signal<number>(0);

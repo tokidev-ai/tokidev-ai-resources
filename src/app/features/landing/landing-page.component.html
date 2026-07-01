@@ -18,8 +18,8 @@
 
       <!-- LEFT: text -->
       <div class="flex lg:flex-1 flex-col items-start text-left max-lg:items-center max-lg:text-center max-lg:pt-12">
-        <h1 class="mb-6 font-sans font-extrabold leading-[0.95] tracking-[-3px] sm:tracking-[-4px]">
-          <span class="hero-line1 block bg-linear-to-r from-white via-white to-white/70 bg-clip-text text-[clamp(44px,7.5vw,88px)] text-transparent">Los mejores</span>
+        <h1 class="mb-6 font-sans font-extrabold leading-[1.08] tracking-[-3px] sm:tracking-[-4px]">
+          <span class="hero-line1 block bg-linear-to-r from-white via-white to-white/70 bg-clip-text text-[clamp(44px,7.5vw,88px)] text-transparent pb-2 lg:pb-3">Los mejores</span>
           <span class="hero-line2 block bg-linear-to-r from-brand-orange via-brand-yellow to-brand-orange bg-clip-text text-[clamp(44px,7.5vw,88px)] text-transparent animate-gradient-shift">recursos.</span>
         </h1>
 
@@ -31,7 +31,7 @@
         <div class="hero-cta mb-12 flex flex-wrap gap-4 max-lg:justify-center">
           <a
             routerLink="/resources"
-            class="relative overflow-hidden inline-flex cursor-pointer items-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(239,108,74,0.3)] transition-all hover:scale-[1.03] active:scale-[0.97] no-underline group"
+            class="relative overflow-hidden inline-flex cursor-pointer items-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(250,116,63,0.3)] transition-all hover:scale-[1.03] active:scale-[0.97] no-underline group"
           >
             <span class="btn-shine"></span>
             Explorar biblioteca
@@ -54,7 +54,7 @@
             <div class="pointer-events-none absolute -right-10 -top-16 h-[160px] w-[160px] rounded-full bg-cat-prompts opacity-30 blur-3xl" aria-hidden="true"></div>
             <div class="flex items-start justify-between">
               <span class="font-mono-display text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-brand-text/30">02</span>
-              <span class="inline-flex items-center rounded-full border border-brand-yellow/15 bg-brand-yellow/8 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-yellow/80">Prompts</span>
+              <span class="inline-flex items-center rounded-full border border-brand-orange/15 bg-brand-orange/8 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-orange/80">Prompts</span>
             </div>
             <div class="flex flex-1 flex-col justify-center py-4 sm:py-6">
               <h3 class="text-balance text-[15px] sm:text-[18px] font-bold leading-snug tracking-tight text-brand-text">El PRD antes de buildear</h3>
@@ -64,8 +64,8 @@
 
           <!-- main card (front) -->
           <a
-            [routerLink]="['/resources', 1]"
-            class="card-float absolute bottom-0 right-0 h-[240px] w-[250px] sm:h-[300px] sm:w-[310px] rotate-2 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_0_0_1px_rgb(239_108_74/0.1),0_32px_64px_-16px_rgb(0_0_0/0.7)] backdrop-blur-[15px] no-underline group hover:border-brand-border-warm transition-[border-color] duration-300"
+            [routerLink]="['/resources', 3]"
+            class="card-float absolute bottom-0 right-0 h-[240px] w-[250px] sm:h-[300px] sm:w-[310px] rotate-2 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_0_0_1px_rgb(250_116_63/0.1),0_32px_64px_-16px_rgb(0_0_0/0.7)] backdrop-blur-[15px] no-underline group hover:border-brand-border-warm transition-[border-color] duration-300"
           >
             <div class="pointer-events-none absolute -right-10 -top-16 h-[180px] w-[180px] rounded-full bg-cat-skills opacity-35 blur-3xl" aria-hidden="true"></div>
             <div class="flex items-start justify-between">
@@ -156,8 +156,8 @@
         <!-- Feature 3 -->
         <div class="features-grid-item group rounded-2xl border border-brand-border bg-surface-card/45 p-8 hover:border-brand-border-warm transition-colors duration-300">
           <span class="material-icons text-[36px] text-brand-orange mb-4 group-hover:scale-110 transition-transform">auto_mode</span>
-          <h3 class="text-lg font-bold text-white mb-2">Asistentes Interactivos</h3>
-          <p class="text-xs leading-relaxed text-brand-text/50">Configura tus recursos con nuestros asistentes paso a paso y previsualízalos antes de exportarlos.</p>
+          <h3 class="text-lg font-bold text-white mb-2">Personaliza para tu IA</h3>
+          <p class="text-xs leading-relaxed text-brand-text/50">Configura colores, marcas y reglas en vivo, y exporta la skill lista para importar en cualquier modelo o asistente de IA.</p>
         </div>
       </div>
     </div>
@@ -174,24 +174,98 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Step 1 -->
         <div class="step-grid-item relative flex flex-col items-center text-center">
-          <div class="size-12 rounded-full border border-brand-orange/20 bg-brand-orange/5 text-brand-orange flex items-center justify-center font-mono font-bold text-base mb-4 shadow-[0_4px_12px_rgba(239,108,74,0.15)]">01</div>
+          <div class="size-12 rounded-full border border-brand-orange/20 bg-brand-orange/5 text-brand-orange flex items-center justify-center font-mono font-bold text-base mb-4 shadow-[0_4px_12px_rgba(250,116,63,0.15)]">01</div>
           <h3 class="text-base font-bold text-white mb-2">Explora y Elige</h3>
           <p class="text-xs leading-relaxed text-brand-text/50 max-w-[280px]">Elige entre nuestras skills de diseño, LinkedIn, PRDs u otras automatizaciones del catálogo.</p>
         </div>
 
         <!-- Step 2 -->
         <div class="step-grid-item relative flex flex-col items-center text-center">
-          <div class="size-12 rounded-full border border-brand-orange/20 bg-brand-orange/5 text-brand-orange flex items-center justify-center font-mono font-bold text-base mb-4 shadow-[0_4px_12px_rgba(239,108,74,0.15)]">02</div>
+          <div class="size-12 rounded-full border border-brand-orange/20 bg-brand-orange/5 text-brand-orange flex items-center justify-center font-mono font-bold text-base mb-4 shadow-[0_4px_12px_rgba(250,116,63,0.15)]">02</div>
           <h3 class="text-base font-bold text-white mb-2">Personaliza el Recurso</h3>
           <p class="text-xs leading-relaxed text-brand-text/50 max-w-[280px]">Ingresa tu marca, colores o tono y previsualiza los cambios en tiempo real en los editores interactivos.</p>
         </div>
 
         <!-- Step 3 -->
         <div class="step-grid-item relative flex flex-col items-center text-center">
-          <div class="size-12 rounded-full border border-brand-orange/20 bg-brand-orange/5 text-brand-orange flex items-center justify-center font-mono font-bold text-base mb-4 shadow-[0_4px_12px_rgba(239,108,74,0.15)]">03</div>
+          <div class="size-12 rounded-full border border-brand-orange/20 bg-brand-orange/5 text-brand-orange flex items-center justify-center font-mono font-bold text-base mb-4 shadow-[0_4px_12px_rgba(250,116,63,0.15)]">03</div>
           <h3 class="text-base font-bold text-white mb-2">Importa en tu IA</h3>
           <p class="text-xs leading-relaxed text-brand-text/50 max-w-[280px]">Copia el comando de consola o descarga el archivo de skill a tu proyecto de IA para empezar a crear.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ME / CREATOR ── -->
+  <section class="about-me-section relative bg-black/5 py-24 border-b border-brand-border/40">
+    <!-- ambient background glow -->
+    <div class="pointer-events-none absolute left-[10%] top-[40%] h-[350px] w-[350px] rounded-full bg-brand-purple/10 blur-[120px]" aria-hidden="true"></div>
+
+    <div class="mx-auto max-w-[1120px] px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- LEFT: text content -->
+        <div class="lg:col-span-7 flex flex-col items-start text-left max-lg:items-center">
+          <span class="font-mono-display text-[10px] uppercase tracking-[0.25em] text-brand-orange mb-3 block text-left max-lg:text-center">Sobre el Creador</span>
+          <h2 class="font-sans text-3xl sm:text-4xl font-bold tracking-tight text-white mb-5 text-left max-lg:text-center">TokiDev</h2>
+          
+          <div class="space-y-4 text-sm leading-relaxed text-brand-text/60 max-w-[620px] text-left">
+            <p>
+              ¡Hola! Soy Rodrigo, desarrollador de software y creador de la iniciativa <strong class="text-white">TokiDev</strong>. Mi objetivo es simplificar la intersección entre el código de calidad y la inteligencia artificial práctica.
+            </p>
+            <p>
+              Diseñé esta biblioteca de recursos gratuitos y configuradores en vivo para que cualquier desarrollador, diseñador o creador pueda automatizar sus tareas repetitivas y sacarle el máximo partido a sus asistentes virtuales. Aquí no vas a encontrar prompts genéricos, sino skills e instrucciones optimizadas bajo estándares limpios.
+            </p>
+            <p>
+              Cuando no estoy entrenando skills o optimizando pipelines, comparto aprendizajes técnicos y guías prácticas en mis redes sociales. Si tienes alguna duda con las herramientas o quieres colaborar, ¡conéctate conmigo!
+            </p>
+          </div>
+          
+          <!-- Social Badges / Links -->
+          <div class="mt-8 flex flex-wrap gap-3 justify-start max-lg:justify-center">
+            <a 
+              href="https://github.com" 
+              target="_blank"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand-border bg-surface-card/25 px-4 py-2.5 text-xs font-semibold text-brand-text hover:text-white hover:border-brand-border-warm hover:bg-surface-card/50 transition-all no-underline"
+            >
+              <span class="material-icons text-[16px]">code</span>
+              GitHub
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand-border bg-surface-card/25 px-4 py-2.5 text-xs font-semibold text-brand-text hover:text-white hover:border-brand-border-warm hover:bg-surface-card/50 transition-all no-underline"
+            >
+              <span class="material-icons text-[16px]">connect_without_contact</span>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: tilted premium photo placeholder frame -->
+        <div class="lg:col-span-5 flex justify-center w-full max-lg:mt-8">
+          <div class="relative w-full max-w-[340px] sm:max-w-[360px] aspect-square rounded-[36px] border border-brand-border bg-brand-elevated/45 p-4 shadow-2xl backdrop-blur-md rotate-2 hover:rotate-0 transition-transform duration-500 group">
+            
+            <!-- inside neon outline frame with dashes -->
+            <div class="w-full h-full rounded-[24px] border border-dashed border-brand-orange/25 bg-black/25 flex flex-col items-center justify-center relative overflow-hidden">
+              
+              <!-- dynamic subtle glowing blobs -->
+              <div class="absolute -right-16 -top-16 size-40 rounded-full bg-brand-orange/8 blur-2xl group-hover:bg-brand-orange/15 transition-colors duration-500" aria-hidden="true"></div>
+              <div class="absolute -left-16 -bottom-16 size-40 rounded-full bg-brand-yellow/8 blur-2xl group-hover:bg-brand-yellow/15 transition-colors duration-500" aria-hidden="true"></div>
+              
+              <span class="material-icons text-[56px] text-brand-orange/40 mb-3 group-hover:scale-110 transition-transform duration-500" aria-hidden="true">person</span>
+              <span class="font-mono-display text-[10px] uppercase tracking-[0.2em] text-brand-text/30">RODRIGO / FOTO</span>
+              
+              <!-- floating glass info chip -->
+              <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] rounded-xl border border-brand-border bg-surface-card/60 px-3.5 py-2.5 text-center backdrop-blur-md shadow-lg">
+                <span class="block text-xs font-bold text-white tracking-wide">@tokidev</span>
+                <span class="block text-[9px] uppercase tracking-widest text-brand-orange font-semibold mt-0.5">Software Creator</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -207,7 +281,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Testimonial 1 -->
         <div class="rounded-2xl border border-brand-border bg-surface-card/20 p-8 backdrop-blur-md">
-          <div class="flex items-center gap-1 text-brand-yellow mb-4">
+          <div class="flex items-center gap-1 text-brand-orange mb-4">
             <span class="material-icons text-[18px]">star</span>
             <span class="material-icons text-[18px]">star</span>
             <span class="material-icons text-[18px]">star</span>
@@ -228,7 +302,7 @@
 
         <!-- Testimonial 2 -->
         <div class="rounded-2xl border border-brand-border bg-surface-card/20 p-8 backdrop-blur-md">
-          <div class="flex items-center gap-1 text-brand-yellow mb-4">
+          <div class="flex items-center gap-1 text-brand-orange mb-4">
             <span class="material-icons text-[18px]">star</span>
             <span class="material-icons text-[18px]">star</span>
             <span class="material-icons text-[18px]">star</span>
@@ -249,7 +323,7 @@
 
         <!-- Testimonial 3 -->
         <div class="rounded-2xl border border-brand-border bg-surface-card/20 p-8 backdrop-blur-md">
-          <div class="flex items-center gap-1 text-brand-yellow mb-4">
+          <div class="flex items-center gap-1 text-brand-orange mb-4">
             <span class="material-icons text-[18px]">star</span>
             <span class="material-icons text-[18px]">star</span>
             <span class="material-icons text-[18px]">star</span>
@@ -342,7 +416,7 @@
 
         <a 
           routerLink="/resources"
-          class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(239,108,74,0.3)] hover:scale-[1.02] active:scale-[0.97] transition-all no-underline"
+          class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(250,116,63,0.3)] hover:scale-[1.02] active:scale-[0.97] transition-all no-underline"
         >
           Ir a la Biblioteca
         </a>
