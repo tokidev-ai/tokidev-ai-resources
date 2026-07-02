@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-shell',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app-shell.component.html',
   styles: `:host {
     display: block;
@@ -26,6 +26,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   },
 })
 export class AppShellComponent {
+  protected readonly currentYear = new Date().getFullYear();
   public readonly scrolled = signal(false);
 
   public onScroll(): void {

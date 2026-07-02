@@ -45,47 +45,96 @@
         </div>
       </div>
 
-      <!-- RIGHT: floating card visual -->
-      <div class="hero-cards relative flex lg:flex-1 items-center justify-center max-lg:w-full">
-        <div class="relative h-[290px] w-[260px] sm:h-[420px] sm:w-[340px]">
-
-          <!-- back card (rotated) -->
-          <div class="card-float-slow absolute left-2 top-4 h-[220px] w-[240px] sm:left-4 sm:top-8 sm:h-[280px] sm:w-[300px] -rotate-6 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.6)] backdrop-blur-[15px]">
-            <div class="pointer-events-none absolute -right-10 -top-16 h-[160px] w-[160px] rounded-full bg-cat-prompts opacity-30 blur-3xl" aria-hidden="true"></div>
-            <div class="flex items-start justify-between">
-              <span class="font-mono-display text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-brand-text/30">02</span>
-              <span class="inline-flex items-center rounded-full border border-brand-orange/15 bg-brand-orange/8 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-orange/80">Prompts</span>
+      <!-- RIGHT: browser simulator mockup -->
+      <div class="hero-cards relative flex lg:flex-1 items-center justify-center max-lg:w-full max-lg:mt-12">
+        
+        <!-- Browser mockup box -->
+        <div class="relative w-full max-w-[460px] sm:max-w-[500px] rounded-2xl border border-brand-border bg-brand-elevated/45 p-4 sm:p-5 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.8)] backdrop-blur-md transition-all duration-500 hover:border-brand-border-warm hover:shadow-[0_32px_64px_-16px_rgba(250,116,63,0.15)] group">
+          
+          <!-- Browser top bar -->
+          <div class="flex items-center justify-between border-b border-brand-border/40 pb-3 mb-4">
+            <!-- Mac window control dots -->
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="size-2 rounded-full bg-white/20"></span>
+              <span class="size-2 rounded-full bg-white/20"></span>
+              <span class="size-2 rounded-full bg-white/20"></span>
             </div>
-            <div class="flex flex-1 flex-col justify-center py-4 sm:py-6">
-              <h3 class="text-balance text-[15px] sm:text-[18px] font-bold leading-snug tracking-tight text-brand-text">El PRD antes de buildear</h3>
-              <p class="mt-2 sm:mt-3 text-[11px] sm:text-[13px] leading-relaxed text-brand-text/50">1 prompt + 1 template + 3 reglas. El filtro que te ahorra construir lo que no sirve.</p>
+            
+            <!-- simulated URL address capsule -->
+            <div class="bg-black/35 rounded-lg border border-brand-border/30 px-4 py-1 text-[10px] sm:text-[11px] text-brand-text/30 font-mono select-none truncate max-w-[200px] text-center mx-auto">
+              claude.ai/project/tokidev
             </div>
+            
+            <div class="w-10"></div> <!-- spacing balancer -->
           </div>
 
-          <!-- main card (front) -->
-          <a
-            [routerLink]="['/resources', 3]"
-            class="card-float absolute bottom-0 right-0 h-[240px] w-[250px] sm:h-[300px] sm:w-[310px] rotate-2 rounded-3xl border border-brand-border bg-surface-card p-5 sm:p-7 shadow-[0_0_0_1px_rgb(250_116_63/0.1),0_32px_64px_-16px_rgb(0_0_0/0.7)] backdrop-blur-[15px] no-underline group hover:border-brand-border-warm transition-[border-color] duration-300"
-          >
-            <div class="pointer-events-none absolute -right-10 -top-16 h-[180px] w-[180px] rounded-full bg-cat-skills opacity-35 blur-3xl" aria-hidden="true"></div>
-            <div class="flex items-start justify-between">
-              <span class="font-mono-display text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-brand-text/30">01</span>
-              <span class="inline-flex items-center rounded-full border border-brand-purple/15 bg-brand-purple/10 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-purple/90">Skills</span>
+          <!-- Chat body simulator -->
+          <div class="flex flex-col gap-4 p-1">
+            
+            <!-- User Prompt Bubble (right-aligned) -->
+            <div class="flex flex-col items-end gap-1.5 self-end max-w-[85%]">
+              <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-brand-text/30 font-mono font-bold uppercase tracking-wider">
+                TÚ (CREADOR)
+                <span class="material-icons text-[12px] text-brand-orange">account_circle</span>
+              </div>
+              <div class="rounded-2xl rounded-tr-none border border-brand-border bg-surface-card/45 px-4 py-3 text-xs sm:text-[13px] lg:text-sm text-brand-text/80 leading-relaxed shadow-sm">
+                Genera un carrusel de Instagram sobre 3 hábitos de productividad
+              </div>
             </div>
-            <div class="flex flex-1 flex-col justify-center py-4 sm:py-6">
-              <h3 class="text-balance text-[16px] sm:text-[19px] font-bold leading-snug tracking-tight text-brand-text">Carrusel de Instagram con IA</h3>
-              <p class="mt-2 sm:mt-3 text-[11px] sm:text-[13px] leading-relaxed text-brand-text/50">Genera slides listos para publicar en segundos usando inteligencia artificial.</p>
+
+            <!-- AI Assistant Response Bubble (left-aligned) -->
+            <div class="flex flex-col items-start gap-1.5 max-w-[95%]">
+              <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-brand-orange font-mono font-bold uppercase tracking-widest">
+                <span class="flex size-4 items-center justify-center rounded bg-brand-orange/15 text-[10px] text-brand-orange font-black">AI</span>
+                ASISTENTE (CON SKILL ACTIVADA)
+              </div>
+              
+              <div class="text-[11px] sm:text-xs text-brand-text/50 pl-5 mb-1 leading-normal">
+                Aplicando tu marca y estructurando las diapositivas...
+              </div>
+
+              <!-- Generated Resource Card Simulator (nested preview) -->
+              <div class="w-full rounded-xl border border-brand-border bg-black/35 p-4 shadow-lg relative overflow-hidden group/slide transition-all hover:border-brand-orange/30 pl-5">
+                
+                <!-- glowing accent spot inside card -->
+                <div class="absolute -right-16 -top-16 size-32 rounded-full bg-brand-orange/8 blur-xl group-hover/slide:bg-brand-orange/15 transition-colors duration-500" aria-hidden="true"></div>
+                
+                <!-- mockup editor header -->
+                <div class="flex items-center justify-between border-b border-brand-border/40 pb-2.5 mb-3.5">
+                  <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-brand-text/35">✨ Carrusel de Instagram</span>
+                  <span class="flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-orange">
+                    <span class="size-1.5 rounded-full bg-brand-orange animate-pulse"></span>
+                    Vista previa
+                  </span>
+                </div>
+
+                <!-- Slide mockup contents -->
+                <div class="flex flex-col justify-between min-h-[140px]">
+                  <div>
+                    <!-- Gradient badge -->
+                    <span class="inline-block rounded-full bg-linear-to-r from-brand-orange to-brand-yellow px-2.5 py-1 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-white">Slide 2: Hábito</span>
+                    <h4 class="text-base sm:text-[18px] font-extrabold text-white tracking-tight leading-snug mt-2.5">Diseña en Segundos</h4>
+                    <p class="text-xs sm:text-[13px] leading-relaxed text-brand-text/45 mt-2 max-w-[340px]">Describe tu tema y la IA creará diapositivas profesionales con tu paleta de colores listas para publicar.</p>
+                  </div>
+
+                  <!-- Mockup card footer elements -->
+                  <div class="flex items-center justify-between border-t border-brand-border/30 pt-3 mt-4 text-[10px] sm:text-[11px] font-mono text-brand-text/30">
+                    <span>2 / 7 slides</span>
+                    <span class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-orange">
+                      Exportar PNG
+                      <span class="material-icons text-[12px] sm:text-[14px]">download</span>
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
-            <div class="flex items-center justify-between border-t border-brand-border pt-3 sm:pt-4">
-              <span class="font-mono-display text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-brand-text/35">· skill · html</span>
-              <span class="flex items-center gap-1 text-[11px] sm:text-[12px] font-semibold text-brand-orange">
-                Usar skill
-                <span class="material-icons text-[12px] sm:text-[14px] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
-              </span>
-            </div>
-          </a>
+
+          </div>
 
         </div>
+
       </div>
     </div>
   </section>
