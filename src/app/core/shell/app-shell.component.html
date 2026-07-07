@@ -1,10 +1,14 @@
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:rounded-xl focus:bg-linear-to-r focus:from-brand-orange focus:to-brand-yellow focus:px-4 focus:py-2.5 focus:text-xs focus:font-bold focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2">
+  Saltar al contenido principal
+</a>
+
 <header class="fixed z-50 w-full px-4 sm:px-8 transition-all duration-300 lg:px-16" [class.top-6]="!scrolled()"
   [class.top-4]="scrolled()" aria-label="tokidev">
   <div class="mx-auto max-w-[1200px] border border-transparent transition-all duration-300 flex items-center justify-between"
     [class.scrolled-nav]="scrolled()">
     
     <!-- Logo -->
-    <a routerLink="/" class="flex items-center gap-3 no-underline outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded-xl">
+    <a id="nav-logo" routerLink="/" class="cursor-pointer flex items-center gap-3 no-underline outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded-xl">
       <span
         class="flex size-10 items-center justify-center rounded-xl bg-linear-to-br from-brand-orange to-brand-yellow text-sm font-black text-white shadow-[0_4px_12px_rgb(250_116_63/0.4)]"
         aria-hidden="true">T</span>
@@ -14,16 +18,18 @@
     <!-- Navigation links -->
     <nav class="flex items-center gap-6 pr-2">
       <a 
+        id="nav-link-inicio"
         routerLink="/" 
-        class="text-[11px] font-bold text-brand-text/50 hover:text-white transition-colors no-underline uppercase tracking-widest outline-none focus-visible:text-brand-orange"
+        class="cursor-pointer text-[11px] font-bold text-brand-text/50 hover:text-white transition-colors no-underline uppercase tracking-widest outline-none focus-visible:text-brand-orange"
         routerLinkActive="text-white!"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         Inicio
       </a>
       <a 
+        id="nav-link-biblioteca"
         routerLink="/resources" 
-        class="text-[11px] font-bold text-brand-text/50 hover:text-white transition-colors no-underline uppercase tracking-widest outline-none focus-visible:text-brand-orange"
+        class="cursor-pointer text-[11px] font-bold text-brand-text/50 hover:text-white transition-colors no-underline uppercase tracking-widest outline-none focus-visible:text-brand-orange"
         routerLinkActive="text-white!"
       >
         Biblioteca
@@ -59,17 +65,19 @@
     
     <div class="flex gap-4">
       <a 
+        id="footer-github-link"
         href="https://github.com" 
         target="_blank" 
-        class="text-brand-text/40 hover:text-white transition-colors outline-none focus-visible:text-brand-orange"
+        class="cursor-pointer text-brand-text/40 hover:text-white transition-colors outline-none focus-visible:text-brand-orange"
         aria-label="GitHub de TokiDev"
       >
         <span class="material-icons text-[18px]">code</span>
       </a>
       <a 
+        id="footer-linkedin-link"
         href="https://linkedin.com" 
         target="_blank" 
-        class="text-brand-text/40 hover:text-white transition-colors outline-none focus-visible:text-brand-orange"
+        class="cursor-pointer text-brand-text/40 hover:text-white transition-colors outline-none focus-visible:text-brand-orange"
         aria-label="LinkedIn de TokiDev"
       >
         <span class="material-icons text-[18px]">connect_without_contact</span>
