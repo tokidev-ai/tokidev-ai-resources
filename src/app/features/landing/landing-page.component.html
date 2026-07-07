@@ -1,4 +1,4 @@
-<main>
+<main id="main-content">
   <!-- ── HERO ── -->
   <section
     class="hero-section hero-spotlight relative min-h-screen overflow-hidden bg-brand-bg py-20 lg:py-0"
@@ -30,6 +30,7 @@
         <!-- CTA Buttons -->
         <div class="hero-cta mb-12 flex flex-wrap gap-4 max-lg:justify-center">
           <a
+            id="hero-explore-btn"
             routerLink="/resources"
             class="relative overflow-hidden inline-flex cursor-pointer items-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(250,116,63,0.3)] transition-all hover:scale-[1.03] active:scale-[0.97] no-underline group"
           >
@@ -273,6 +274,7 @@
           <!-- Social Badges / Links -->
           <div class="mt-8 flex flex-wrap gap-3 justify-start max-lg:justify-center">
             <a 
+              id="creator-github-btn"
               href="https://github.com" 
               target="_blank"
               class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand-border bg-surface-card/25 px-4 py-2.5 text-xs font-semibold text-brand-text hover:text-white hover:border-brand-border-warm hover:bg-surface-card/50 transition-all no-underline"
@@ -281,6 +283,7 @@
               GitHub
             </a>
             <a 
+              id="creator-linkedin-btn"
               href="https://linkedin.com" 
               target="_blank"
               class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-brand-border bg-surface-card/25 px-4 py-2.5 text-xs font-semibold text-brand-text hover:text-white hover:border-brand-border-warm hover:bg-surface-card/50 transition-all no-underline"
@@ -302,8 +305,32 @@
               <div class="absolute -right-16 -top-16 size-40 rounded-full bg-brand-orange/8 blur-2xl group-hover:bg-brand-orange/15 transition-colors duration-500" aria-hidden="true"></div>
               <div class="absolute -left-16 -bottom-16 size-40 rounded-full bg-brand-yellow/8 blur-2xl group-hover:bg-brand-yellow/15 transition-colors duration-500" aria-hidden="true"></div>
               
-              <span class="material-icons text-[56px] text-brand-orange/40 mb-3 group-hover:scale-110 transition-transform duration-500" aria-hidden="true">person</span>
-              <span class="font-mono-display text-[10px] uppercase tracking-[0.2em] text-brand-text/30">RODRIGO / FOTO</span>
+              <!-- Premium dynamic SVG profile icon -->
+              <svg class="w-24 h-24 mb-2 group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_20px_rgba(250,116,63,0.3)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FA743F" />
+                    <stop offset="100%" stop-color="#DA2984" />
+                  </linearGradient>
+                  <linearGradient id="avatar-bg-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#120a20" />
+                    <stop offset="100%" stop-color="#080311" />
+                  </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="46" fill="url(#avatar-bg-grad)" stroke="url(#avatar-grad)" stroke-width="2" />
+                <mask id="avatar-mask">
+                  <circle cx="50" cy="50" r="44" fill="white" />
+                </mask>
+                <g mask="url(#avatar-mask)">
+                  <!-- Head/hair -->
+                  <path d="M50 30 C42 30 38 35 38 41 C38 47 42 49 50 49 C58 49 62 47 62 41 C62 35 58 30 50 30 Z" fill="url(#avatar-grad)" opacity="0.85" />
+                  <path d="M50 25 C40 25 35 30 35 38 C35 44 38 46 41 46 C42 41 45 37 50 37 C55 37 58 41 59 46 C62 46 65 44 65 38 C65 30 60 25 50 25 Z" fill="#DA2984" />
+                  <!-- Body/shoulders -->
+                  <path d="M50 56 C32 56 22 66 22 78 C22 80 24 82 26 82 L74 82 C76 82 78 80 78 78 C78 66 68 56 50 56 Z" fill="url(#avatar-grad)" />
+                  <path d="M50 56 L38 68 L50 82 L62 68 Z" fill="#ffffff" opacity="0.15" />
+                </g>
+              </svg>
+              <span class="font-mono-display text-[9px] uppercase tracking-[0.25em] text-brand-orange font-bold drop-shadow-sm">RODRIGO / TOKIDEV</span>
               
               <!-- floating glass info chip -->
               <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] rounded-xl border border-brand-border bg-surface-card/60 px-3.5 py-2.5 text-center backdrop-blur-md shadow-lg">
@@ -405,7 +432,7 @@
       <div class="space-y-4">
         <!-- FAQ 1 -->
         <details class="group border border-brand-border rounded-2xl bg-surface-card/15 overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus:outline-none">
+          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus-visible:ring-2 focus-visible:ring-brand-orange/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-bg focus-visible:outline-none rounded-t-2xl">
             <span>¿Qué es una Skill de IA y cómo se usa?</span>
             <span class="material-icons text-brand-orange group-open:rotate-180 transition-transform duration-300">keyboard_arrow_down</span>
           </summary>
@@ -416,7 +443,7 @@
 
         <!-- FAQ 2 -->
         <details class="group border border-brand-border rounded-2xl bg-surface-card/15 overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus:outline-none">
+          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus-visible:ring-2 focus-visible:ring-brand-orange/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-bg focus-visible:outline-none rounded-t-2xl">
             <span>¿Es necesario registrarse o pagar algo?</span>
             <span class="material-icons text-brand-orange group-open:rotate-180 transition-transform duration-300">keyboard_arrow_down</span>
           </summary>
@@ -427,7 +454,7 @@
 
         <!-- FAQ 3 -->
         <details class="group border border-brand-border rounded-2xl bg-surface-card/15 overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus:outline-none">
+          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus-visible:ring-2 focus-visible:ring-brand-orange/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-bg focus-visible:outline-none rounded-t-2xl">
             <span>¿Puedo usar las plantillas en cualquier modelo de IA?</span>
             <span class="material-icons text-brand-orange group-open:rotate-180 transition-transform duration-300">keyboard_arrow_down</span>
           </summary>
@@ -438,7 +465,7 @@
 
         <!-- FAQ 4 -->
         <details class="group border border-brand-border rounded-2xl bg-surface-card/15 overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus:outline-none">
+          <summary class="flex items-center justify-between cursor-pointer p-6 text-sm font-semibold text-white select-none focus-visible:ring-2 focus-visible:ring-brand-orange/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-bg focus-visible:outline-none rounded-t-2xl">
             <span>¿Cómo se personaliza la firma y los colores?</span>
             <span class="material-icons text-brand-orange group-open:rotate-180 transition-transform duration-300">keyboard_arrow_down</span>
           </summary>
@@ -464,8 +491,9 @@
         </p>
 
         <a 
+          id="footer-cta-btn"
           routerLink="/resources"
-          class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(250,116,63,0.3)] hover:scale-[1.02] active:scale-[0.97] transition-all no-underline"
+          class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-0 bg-linear-to-r from-brand-orange to-brand-yellow px-8 py-4 text-sm font-bold text-white hover:opacity-95 shadow-[0_6px_24px_rgba(250,116,63,0.3)] hover:scale-[1.02] active:scale-[0.97] transition-all no-underline focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-brand-bg focus-visible:outline-none"
         >
           Ir a la Biblioteca
         </a>

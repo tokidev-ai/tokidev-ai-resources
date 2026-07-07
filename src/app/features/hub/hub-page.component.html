@@ -1,4 +1,4 @@
-<main class="relative bg-brand-bg pb-32 pt-36">
+<main id="main-content" class="relative bg-brand-bg pb-32 pt-36">
   <!-- dot grid pattern -->
   <div
     class="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgb(255_255_255/0.04)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
@@ -31,6 +31,7 @@
       @for (f of filters; track f.slug) {
         <button
           type="button"
+          [id]="'filter-' + f.slug"
           [class]="filterClasses(f.slug)"
           (click)="setFilter(f.slug)"
           [attr.aria-pressed]="isActiveFilter(f.slug)"
@@ -43,6 +44,7 @@
       @for (r of visibleResources(); track r.id) {
         @if (r.upcoming) {
           <article
+            [id]="'resource-card-' + r.id"
             class="animate-in-ref pointer-events-none relative isolate flex min-h-[300px] cursor-default flex-col overflow-hidden rounded-3xl border border-brand-border bg-surface-card px-9 py-9 opacity-45 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.55)] backdrop-blur-[15px] max-md:min-h-[280px] max-md:px-7 max-md:py-8"
             [attr.aria-label]="r.title + ' · Próximamente'"
           >
@@ -62,6 +64,7 @@
           </article>
         } @else {
           <a
+            [id]="'resource-card-' + r.id"
             class="animate-in-ref group relative isolate flex min-h-[300px] flex-col overflow-hidden rounded-3xl border border-brand-border bg-surface-card px-9 py-9 shadow-[0_24px_48px_-12px_rgb(0_0_0/0.55)] backdrop-blur-[15px] no-underline outline-none transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-brand-border-warm hover:shadow-[0_0_0_1px_rgb(250_116_63/0.12),0_28px_56px_-16px_rgb(0_0_0/0.65)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 max-md:min-h-[280px] max-md:px-7 max-md:py-8"
             [routerLink]="['/resources', r.id]"
             [attr.aria-label]="r.title"

@@ -94,6 +94,14 @@ export class LandingPageComponent {
 
   constructor() {
     afterNextRender(() => {
+      const prefersReducedMotion =
+        typeof globalThis.window !== 'undefined' &&
+        globalThis.window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        return;
+      }
+
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
       tl.from('.hero-line1',  { opacity: 0, y: 60, duration: 0.8 })
         .from('.hero-line2',  { opacity: 0, y: 60, duration: 0.8 }, '-=0.55')
