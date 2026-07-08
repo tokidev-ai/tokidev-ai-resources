@@ -76,7 +76,13 @@
             <div class="flex flex-col items-end gap-1.5 self-end max-w-[85%]">
               <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-brand-text/30 font-mono font-bold uppercase tracking-wider">
                 TÚ (CREADOR)
-                <span class="material-icons text-[12px] text-brand-orange">account_circle</span>
+                <span 
+                  class="material-icons text-[12px] transition-colors duration-300"
+                  [class.text-brand-orange]="activeMockupColor() === 'orange'"
+                  [class.text-brand-yellow]="activeMockupColor() === 'yellow'"
+                  [class.text-brand-purple]="activeMockupColor() === 'purple'"
+                  [class.text-emerald-400]="activeMockupColor() === 'emerald'"
+                >account_circle</span>
               </div>
               <div class="rounded-2xl rounded-tr-none border border-brand-border bg-surface-card/45 px-4 py-3 text-xs sm:text-[13px] lg:text-sm text-brand-text/80 leading-relaxed shadow-sm">
                 Genera un carrusel de Instagram sobre 3 hábitos de productividad
@@ -85,8 +91,24 @@
 
             <!-- AI Assistant Response Bubble (left-aligned) -->
             <div class="flex flex-col items-start gap-1.5 max-w-[95%]">
-              <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-brand-orange font-mono font-bold uppercase tracking-widest">
-                <span class="flex size-4 items-center justify-center rounded bg-brand-orange/15 text-[10px] text-brand-orange font-black">AI</span>
+              <div 
+                class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest transition-colors duration-300"
+                [class.text-brand-orange]="activeMockupColor() === 'orange'"
+                [class.text-brand-yellow]="activeMockupColor() === 'yellow'"
+                [class.text-brand-purple]="activeMockupColor() === 'purple'"
+                [class.text-emerald-400]="activeMockupColor() === 'emerald'"
+              >
+                <span 
+                  class="flex size-4 items-center justify-center rounded text-[10px] font-black transition-colors duration-300"
+                  [class.bg-brand-orange/15]="activeMockupColor() === 'orange'"
+                  [class.text-brand-orange]="activeMockupColor() === 'orange'"
+                  [class.bg-brand-yellow/15]="activeMockupColor() === 'yellow'"
+                  [class.text-brand-yellow]="activeMockupColor() === 'yellow'"
+                  [class.bg-brand-purple/15]="activeMockupColor() === 'purple'"
+                  [class.text-brand-purple]="activeMockupColor() === 'purple'"
+                  [class.bg-emerald-500/15]="activeMockupColor() === 'emerald'"
+                  [class.text-emerald-400]="activeMockupColor() === 'emerald'"
+                >AI</span>
                 ASISTENTE (CON SKILL ACTIVADA)
               </div>
               
@@ -98,13 +120,36 @@
               <div class="w-full rounded-xl border border-brand-border bg-black/35 p-4 shadow-lg relative overflow-hidden group/slide transition-all hover:border-brand-orange/30 pl-5">
                 
                 <!-- glowing accent spot inside card -->
-                <div class="absolute -right-16 -top-16 size-32 rounded-full bg-brand-orange/8 blur-xl group-hover/slide:bg-brand-orange/15 transition-colors duration-500" aria-hidden="true"></div>
+                <div 
+                  class="absolute -right-16 -top-16 size-32 rounded-full blur-xl group-hover/slide:opacity-100 opacity-60 transition-all duration-500" 
+                  [class.bg-brand-orange/8]="activeMockupColor() === 'orange'"
+                  [class.group-hover/slide:bg-brand-orange/15]="activeMockupColor() === 'orange'"
+                  [class.bg-brand-yellow/8]="activeMockupColor() === 'yellow'"
+                  [class.group-hover/slide:bg-brand-yellow/15]="activeMockupColor() === 'yellow'"
+                  [class.bg-brand-purple/8]="activeMockupColor() === 'purple'"
+                  [class.group-hover/slide:bg-brand-purple/15]="activeMockupColor() === 'purple'"
+                  [class.bg-emerald-500/8]="activeMockupColor() === 'emerald'"
+                  [class.group-hover/slide:bg-emerald-500/15]="activeMockupColor() === 'emerald'"
+                  aria-hidden="true"
+                ></div>
                 
                 <!-- mockup editor header -->
                 <div class="flex items-center justify-between border-b border-brand-border/40 pb-2.5 mb-3.5">
                   <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-brand-text/35">✨ Carrusel de Instagram</span>
-                  <span class="flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-orange">
-                    <span class="size-1.5 rounded-full bg-brand-orange animate-pulse"></span>
+                  <span 
+                    class="flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest transition-colors duration-300"
+                    [class.text-brand-orange]="activeMockupColor() === 'orange'"
+                    [class.text-brand-yellow]="activeMockupColor() === 'yellow'"
+                    [class.text-brand-purple]="activeMockupColor() === 'purple'"
+                    [class.text-emerald-400]="activeMockupColor() === 'emerald'"
+                  >
+                    <span 
+                      class="size-1.5 rounded-full animate-pulse transition-colors duration-300"
+                      [class.bg-brand-orange]="activeMockupColor() === 'orange'"
+                      [class.bg-brand-yellow]="activeMockupColor() === 'yellow'"
+                      [class.bg-brand-purple]="activeMockupColor() === 'purple'"
+                      [class.bg-emerald-500]="activeMockupColor() === 'emerald'"
+                    ></span>
                     Vista previa
                   </span>
                 </div>
@@ -113,7 +158,20 @@
                 <div class="flex flex-col justify-between min-h-[140px]">
                   <div>
                     <!-- Gradient badge -->
-                    <span class="inline-block rounded-full bg-linear-to-r from-brand-orange to-brand-yellow px-2.5 py-1 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-white">Slide 2: Hábito</span>
+                    <span 
+                      class="inline-block rounded-full px-2.5 py-1 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-white transition-all duration-300"
+                      [class.bg-linear-to-r]="true"
+                      [class.from-brand-orange]="activeMockupColor() === 'orange'"
+                      [class.to-brand-yellow]="activeMockupColor() === 'orange'"
+                      [class.from-brand-yellow]="activeMockupColor() === 'yellow'"
+                      [class.to-brand-orange]="activeMockupColor() === 'yellow'"
+                      [class.from-brand-purple]="activeMockupColor() === 'purple'"
+                      [class.to-brand-orange]="activeMockupColor() === 'purple'"
+                      [class.from-emerald-500]="activeMockupColor() === 'emerald'"
+                      [class.to-teal-400]="activeMockupColor() === 'emerald'"
+                    >
+                      Slide 2: Hábito
+                    </span>
                     <h4 class="text-base sm:text-[18px] font-extrabold text-white tracking-tight leading-snug mt-2.5">Diseña en Segundos</h4>
                     <p class="text-xs sm:text-[13px] leading-relaxed text-brand-text/45 mt-2 max-w-[340px]">Describe tu tema y la IA creará diapositivas profesionales con tu paleta de colores listas para publicar.</p>
                   </div>
@@ -121,7 +179,13 @@
                   <!-- Mockup card footer elements -->
                   <div class="flex items-center justify-between border-t border-brand-border/30 pt-3 mt-4 text-[10px] sm:text-[11px] font-mono text-brand-text/30">
                     <span>2 / 7 slides</span>
-                    <span class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-orange">
+                    <span 
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest transition-colors duration-300"
+                      [class.text-brand-orange]="activeMockupColor() === 'orange'"
+                      [class.text-brand-yellow]="activeMockupColor() === 'yellow'"
+                      [class.text-brand-purple]="activeMockupColor() === 'purple'"
+                      [class.text-emerald-400]="activeMockupColor() === 'emerald'"
+                    >
                       Exportar PNG
                       <span class="material-icons text-[12px] sm:text-[14px]">download</span>
                     </span>
@@ -132,6 +196,45 @@
 
             </div>
 
+          </div>
+
+          <!-- Interactive Color Dots Widget -->
+          <div class="flex items-center justify-between border-t border-brand-border/30 pt-3.5 mt-4">
+            <span class="text-[10px] text-brand-text/40 font-semibold uppercase tracking-wider">Prueba colores:</span>
+            <div class="flex gap-2">
+              <button 
+                type="button" 
+                class="size-5 rounded-full border border-white/20 cursor-pointer bg-brand-orange transition-transform hover:scale-125 focus:outline-none"
+                [class.ring-2]="activeMockupColor() === 'orange'"
+                [class.ring-white]="activeMockupColor() === 'orange'"
+                (click)="activeMockupColor.set('orange')"
+                title="Naranja"
+              ></button>
+              <button 
+                type="button" 
+                class="size-5 rounded-full border border-white/20 cursor-pointer bg-brand-yellow transition-transform hover:scale-125 focus:outline-none"
+                [class.ring-2]="activeMockupColor() === 'yellow'"
+                [class.ring-white]="activeMockupColor() === 'yellow'"
+                (click)="activeMockupColor.set('yellow')"
+                title="Amarillo"
+              ></button>
+              <button 
+                type="button" 
+                class="size-5 rounded-full border border-white/20 cursor-pointer bg-brand-purple transition-transform hover:scale-125 focus:outline-none"
+                [class.ring-2]="activeMockupColor() === 'purple'"
+                [class.ring-white]="activeMockupColor() === 'purple'"
+                (click)="activeMockupColor.set('purple')"
+                title="Morado"
+              ></button>
+              <button 
+                type="button" 
+                class="size-5 rounded-full border border-white/20 cursor-pointer bg-emerald-500 transition-transform hover:scale-125 focus:outline-none"
+                [class.ring-2]="activeMockupColor() === 'emerald'"
+                [class.ring-white]="activeMockupColor() === 'emerald'"
+                (click)="activeMockupColor.set('emerald')"
+                title="Esmeralda"
+              ></button>
+            </div>
           </div>
 
         </div>
