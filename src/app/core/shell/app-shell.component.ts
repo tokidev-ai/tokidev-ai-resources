@@ -10,6 +10,8 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     display: block;
     min-height: 100vh;
     position: relative;
+    overflow-x: hidden;
+    width: 100%;
   }
   .scrolled-nav {
     border-radius: 1rem;
