@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   inject,
+  signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import gsap from 'gsap';
@@ -91,6 +92,7 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class LandingPageComponent {
   private readonly el = inject(ElementRef);
+  readonly activeMockupColor = signal<'orange' | 'yellow' | 'purple' | 'emerald'>('orange');
 
   constructor() {
     afterNextRender(() => {
